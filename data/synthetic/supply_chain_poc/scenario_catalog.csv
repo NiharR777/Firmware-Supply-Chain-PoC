@@ -1,0 +1,11 @@
+scenario_id,scenario_type,description,expected_decision
+SC-001,valid,Valid signed package with complete SBOM,normal
+SC-002,benign_exception,Benign emergency patch or vendor migration,normal
+SC-003,vulnerable_component,Vulnerable component that needs review,investigate
+SC-004,hash_mismatch,Package hash is different from the expected hash,high_risk
+SC-005,invalid_signature,Package signature is invalid or not trusted,high_risk
+SC-006,missing_sbom,SBOM is missing or incomplete,investigate
+SC-007,unexpected_component,An unexpected component was added or removed,investigate
+SC-008,untrusted_vendor,Package comes from an untrusted vendor,high_risk
+SC-009,rollback,Package has been rolled back to an older version,investigate
+SC-010,stale_evidence,Security evidence is old or component identity cannot be resolved,investigate
