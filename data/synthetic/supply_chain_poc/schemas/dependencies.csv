@@ -1,0 +1,17 @@
+package_id,component_id,dependency_type
+PKG-001,COMP-001,runtime
+PKG-001,COMP-002,runtime
+PKG-001,COMP-003,runtime
+PKG-001,COMP-004,runtime
+PKG-002,COMP-001,runtime
+PKG-002,COMP-002,runtime
+PKG-002,COMP-005,runtime
+PKG-002,COMP-004,runtime
+PKG-003,COMP-002,runtime
+PKG-003,COMP-007,runtime
+PKG-003,COMP-003,runtime
+PKG-004,COMP-001,runtime
+PKG-004,COMP-004,runtime
+PKG-004,COMP-006,runtime
+PKG-005,COMP-008,runtime
+PKG-005,COMP-003,runtime

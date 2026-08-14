@@ -1,0 +1,7 @@
+{
+  "package_id": "PKG-003",
+  "product_id": "PROD-003",
+  "affected_assets": [
+    "ASSET-004"
+  ]
+}

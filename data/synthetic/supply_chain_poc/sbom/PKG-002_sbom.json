@@ -1,0 +1,41 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:PKG-002",
+  "version": 1,
+  "metadata": {
+    "package_id": "PKG-002",
+    "package_name": "SecureEdge Gateway Firmware",
+    "package_version": "3.1.0"
+  },
+  "components": [
+    {
+      "id": "COMP-001",
+      "name": "OpenSSL",
+      "version": "3.0.12",
+      "supplier": "OpenSource",
+      "type": "library"
+    },
+    {
+      "id": "COMP-002",
+      "name": "cURL",
+      "version": "8.4.0",
+      "supplier": "OpenSource",
+      "type": "library"
+    },
+    {
+      "id": "COMP-005",
+      "name": "BusyBox",
+      "version": "1.36.1",
+      "supplier": "OpenSource",
+      "type": "utility"
+    },
+    {
+      "id": "COMP-004",
+      "name": "Linux Kernel",
+      "version": "6.1",
+      "supplier": "OpenSource",
+      "type": "operating_system"
+    }
+  ]
+}

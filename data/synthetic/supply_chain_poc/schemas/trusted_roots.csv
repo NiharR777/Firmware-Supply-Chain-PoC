@@ -1,0 +1,4 @@
+root_id,root_name,vendor_id,status
+ROOT-001,NorthStar Production Root,VEND-001,trusted
+ROOT-002,BluePeak Production Root,VEND-002,trusted
+ROOT-003,GlobalEdge Review Root,VEND-003,review

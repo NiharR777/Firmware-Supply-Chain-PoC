@@ -1,0 +1,5 @@
+vex_id,vulnerability_id,package_id,status,justification
+VEX-001,VULN-001,PKG-001,not_affected,Component configuration is not exposed to the affected functionality
+VEX-002,VULN-002,PKG-001,affected,Package uses the affected component functionality
+VEX-003,VULN-003,PKG-003,not_affected,Unused functionality is disabled
+VEX-004,VULN-004,PKG-002,affected,Component is directly included and used

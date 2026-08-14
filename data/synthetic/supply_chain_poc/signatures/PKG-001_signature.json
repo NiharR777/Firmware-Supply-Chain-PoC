@@ -1,0 +1,9 @@
+{
+  "package_id": "PKG-001",
+  "algorithm": "SHA-256",
+  "package_hash": "0abc744e8e1ea82950e46bfaa182e98cd1518695088359088076a271474d1464",
+  "signature_status": "valid",
+  "attestation_status": "valid",
+  "trusted_root": true,
+  "vendor_id": "VEND-001"
+}

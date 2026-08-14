@@ -1,0 +1,6 @@
+package_id,hash_status,signature_status,sbom_status,provenance_status,evidence_freshness
+PKG-001,valid,valid,complete,complete,current
+PKG-002,valid,valid,complete,complete,current
+PKG-003,valid,valid,complete,complete,current
+PKG-004,valid,valid,complete,partial,current
+PKG-005,valid,valid,complete,complete,current
