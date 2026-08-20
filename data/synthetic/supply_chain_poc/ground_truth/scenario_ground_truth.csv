@@ -1,0 +1,11 @@
+scenario_id,scenario_type,expected_decision
+SC-001,valid,normal
+SC-002,benign_exception,normal
+SC-003,vulnerable_component,investigate
+SC-004,hash_mismatch,high_risk
+SC-005,invalid_signature,high_risk
+SC-006,missing_sbom,investigate
+SC-007,unexpected_component,investigate
+SC-008,untrusted_vendor,high_risk
+SC-009,rollback,investigate
+SC-010,stale_evidence,investigate

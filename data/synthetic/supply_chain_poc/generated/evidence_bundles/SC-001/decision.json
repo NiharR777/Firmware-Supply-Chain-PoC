@@ -1,0 +1,15 @@
+{
+  "scenario_id": "SC-001",
+  "package_id": "PKG-001",
+  "decision": "high_risk",
+  "integrity_failure": true,
+  "recommendation": "quarantine_review",
+  "reason": "Calculated firmware package hash does not match the trusted vendor hash.",
+  "affected_asset": "CDU-PLC-001",
+  "device_type": "PLC",
+  "process_unit": "Crude Distillation Unit",
+  "human_approval_required": true,
+  "deployment_allowed": false,
+  "real_action_executed": false,
+  "data_provenance": "SYNTHETIC GROUND TRUTH"
+}

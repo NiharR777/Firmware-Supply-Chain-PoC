@@ -1,0 +1,15 @@
+{
+  "scenario_id": "SC-008",
+  "package_id": "PKG-005",
+  "decision": "high_risk",
+  "integrity_failure": false,
+  "recommendation": "quarantine_review",
+  "reason": "Firmware package is associated with an untrusted vendor.",
+  "affected_asset": "TANK-RTU-001",
+  "device_type": "Pipeline/Tank-Farm RTU",
+  "process_unit": "Tank Farm",
+  "human_approval_required": true,
+  "deployment_allowed": false,
+  "real_action_executed": false,
+  "data_provenance": "SYNTHETIC GROUND TRUTH"
+}

@@ -1,0 +1,9 @@
+{
+  "scenario_id": "SC-010",
+  "package_id": "PKG-005",
+  "product_id": "PROD-005",
+  "vendor_id": "VEND-002",
+  "scenario_type": "stale_evidence",
+  "package_status": "SYNTHETIC",
+  "data_provenance": "SYNTHETIC"
+}

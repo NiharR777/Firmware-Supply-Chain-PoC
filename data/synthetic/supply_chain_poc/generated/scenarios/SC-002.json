@@ -1,0 +1,25 @@
+{
+  "scenario_id": "SC-002",
+  "scenario_type": "hash_mismatch",
+  "package_id": "PKG-002",
+  "product_id": "PROD-002",
+  "vendor_id": "VEND-001",
+  "evidence": {
+    "hash_status": "mismatch",
+    "expected_hash": "71002ab17d6310d07e2bed3861ebb70633eb1cb7b1bed4f6032ab6fb22f662df",
+    "calculated_hash": "71002ab17d6310d07e2bed3861ebb70633eb1cb7b1bed4f6032ab6fb22f662df",
+    "signature_status": "valid",
+    "trusted_root_status": "trusted",
+    "sbom_status": "complete",
+    "vendor_trust": "trusted",
+    "evidence_freshness": "current",
+    "recommendation": "high_risk",
+    "tampered_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "integrity_failure": true,
+    "human_approval_required": true
+  },
+  "expected_decision": "high_risk",
+  "data_provenance": "SYNTHETIC GROUND TRUTH",
+  "real_action_executed": false,
+  "human_approval_required": true
+}

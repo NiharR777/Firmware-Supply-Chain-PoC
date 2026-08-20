@@ -1,5 +1,5 @@
 vendor_id,vendor_name,trust_status,country,provenance_status
-VEND-001,NorthStar Systems,trusted,India,complete
-VEND-002,BluePeak Technologies,trusted,India,complete
-VEND-003,GlobalEdge Devices,review,India,partial
+VEND-001,PetroControl Automation,trusted,India,complete
+VEND-002,Refinery Safety Systems,trusted,India,complete
+VEND-003,Industrial Gateway Solutions,review,India,partial
 VEND-004,Unknown Components Ltd,untrusted,Unknown,incomplete

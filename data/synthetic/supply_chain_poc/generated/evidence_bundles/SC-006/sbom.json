@@ -1,0 +1,9 @@
+{
+  "scenario_id": "SC-006",
+  "package_id": "PKG-002",
+  "sbom_format": "SPDX",
+  "sbom_status": "incomplete",
+  "component_count": 0,
+  "components": [],
+  "data_provenance": "SYNTHETIC"
+}

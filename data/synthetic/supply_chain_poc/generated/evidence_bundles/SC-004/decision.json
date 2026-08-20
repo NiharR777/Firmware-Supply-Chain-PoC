@@ -1,0 +1,20 @@
+{
+  "scenario_id": "SC-004",
+  "package_id": "PKG-004",
+  "decision": "investigate",
+  "integrity_failure": false,
+  "recommendation": "investigate",
+  "reason": "Firmware contains a vulnerable component with applicable VEX status.",
+  "affected_asset": "OPC-GW-001",
+  "device_type": "Industrial OPC Gateway",
+  "process_unit": "Pump or Compressor Area",
+  "human_approval_required": true,
+  "deployment_allowed": false,
+  "real_action_executed": false,
+  "data_provenance": "SYNTHETIC GROUND TRUTH",
+  "vulnerable_component": true,
+  "component_id": "COMP-002",
+  "vulnerability_id": "VULN-002",
+  "vex_status": "affected",
+  "severity": "high"
+}

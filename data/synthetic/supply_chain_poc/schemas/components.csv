@@ -2,8 +2,8 @@ component_id,component_name,version,supplier,component_type
 COMP-001,OpenSSL,3.0.12,OpenSource,library
 COMP-002,cURL,8.4.0,OpenSource,library
 COMP-003,zlib,1.3,OpenSource,library
-COMP-004,Linux Kernel,6.1,OpenSource,operating_system
+COMP-004,Linux Embedded Kernel,6.1,OpenSource,operating_system
 COMP-005,BusyBox,1.36.1,OpenSource,utility
-COMP-006,Device Driver Pack,2.2.0,NorthStar Systems,driver
-COMP-007,Network Manager,4.1.0,BluePeak Technologies,application
-COMP-008,Access Controller Library,1.5.2,BluePeak Technologies,library
+COMP-006,PLC Device Driver Pack,2.2.0,PetroControl Automation,driver
+COMP-007,Industrial Network Manager,4.1.0,Refinery Safety Systems,application
+COMP-008,Controller Access Library,1.5.2,Refinery Safety Systems,library

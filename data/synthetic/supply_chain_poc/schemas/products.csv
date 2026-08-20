@@ -1,6 +1,6 @@
 product_id,product_name,product_type,vendor_id,criticality
-PROD-001,SecureEdge Router X1,network_device,VEND-001,high
-PROD-002,SecureEdge Gateway G1,gateway,VEND-001,critical
-PROD-003,FieldConnect Controller C1,controller,VEND-002,medium
-PROD-004,Industrial Gateway I1,industrial_gateway,VEND-003,critical
-PROD-005,SmartAccess Device A1,access_device,VEND-002,high
+PROD-001,Refinery PLC Controller P1,plc,VEND-001,critical
+PROD-002,Distillation DCS Controller D1,dcs_controller,VEND-001,critical
+PROD-003,SIS Safety Controller S1,safety_controller,VEND-002,critical
+PROD-004,Industrial OPC Gateway G1,industrial_gateway,VEND-003,high
+PROD-005,Tank Farm RTU R1,rtu,VEND-002,high

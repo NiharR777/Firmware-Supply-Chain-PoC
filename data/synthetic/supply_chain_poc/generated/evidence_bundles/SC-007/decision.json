@@ -1,0 +1,15 @@
+{
+  "scenario_id": "SC-007",
+  "package_id": "PKG-004",
+  "decision": "investigate",
+  "integrity_failure": false,
+  "recommendation": "investigate",
+  "reason": "An unexpected component was detected in the firmware package.",
+  "affected_asset": "OPC-GW-001",
+  "device_type": "Industrial OPC Gateway",
+  "process_unit": "Pump or Compressor Area",
+  "human_approval_required": true,
+  "deployment_allowed": false,
+  "real_action_executed": false,
+  "data_provenance": "SYNTHETIC GROUND TRUTH"
+}

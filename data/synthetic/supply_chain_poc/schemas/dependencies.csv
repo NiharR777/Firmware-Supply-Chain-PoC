@@ -2,7 +2,7 @@ package_id,component_id,dependency_type
 PKG-001,COMP-001,runtime
 PKG-001,COMP-002,runtime
 PKG-001,COMP-003,runtime
-PKG-001,COMP-004,runtime
+PKG-001,COMP-006,runtime
 PKG-002,COMP-001,runtime
 PKG-002,COMP-002,runtime
 PKG-002,COMP-005,runtime

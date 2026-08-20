@@ -1,0 +1,10 @@
+{
+  "scenario_id": "SC-001",
+  "package_id": "PKG-001",
+  "hash_algorithm": "SHA-256",
+  "trusted_vendor_hash": "SYNTHETIC_TRUSTED_HASH",
+  "calculated_package_hash": "SYNTHETIC_CALCULATED_HASH",
+  "hash_match": false,
+  "integrity_status": "FAILED",
+  "data_provenance": "SYNTHETIC"
+}

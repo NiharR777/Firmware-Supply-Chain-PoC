@@ -1,0 +1,12 @@
+{
+  "scenario_id": "SC-003",
+  "package_id": "PKG-003",
+  "product_id": "PROD-003",
+  "vendor_id": "VEND-002",
+  "asset_id": "SIS-001",
+  "device_type": "Safety Controller/SIS",
+  "process_unit": "Reactor/Hydrocracker Unit",
+  "location": "Refinery Safety System",
+  "deployment_status": "NOT_EXECUTED",
+  "data_provenance": "SYNTHETIC"
+}

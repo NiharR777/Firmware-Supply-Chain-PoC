@@ -1,0 +1,12 @@
+{
+  "scenario_id": "SC-005",
+  "package_id": "PKG-001",
+  "product_id": "PROD-001",
+  "vendor_id": "VEND-001",
+  "asset_id": "CDU-PLC-001",
+  "device_type": "PLC",
+  "process_unit": "Crude Distillation Unit",
+  "location": "Refinery CDU",
+  "deployment_status": "NOT_EXECUTED",
+  "data_provenance": "SYNTHETIC"
+}

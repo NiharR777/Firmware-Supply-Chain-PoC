@@ -1,7 +1,7 @@
 asset_id,product_id,asset_name,location,criticality,status
-ASSET-001,PROD-001,Router-001,Bangalore,high,active
-ASSET-002,PROD-001,Router-002,Mysore,high,active
-ASSET-003,PROD-002,Gateway-001,Bangalore,critical,active
-ASSET-004,PROD-003,Controller-001,Mangalore,medium,active
-ASSET-005,PROD-004,Industrial-Gateway-001,Hosur,critical,active
-ASSET-006,PROD-005,Access-Device-001,Bangalore,high,active
+ASSET-001,PROD-001,CDU-PLC-001,Crude Distillation Unit,critical,active
+ASSET-002,PROD-001,CDU-PLC-002,Crude Distillation Unit,critical,active
+ASSET-003,PROD-002,CDU-DCS-001,Crude Distillation Unit,critical,active
+ASSET-004,PROD-003,Hydrocracker-SIS-001,Reactor-Hydrocracker Unit,critical,active
+ASSET-005,PROD-004,OPC-Gateway-001,Pump-Compressor Area,high,active
+ASSET-006,PROD-005,Tank-Farm-RTU-001,Tank Farm,high,active

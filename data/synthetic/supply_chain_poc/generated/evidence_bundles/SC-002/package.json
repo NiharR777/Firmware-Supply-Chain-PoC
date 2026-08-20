@@ -1,0 +1,9 @@
+{
+  "scenario_id": "SC-002",
+  "package_id": "PKG-002",
+  "product_id": "PROD-002",
+  "vendor_id": "VEND-001",
+  "scenario_type": "hash_mismatch",
+  "package_status": "SYNTHETIC",
+  "data_provenance": "SYNTHETIC"
+}

@@ -1,0 +1,18 @@
+{
+  "scenario_id": "SC-005",
+  "package_id": "PKG-001",
+  "decision": "high_risk",
+  "integrity_failure": false,
+  "recommendation": "quarantine_review",
+  "reason": "Firmware version indicates an unauthorized rollback to an older version.",
+  "affected_asset": "CDU-PLC-001",
+  "device_type": "PLC",
+  "process_unit": "Crude Distillation Unit",
+  "human_approval_required": true,
+  "deployment_allowed": false,
+  "real_action_executed": false,
+  "data_provenance": "SYNTHETIC GROUND TRUTH",
+  "version_status": "rollback_detected",
+  "current_version": "4.0.1",
+  "rollback_version": "3.9.8"
+}

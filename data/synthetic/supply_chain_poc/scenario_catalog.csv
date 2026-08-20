@@ -1,11 +1,11 @@
-scenario_id,scenario_type,description,expected_decision
-SC-001,valid,Valid signed package with complete SBOM,normal
-SC-002,benign_exception,Benign emergency patch or vendor migration,normal
-SC-003,vulnerable_component,Vulnerable component that needs review,investigate
-SC-004,hash_mismatch,Package hash is different from the expected hash,high_risk
-SC-005,invalid_signature,Package signature is invalid or not trusted,high_risk
-SC-006,missing_sbom,SBOM is missing or incomplete,investigate
-SC-007,unexpected_component,An unexpected component was added or removed,investigate
-SC-008,untrusted_vendor,Package comes from an untrusted vendor,high_risk
-SC-009,rollback,Package has been rolled back to an older version,investigate
-SC-010,stale_evidence,Security evidence is old or component identity cannot be resolved,investigate
+scenario_id,scenario_type,description,package_id,product_id,vendor_id,component_id,vulnerability_id,expected_decision
+SC-001,hash_mismatch,Tampered PLC firmware received for Crude Distillation Unit; calculated hash does not match trusted vendor hash,PKG-001,PROD-001,VEND-001,,,high_risk
+SC-002,hash_mismatch,Tampered DCS controller firmware for Crude Distillation Unit; calculated hash differs from trusted vendor hash,PKG-002,PROD-002,VEND-001,,,high_risk
+SC-003,invalid_signature,Invalid or untrusted signature on SIS safety-controller firmware,PKG-003,PROD-003,VEND-002,,,high_risk
+SC-004,vulnerable_component,Vulnerable component in industrial OPC gateway firmware with VEX applicability requiring review,PKG-004,PROD-004,VEND-003,COMP-002,VULN-002,investigate
+SC-005,rollback,Unauthorized rollback to an older PLC firmware version at the Crude Distillation Unit,PKG-001,PROD-001,VEND-001,,,high_risk
+SC-006,missing_sbom,Missing or incomplete SBOM for refinery DCS controller firmware,PKG-002,PROD-002,VEND-001,,,investigate
+SC-007,unexpected_component,Unexpected component added to industrial gateway firmware,PKG-004,PROD-004,VEND-003,COMP-006,,investigate
+SC-008,untrusted_vendor,Firmware package associated with an untrusted vendor for refinery OT equipment,PKG-005,PROD-005,VEND-004,,,high_risk
+SC-009,rollback,Unauthorized rollback to an older Tank Farm RTU firmware version,PKG-005,PROD-005,VEND-002,,,high_risk
+SC-010,stale_evidence,Stale security evidence for Tank Farm RTU firmware requiring review before deployment,PKG-005,PROD-005,VEND-002,COMP-008,,investigate

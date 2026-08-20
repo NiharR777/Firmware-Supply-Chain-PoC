@@ -1,0 +1,9 @@
+{
+  "scenario_id": "SC-003",
+  "package_id": "PKG-003",
+  "signature_algorithm": "SYNTHETIC-SIGNATURE",
+  "signature_status": "invalid",
+  "trusted_root_status": "untrusted",
+  "human_verification_required": true,
+  "data_provenance": "SYNTHETIC"
+}

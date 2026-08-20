@@ -1,0 +1,9 @@
+{
+  "scenario_id": "SC-006",
+  "package_id": "PKG-002",
+  "product_id": "PROD-002",
+  "vendor_id": "VEND-001",
+  "scenario_type": "missing_sbom",
+  "package_status": "SYNTHETIC",
+  "data_provenance": "SYNTHETIC"
+}

@@ -1,0 +1,15 @@
+{
+  "scenario_id": "SC-003",
+  "package_id": "PKG-003",
+  "decision": "high_risk",
+  "integrity_failure": false,
+  "recommendation": "quarantine_review",
+  "reason": "Firmware signature is invalid or not trusted by the configured trusted root.",
+  "affected_asset": "SIS-001",
+  "device_type": "Safety Controller/SIS",
+  "process_unit": "Reactor/Hydrocracker Unit",
+  "human_approval_required": true,
+  "deployment_allowed": false,
+  "real_action_executed": false,
+  "data_provenance": "SYNTHETIC GROUND TRUTH"
+}

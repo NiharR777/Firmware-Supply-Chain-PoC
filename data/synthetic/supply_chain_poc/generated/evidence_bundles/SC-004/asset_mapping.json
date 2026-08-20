@@ -1,0 +1,12 @@
+{
+  "scenario_id": "SC-004",
+  "package_id": "PKG-004",
+  "product_id": "PROD-004",
+  "vendor_id": "VEND-003",
+  "asset_id": "OPC-GW-001",
+  "device_type": "Industrial OPC Gateway",
+  "process_unit": "Pump or Compressor Area",
+  "location": "Refinery OT Network",
+  "deployment_status": "NOT_EXECUTED",
+  "data_provenance": "SYNTHETIC"
+}

@@ -1,0 +1,32 @@
+{
+  "scenario_id": "SC-007",
+  "package_id": "PKG-004",
+  "sbom_format": "SPDX",
+  "sbom_status": "complete",
+  "component_count": 3,
+  "components": [
+    {
+      "component_id": "COMP-SYN-001",
+      "name": "OpenSSL",
+      "version": "3.0.12"
+    },
+    {
+      "component_id": "COMP-SYN-002",
+      "name": "cURL",
+      "version": "8.4.0"
+    },
+    {
+      "component_id": "COMP-SYN-003",
+      "name": "zlib",
+      "version": "1.3"
+    }
+  ],
+  "data_provenance": "SYNTHETIC",
+  "unexpected_component": true,
+  "component_change": "added",
+  "added_component": {
+    "component_id": "COMP-006",
+    "name": "Device Driver Pack",
+    "version": "2.2.0"
+  }
+}

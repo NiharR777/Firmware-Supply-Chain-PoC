@@ -1,0 +1,15 @@
+{
+  "scenario_id": "SC-006",
+  "package_id": "PKG-002",
+  "decision": "investigate",
+  "integrity_failure": false,
+  "recommendation": "investigate",
+  "reason": "SBOM is missing or incomplete, preventing complete component verification.",
+  "affected_asset": "CDU-DCS-001",
+  "device_type": "DCS Controller",
+  "process_unit": "Crude Distillation Unit",
+  "human_approval_required": true,
+  "deployment_allowed": false,
+  "real_action_executed": false,
+  "data_provenance": "SYNTHETIC GROUND TRUTH"
+}
