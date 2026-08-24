@@ -1,5 +1,8 @@
 from pathlib import Path
 import json
+import csv
+
+from risk_model import calculate_risk_score
 
 
 # ---------------------------------------------------------
@@ -12,6 +15,10 @@ EVIDENCE_DIR = (
     BASE_DIR / "generated" / "evidence_bundles"
 )
 
+MITRE_MAPPING_FILE = (
+    BASE_DIR / "mitre_attack_mapping.csv"
+)
+
 
 # ---------------------------------------------------------
 # Load JSON
@@ -20,6 +27,31 @@ EVIDENCE_DIR = (
 def load_json(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
+
+
+# ---------------------------------------------------------
+# Load MITRE mapping
+# ---------------------------------------------------------
+
+def load_mitre_mapping():
+    mapping = {}
+
+    if not MITRE_MAPPING_FILE.exists():
+        return mapping
+
+    with open(
+        MITRE_MAPPING_FILE,
+        "r",
+        encoding="utf-8",
+        newline=""
+    ) as file:
+
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            mapping[row["scenario_id"]] = row
+
+    return mapping
 
 
 # ---------------------------------------------------------
@@ -55,10 +87,6 @@ def evaluate_scenario(scenario_id):
         bundle_dir / "asset_mapping.json"
     )
 
-    decision_data = load_json(
-        bundle_dir / "decision.json"
-    )
-
     # -----------------------------------------------------
     # Basic information
     # -----------------------------------------------------
@@ -67,7 +95,8 @@ def evaluate_scenario(scenario_id):
 
     reasons = []
 
-    risk_level = "normal"
+    risk_factors = []
+
     deployment_allowed = True
 
     # -----------------------------------------------------
@@ -76,7 +105,10 @@ def evaluate_scenario(scenario_id):
 
     if hash_evidence.get("hash_match") is False:
 
-        risk_level = "high_risk"
+        risk_factors.append(
+            "hash_integrity_failure"
+        )
+
         deployment_allowed = False
 
         reasons.append(
@@ -93,7 +125,10 @@ def evaluate_scenario(scenario_id):
         "untrusted"
     ]:
 
-        risk_level = "high_risk"
+        risk_factors.append(
+            "signature_failure"
+        )
+
         deployment_allowed = False
 
         reasons.append(
@@ -110,7 +145,10 @@ def evaluate_scenario(scenario_id):
         "invalid"
     ]:
 
-        risk_level = "high_risk"
+        risk_factors.append(
+            "trusted_root_failure"
+        )
+
         deployment_allowed = False
 
         reasons.append(
@@ -127,8 +165,9 @@ def evaluate_scenario(scenario_id):
         "incomplete"
     ]:
 
-        if risk_level != "high_risk":
-            risk_level = "investigate"
+        risk_factors.append(
+            "missing_sbom"
+        )
 
         deployment_allowed = False
 
@@ -148,8 +187,9 @@ def evaluate_scenario(scenario_id):
         scenario_type == "vulnerable_component"
     ):
 
-        if risk_level != "high_risk":
-            risk_level = "investigate"
+        risk_factors.append(
+            "vulnerable_component"
+        )
 
         deployment_allowed = False
 
@@ -168,8 +208,9 @@ def evaluate_scenario(scenario_id):
         scenario_type == "unexpected_component"
     ):
 
-        if risk_level != "high_risk":
-            risk_level = "investigate"
+        risk_factors.append(
+            "unexpected_component"
+        )
 
         deployment_allowed = False
 
@@ -190,7 +231,10 @@ def evaluate_scenario(scenario_id):
         scenario_type == "untrusted_vendor"
     ):
 
-        risk_level = "high_risk"
+        risk_factors.append(
+            "untrusted_vendor"
+        )
+
         deployment_allowed = False
 
         reasons.append(
@@ -204,7 +248,10 @@ def evaluate_scenario(scenario_id):
 
     if scenario_type == "rollback":
 
-        risk_level = "high_risk"
+        risk_factors.append(
+            "unauthorized_rollback"
+        )
+
         deployment_allowed = False
 
         reasons.append(
@@ -222,8 +269,9 @@ def evaluate_scenario(scenario_id):
         sbom.get("evidence_freshness") == "stale"
     ):
 
-        if risk_level != "high_risk":
-            risk_level = "investigate"
+        risk_factors.append(
+            "stale_evidence"
+        )
 
         deployment_allowed = False
 
@@ -233,7 +281,47 @@ def evaluate_scenario(scenario_id):
         )
 
     # -----------------------------------------------------
-    # Final recommendation
+    # 10. CALCULATE EXPLAINABLE RISK
+    # -----------------------------------------------------
+
+    risk_result = calculate_risk_score(
+        risk_factors
+    )
+
+    risk_score = risk_result["risk_score"]
+
+    risk_level = risk_result["risk_level"]
+
+    risk_breakdown = risk_result["breakdown"]
+
+    # -----------------------------------------------------
+    # 11. LOAD MITRE INFORMATION
+    # -----------------------------------------------------
+
+    mitre_mapping = load_mitre_mapping()
+
+    mitre_data = mitre_mapping.get(
+        scenario_id,
+        {}
+    )
+
+    attack_description = mitre_data.get(
+        "attack_description",
+        "Not mapped"
+    )
+
+    mitre_tactic = mitre_data.get(
+        "mitre_tactic",
+        "Not mapped"
+    )
+
+    mitre_technique = mitre_data.get(
+        "mitre_technique",
+        "Not mapped"
+    )
+
+    # -----------------------------------------------------
+    # 12. FINAL RECOMMENDATION
     # -----------------------------------------------------
 
     if risk_level == "high_risk":
@@ -249,12 +337,13 @@ def evaluate_scenario(scenario_id):
         recommendation = "allow_after_human_review"
 
     # -----------------------------------------------------
-    # Final decision object
+    # 13. FINAL DECISION OBJECT
     # -----------------------------------------------------
 
     decision = {
 
-        "scenario_id": scenario_id,
+        "scenario_id":
+            scenario_id,
 
         "package_id":
             package.get("package_id"),
@@ -268,8 +357,28 @@ def evaluate_scenario(scenario_id):
         "process_unit":
             asset.get("process_unit"),
 
+        # Explainable risk information
+        "risk_score":
+            risk_score,
+
         "risk_level":
             risk_level,
+
+        "risk_factors":
+            risk_factors,
+
+        "risk_breakdown":
+            risk_breakdown,
+
+        # MITRE information
+        "attack_description":
+            attack_description,
+
+        "mitre_tactic":
+            mitre_tactic,
+
+        "mitre_technique":
+            mitre_technique,
 
         "deployment_allowed":
             deployment_allowed,
@@ -300,7 +409,11 @@ def evaluate_scenario(scenario_id):
 if __name__ == "__main__":
 
     print()
-    print("===== REFINERY FIRMWARE SUPPLY-CHAIN DECISION =====")
+
+    print(
+        "===== REFINERY FIRMWARE SUPPLY-CHAIN "
+        "RISK DECISION ====="
+    )
 
     for number in range(1, 11):
 
@@ -313,14 +426,41 @@ if __name__ == "__main__":
             )
 
             print()
+
             print(
                 f"{scenario_id} | "
                 f"Package: {result['package_id']} | "
+                f"Score: {result['risk_score']} | "
                 f"Risk: {result['risk_level']} | "
                 f"Deployment: "
                 f"{result['deployment_allowed']} | "
                 f"Recommendation: "
                 f"{result['recommendation']}"
+            )
+
+            print(
+                f"  Attack Type: "
+                f"{result['attack_description']}"
+            )
+
+            print(
+                f"  MITRE Tactic: "
+                f"{result['mitre_tactic']}"
+            )
+
+            print(
+                f"  MITRE Technique: "
+                f"{result['mitre_technique']}"
+            )
+
+            print(
+                f"  Risk Factors: "
+                f"{result['risk_factors']}"
+            )
+
+            print(
+                f"  Risk Breakdown: "
+                f"{result['risk_breakdown']}"
             )
 
             for reason in result["reasons"]:
@@ -332,9 +472,13 @@ if __name__ == "__main__":
         except Exception as error:
 
             print()
+
             print(
                 f"{scenario_id} | ERROR: {error}"
             )
 
     print()
-    print("===== DECISION EVALUATION COMPLETE =====")
+
+    print(
+        "===== RISK DECISION EVALUATION COMPLETE ====="
+    )

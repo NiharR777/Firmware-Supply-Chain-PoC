@@ -1,0 +1,11 @@
+scenario_id,scenario_type,attack_description,mitre_tactic,mitre_technique
+SC-001,hash_mismatch,Tampered firmware package was supplied to the refinery,Impact,Data Manipulation
+SC-002,hash_mismatch,Tampered DCS firmware package was supplied to the refinery,Impact,Data Manipulation
+SC-003,invalid_signature,Invalid firmware signature was detected,Defense Evasion,Impair Defenses
+SC-004,vulnerable_component,Vulnerable component exists in firmware,Initial Access,Exploitation for Client Execution
+SC-005,rollback,Unauthorized downgrade to an older firmware version,Defense Evasion,Impair Defenses
+SC-006,missing_sbom,Required software composition evidence is missing,Defense Evasion,Obfuscated Files or Information
+SC-007,unexpected_component,Unexpected component was introduced into firmware,Persistence,Modify System Image
+SC-008,untrusted_vendor,Firmware originated from an untrusted vendor,Initial Access,Supply Chain Compromise
+SC-009,rollback,Unauthorized rollback of Tank Farm RTU firmware,Defense Evasion,Impair Defenses
+SC-010,stale_evidence,Security evidence is outdated and requires review,Defense Evasion,Impair Defenses

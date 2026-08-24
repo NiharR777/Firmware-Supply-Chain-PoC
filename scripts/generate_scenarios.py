@@ -433,6 +433,41 @@ summary.to_csv(
 
 
 # ---------------------------------------------------------
+# Create canonical ground truth
+# ---------------------------------------------------------
+
+GROUND_TRUTH_DIR = (
+    BASE_DIR / "ground_truth"
+)
+
+GROUND_TRUTH_DIR.mkdir(
+    parents=True,
+    exist_ok=True
+)
+
+ground_truth_file = (
+    GROUND_TRUTH_DIR / "scenario_ground_truth.csv"
+)
+
+ground_truth = scenarios[
+    [
+        "scenario_id",
+        "scenario_type",
+        "expected_decision"
+    ]
+].copy()
+
+ground_truth.to_csv(
+    ground_truth_file,
+    index=False
+)
+
+print(
+    f"Ground truth file: {ground_truth_file}"
+)
+
+
+# ---------------------------------------------------------
 # Final output
 # ---------------------------------------------------------
 
