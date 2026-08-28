@@ -1,20 +1,7 @@
 from pathlib import Path
-import sys
 import json
 
-
-# ---------------------------------------------------------
-# Make supply_chain directory available for imports
-# ---------------------------------------------------------
-
-CURRENT_DIR = Path(__file__).resolve().parent
-SUPPLY_CHAIN_DIR = CURRENT_DIR.parent
-
-if str(SUPPLY_CHAIN_DIR) not in sys.path:
-    sys.path.insert(0, str(SUPPLY_CHAIN_DIR))
-
-
-from decision_engine import evaluate_scenario
+from ..decision_engine import evaluate_scenario
 
 
 # ---------------------------------------------------------
@@ -24,15 +11,24 @@ from decision_engine import evaluate_scenario
 BASE_DIR = Path("data/synthetic/supply_chain_poc")
 
 EVIDENCE_DIR = (
-    BASE_DIR / "generated" / "evidence_bundles"
+    BASE_DIR
+    / "generated"
+    / "evidence_bundles"
 )
 
 
 # ---------------------------------------------------------
-# Load JSON
+# JSON loader
 # ---------------------------------------------------------
 
-def load_json(file_path):
+def load_json(file_path: Path) -> dict:
+    """
+    Load a JSON evidence file.
+    """
+
+    if not file_path.exists():
+        return {}
+
     with open(
         file_path,
         "r",
@@ -42,406 +38,391 @@ def load_json(file_path):
 
 
 # ---------------------------------------------------------
-# Evidence Fusion
+# Load evidence bundle
 # ---------------------------------------------------------
 
-def fuse_evidence(scenario_id):
+def load_evidence_bundle(scenario_id: str) -> dict:
+    """
+    Load all available evidence associated with
+    a refinery scenario.
+    """
 
     bundle_dir = EVIDENCE_DIR / scenario_id
 
     if not bundle_dir.exists():
-        raise ValueError(
-            f"Evidence bundle {scenario_id} not found."
+        raise FileNotFoundError(
+            f"Evidence bundle not found: {bundle_dir}"
         )
 
-    # -----------------------------------------------------
-    # Load evidence sources
-    # -----------------------------------------------------
+    evidence = {
+        "hash": load_json(
+            bundle_dir / "hash_evidence.json"
+        ),
 
-    package = load_json(
-        bundle_dir / "package.json"
+        "signature": load_json(
+            bundle_dir / "signature_evidence.json"
+        ),
+
+        "sbom": load_json(
+            bundle_dir / "sbom.json"
+        ),
+
+        "asset": load_json(
+            bundle_dir / "asset_mapping.json"
+        ),
+
+        "rollback": load_json(
+            bundle_dir / "rollback_evidence.json"
+        ),
+    }
+
+    return evidence
+
+
+# ---------------------------------------------------------
+# Evidence fusion
+# ---------------------------------------------------------
+
+def fuse_evidence(
+    scenario_id: str
+) -> dict:
+    """
+    Combine evidence from the refinery evidence bundle
+    with the decision engine result.
+    """
+
+    evidence = load_evidence_bundle(
+        scenario_id
     )
-
-    hash_evidence = load_json(
-        bundle_dir / "hash_evidence.json"
-    )
-
-    signature = load_json(
-        bundle_dir / "signature_evidence.json"
-    )
-
-    sbom = load_json(
-        bundle_dir / "sbom.json"
-    )
-
-    asset = load_json(
-        bundle_dir / "asset_mapping.json"
-    )
-
-    # -----------------------------------------------------
-    # Get risk decision from decision engine
-    # -----------------------------------------------------
 
     decision = evaluate_scenario(
         scenario_id
     )
 
+    hash_evidence = evidence["hash"]
+    signature_evidence = evidence["signature"]
+    sbom_evidence = evidence["sbom"]
+    asset_evidence = evidence["asset"]
+    rollback_evidence = evidence["rollback"]
+
     # -----------------------------------------------------
-    # Extract evidence states
+    # Evidence status
     # -----------------------------------------------------
 
     hash_status = (
-        "PASS"
+        "passed"
         if hash_evidence.get("hash_match") is True
-        else "FAIL"
+        else "failed"
     )
 
-    signature_status = signature.get(
+    signature_status = signature_evidence.get(
         "signature_status",
         "unknown"
     )
 
-    trusted_root_status = signature.get(
+    trusted_root_status = signature_evidence.get(
         "trusted_root_status",
         "unknown"
     )
 
-    vendor_trust = (
-        signature.get("vendor_trust")
-        or package.get("vendor_trust")
-        or "unknown"
-    )
-
-    sbom_status = sbom.get(
+    sbom_status = sbom_evidence.get(
         "sbom_status",
         "unknown"
     )
 
-    vulnerability_status = sbom.get(
+    vulnerability_status = sbom_evidence.get(
         "vulnerability_status",
         "unknown"
     )
 
-    vex_status = sbom.get(
+    vex_status = sbom_evidence.get(
         "vex_status",
         "unknown"
     )
 
-    evidence_freshness = sbom.get(
+    evidence_freshness = sbom_evidence.get(
         "evidence_freshness",
         "unknown"
     )
 
-    unexpected_component = sbom.get(
-        "unexpected_component",
+    rollback_detected = rollback_evidence.get(
+        "rollback_detected",
         False
     )
 
-    # -----------------------------------------------------
-    # Identify evidence failures
-    # -----------------------------------------------------
-
-    evidence_failures = []
-
-    if hash_status == "FAIL":
-        evidence_failures.append(
-            "hash_integrity"
-        )
-
-    if signature_status in (
-        "invalid",
-        "untrusted"
-    ):
-        evidence_failures.append(
-            "signature"
-        )
-
-    if trusted_root_status in (
-        "invalid",
-        "untrusted"
-    ):
-        evidence_failures.append(
-            "trusted_root"
-        )
-
-    if vendor_trust == "untrusted":
-        evidence_failures.append(
-            "vendor_trust"
-        )
-
-    if sbom_status in (
-        "missing",
-        "incomplete"
-    ):
-        evidence_failures.append(
-            "sbom"
-        )
-
-    if vulnerability_status == "affected":
-        evidence_failures.append(
-            "vulnerability"
-        )
-
-    if vex_status == "affected":
-        evidence_failures.append(
-            "vex"
-        )
-
-    if unexpected_component is True:
-        evidence_failures.append(
-            "unexpected_component"
-        )
-
-    if evidence_freshness == "stale":
-        evidence_failures.append(
-            "evidence_freshness"
-        )
+    rollback_authorized = rollback_evidence.get(
+        "rollback_authorized",
+        True
+    )
 
     # -----------------------------------------------------
-    # Determine overall evidence state
+    # Build fused result
     # -----------------------------------------------------
 
-    if not evidence_failures:
-        overall_status = "PASS"
-    else:
-        overall_status = "REVIEW_REQUIRED"
+    fused_result = {
+        "scenario_id": scenario_id,
 
-    # -----------------------------------------------------
-    # Create unified evidence object
-    # -----------------------------------------------------
+        "package_id": decision.get(
+            "package_id"
+        ),
 
-    fused_evidence = {
+        "asset_id": decision.get(
+            "asset_id"
+        ),
 
-        "scenario_id":
-            scenario_id,
+        "device_type": decision.get(
+            "device_type"
+        ),
 
-        "package_id":
-            package.get("package_id"),
+        "process_unit": decision.get(
+            "process_unit"
+        ),
 
-        "asset_id":
-            asset.get("asset_id"),
+        "hash_status": hash_status,
 
-        "device_type":
-            asset.get("device_type"),
+        "signature_status": signature_status,
 
-        "process_unit":
-            asset.get("process_unit"),
+        "trusted_root_status": trusted_root_status,
 
-        # -------------------------------------------------
-        # Integrity
-        # -------------------------------------------------
+        "sbom_status": sbom_status,
 
-        "hash_integrity":
-            hash_status,
+        "vulnerability_status": vulnerability_status,
 
-        # -------------------------------------------------
-        # Cryptographic assurance
-        # -------------------------------------------------
+        "vex_status": vex_status,
 
-        "signature_status":
-            signature_status,
+        "evidence_freshness": evidence_freshness,
 
-        "trusted_root_status":
-            trusted_root_status,
+        "rollback_detected": rollback_detected,
 
-        # -------------------------------------------------
-        # Vendor trust
-        # -------------------------------------------------
+        "rollback_authorized": rollback_authorized,
 
-        "vendor_trust":
-            vendor_trust,
+        "risk_score": decision.get(
+            "risk_score",
+            0
+        ),
 
-        # -------------------------------------------------
-        # Software composition
-        # -------------------------------------------------
+        "risk_level": decision.get(
+            "risk_level",
+            "unknown"
+        ),
 
-        "sbom_status":
-            sbom_status,
+        "risk_factors": decision.get(
+            "risk_factors",
+            []
+        ),
 
-        "vulnerability_status":
-            vulnerability_status,
+        "recommendation": decision.get(
+            "recommendation",
+            "N/A"
+        ),
 
-        "vex_status":
-            vex_status,
+        "deployment_allowed": decision.get(
+            "deployment_allowed",
+            False
+        ),
 
-        "unexpected_component":
-            unexpected_component,
+        "human_approval_required": decision.get(
+            "human_approval_required",
+            True
+        ),
 
-        "evidence_freshness":
-            evidence_freshness,
+        "real_action_executed": decision.get(
+            "real_action_executed",
+            False
+        ),
 
-        # -------------------------------------------------
-        # Unified evidence result
-        # -------------------------------------------------
+        "evidence_sources": [
+            "hash_evidence.json",
+            "signature_evidence.json",
+            "sbom.json",
+            "asset_mapping.json",
+            "rollback_evidence.json",
+        ],
 
-        "overall_evidence_status":
-            overall_status,
-
-        "evidence_failures":
-            evidence_failures,
-
-        # -------------------------------------------------
-        # Risk decision
-        # -------------------------------------------------
-
-        "risk_score":
-            decision.get("risk_score"),
-
-        "risk_level":
-            decision.get("risk_level"),
-
-        "recommendation":
-            decision.get("recommendation"),
-
-        "deployment_allowed":
-            decision.get(
-                "deployment_allowed",
-                False
-            ),
-
-        "human_approval_required":
-            decision.get(
-                "human_approval_required",
-                True
-            ),
-
-        "real_action_executed":
-            decision.get(
-                "real_action_executed",
-                False
-            ),
-
-        # -------------------------------------------------
-        # Data provenance
-        # -------------------------------------------------
-
-        "data_provenance":
-            "SYNTHETIC GROUND TRUTH"
+        "data_provenance": "SYNTHETIC",
     }
 
-    return fused_evidence
+    return fused_result
 
 
 # ---------------------------------------------------------
-# Test all refinery scenarios
+# Save fused evidence
+# ---------------------------------------------------------
+
+def save_fused_evidence(
+    scenario_id: str
+) -> dict:
+    """
+    Save the fused evidence result for a scenario.
+    """
+
+    result = fuse_evidence(
+        scenario_id
+    )
+
+    output_dir = (
+        BASE_DIR
+        / "generated"
+        / "reports"
+    )
+
+    output_dir.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    output_file = (
+        output_dir
+        / f"{scenario_id}_fused_evidence.json"
+    )
+
+    with open(
+        output_file,
+        "w",
+        encoding="utf-8"
+    ) as file:
+        json.dump(
+            result,
+            file,
+            indent=2
+        )
+
+    return result
+
+
+# ---------------------------------------------------------
+# Console display
+# ---------------------------------------------------------
+
+def print_fused_result(
+    result: dict
+) -> None:
+
+    print()
+
+    print(
+        f"{result['scenario_id']} | "
+        f"Package: {result['package_id']}"
+    )
+
+    print(
+        f"  Asset ID: "
+        f"{result.get('asset_id')}"
+    )
+
+    print(
+        f"  Device Type: "
+        f"{result.get('device_type')}"
+    )
+
+    print(
+        f"  Process Unit: "
+        f"{result.get('process_unit')}"
+    )
+
+    print(
+        f"  Hash: "
+        f"{result['hash_status']}"
+    )
+
+    print(
+        f"  Signature: "
+        f"{result['signature_status']}"
+    )
+
+    print(
+        f"  Trusted Root: "
+        f"{result['trusted_root_status']}"
+    )
+
+    print(
+        f"  SBOM: "
+        f"{result['sbom_status']}"
+    )
+
+    print(
+        f"  Vulnerability Status: "
+        f"{result['vulnerability_status']}"
+    )
+
+    print(
+        f"  VEX Status: "
+        f"{result['vex_status']}"
+    )
+
+    print(
+        f"  Evidence Freshness: "
+        f"{result['evidence_freshness']}"
+    )
+
+    print(
+        f"  Rollback Detected: "
+        f"{result['rollback_detected']}"
+    )
+
+    print(
+        f"  Rollback Authorized: "
+        f"{result['rollback_authorized']}"
+    )
+
+    print(
+        f"  Risk: "
+        f"{result['risk_level']} | "
+        f"Score: {result['risk_score']}"
+    )
+
+    print(
+        f"  Risk Factors: "
+        f"{result['risk_factors']}"
+    )
+
+    print(
+        f"  Recommendation: "
+        f"{result['recommendation']}"
+    )
+
+    print(
+        f"  Deployment Allowed: "
+        f"{result['deployment_allowed']}"
+    )
+
+    print(
+        f"  Human Approval Required: "
+        f"{result['human_approval_required']}"
+    )
+
+    print(
+        f"  Real Action Executed: "
+        f"{result['real_action_executed']}"
+    )
+
+
+# ---------------------------------------------------------
+# Main
 # ---------------------------------------------------------
 
 if __name__ == "__main__":
 
     print()
+
     print(
         "===== REFINERY EVIDENCE FUSION ====="
     )
 
     for number in range(1, 11):
 
-        scenario_id = f"SC-{number:03d}"
+        scenario_id = (
+            f"SC-{number:03d}"
+        )
 
         try:
 
-            result = fuse_evidence(
+            result = save_fused_evidence(
                 scenario_id
             )
 
-            print()
-
-            print(
-                f"{scenario_id} | "
-                f"Package: {result['package_id']} | "
-                f"Asset: {result['asset_id']}"
-            )
-
-            print(
-                f"  Device: "
-                f"{result['device_type']}"
-            )
-
-            print(
-                f"  Process Unit: "
-                f"{result['process_unit']}"
-            )
-
-            print(
-                f"  Hash Integrity: "
-                f"{result['hash_integrity']}"
-            )
-
-            print(
-                f"  Signature: "
-                f"{result['signature_status']}"
-            )
-
-            print(
-                f"  Trusted Root: "
-                f"{result['trusted_root_status']}"
-            )
-
-            print(
-                f"  Vendor Trust: "
-                f"{result['vendor_trust']}"
-            )
-
-            print(
-                f"  SBOM: "
-                f"{result['sbom_status']}"
-            )
-
-            print(
-                f"  Vulnerability: "
-                f"{result['vulnerability_status']}"
-            )
-
-            print(
-                f"  VEX: "
-                f"{result['vex_status']}"
-            )
-
-            print(
-                f"  Unexpected Component: "
-                f"{result['unexpected_component']}"
-            )
-
-            print(
-                f"  Evidence Freshness: "
-                f"{result['evidence_freshness']}"
-            )
-
-            print(
-                f"  Overall Evidence: "
-                f"{result['overall_evidence_status']}"
-            )
-
-            print(
-                f"  Risk: "
-                f"{result['risk_level']} "
-                f"({result['risk_score']})"
-            )
-
-            print(
-                f"  Recommendation: "
-                f"{result['recommendation']}"
-            )
-
-            if result["evidence_failures"]:
-
-                print(
-                    f"  Evidence Failures: "
-                    f"{', '.join(result['evidence_failures'])}"
-                )
-
-            print(
-                f"  Deployment Allowed: "
-                f"{result['deployment_allowed']}"
-            )
-
-            print(
-                f"  Human Approval Required: "
-                f"{result['human_approval_required']}"
-            )
-
-            print(
-                f"  Real Action Executed: "
-                f"{result['real_action_executed']}"
+            print_fused_result(
+                result
             )
 
         except Exception as error:
@@ -449,7 +430,8 @@ if __name__ == "__main__":
             print()
 
             print(
-                f"{scenario_id} | ERROR: {error}"
+                f"{scenario_id} | ERROR: "
+                f"{error}"
             )
 
     print()

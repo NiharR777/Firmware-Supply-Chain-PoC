@@ -1,15 +1,27 @@
 {
   "scenario_id": "SC-002",
   "package_id": "PKG-002",
-  "decision": "high_risk",
-  "integrity_failure": true,
+  "risk_score": 40,
+  "risk_level": "high_risk",
+  "risk_factors": [
+    "hash_integrity_failure"
+  ],
+  "risk_breakdown": [
+    {
+      "factor": "hash_integrity_failure",
+      "weight": 40
+    }
+  ],
   "recommendation": "quarantine_review",
-  "reason": "Calculated firmware package hash does not match the trusted vendor hash.",
-  "affected_asset": "CDU-DCS-001",
+  "reasons": [
+    "Firmware package hash does not match the trusted vendor hash."
+  ],
+  "affected_asset": "ASSET-002",
+  "asset_name": "Crude Distillation Unit DCS Controller",
   "device_type": "DCS Controller",
   "process_unit": "Crude Distillation Unit",
   "human_approval_required": true,
   "deployment_allowed": false,
   "real_action_executed": false,
-  "data_provenance": "SYNTHETIC GROUND TRUTH"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

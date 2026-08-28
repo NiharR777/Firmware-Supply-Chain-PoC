@@ -1,9 +1,8 @@
 {
-  "scenario_id": "SC-007",
   "package_id": "PKG-004",
   "product_id": "PROD-004",
   "vendor_id": "VEND-003",
-  "scenario_type": "unexpected_component",
+  "firmware_version": "5.2.0",
   "package_status": "SYNTHETIC",
-  "data_provenance": "SYNTHETIC"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

@@ -1,0 +1,34 @@
+{
+  "scenario_id": "SC-003",
+  "package_id": "PKG-003",
+  "asset_id": "SIS-001",
+  "device_type": "Safety Controller/SIS",
+  "process_unit": "Reactor/Hydrocracker Unit",
+  "hash_status": "passed",
+  "signature_status": "invalid",
+  "trusted_root_status": "untrusted",
+  "sbom_status": "complete",
+  "vulnerability_status": "unknown",
+  "vex_status": "unknown",
+  "evidence_freshness": "unknown",
+  "rollback_detected": false,
+  "rollback_authorized": true,
+  "risk_score": 50,
+  "risk_level": "high_risk",
+  "risk_factors": [
+    "signature_failure",
+    "trusted_root_failure"
+  ],
+  "recommendation": "quarantine_review",
+  "deployment_allowed": false,
+  "human_approval_required": true,
+  "real_action_executed": false,
+  "evidence_sources": [
+    "hash_evidence.json",
+    "signature_evidence.json",
+    "sbom.json",
+    "asset_mapping.json",
+    "rollback_evidence.json"
+  ],
+  "data_provenance": "SYNTHETIC"
+}

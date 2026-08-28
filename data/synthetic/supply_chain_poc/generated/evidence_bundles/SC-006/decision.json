@@ -1,15 +1,27 @@
 {
   "scenario_id": "SC-006",
   "package_id": "PKG-002",
-  "decision": "investigate",
-  "integrity_failure": false,
+  "risk_score": 15,
+  "risk_level": "investigate",
+  "risk_factors": [
+    "missing_sbom"
+  ],
+  "risk_breakdown": [
+    {
+      "factor": "missing_sbom",
+      "weight": 15
+    }
+  ],
   "recommendation": "investigate",
-  "reason": "SBOM is missing or incomplete, preventing complete component verification.",
-  "affected_asset": "CDU-DCS-001",
+  "reasons": [
+    "SBOM evidence is missing or incomplete."
+  ],
+  "affected_asset": "ASSET-002",
+  "asset_name": "Crude Distillation Unit DCS Controller",
   "device_type": "DCS Controller",
   "process_unit": "Crude Distillation Unit",
   "human_approval_required": true,
   "deployment_allowed": false,
   "real_action_executed": false,
-  "data_provenance": "SYNTHETIC GROUND TRUTH"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

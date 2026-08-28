@@ -1,41 +1,34 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "serialNumber": "urn:uuid:PKG-002",
+  "serialNumber": "urn:uuid:synthetic-sc-002",
   "version": 1,
   "metadata": {
-    "package_id": "PKG-002",
-    "package_name": "SecureEdge Gateway Firmware",
-    "package_version": "3.1.0"
+    "component": {
+      "type": "application",
+      "name": "PKG-002",
+      "version": "3.1.0"
+    }
   },
   "components": [
     {
-      "id": "COMP-001",
+      "type": "library",
+      "bom-ref": "pkg:generic/openssl@3.0.12",
       "name": "OpenSSL",
-      "version": "3.0.12",
-      "supplier": "OpenSource",
-      "type": "library"
+      "version": "3.0.12"
     },
     {
-      "id": "COMP-002",
+      "type": "library",
+      "bom-ref": "pkg:generic/curl@8.4.0",
       "name": "cURL",
-      "version": "8.4.0",
-      "supplier": "OpenSource",
-      "type": "library"
+      "version": "8.4.0"
     },
     {
-      "id": "COMP-005",
-      "name": "BusyBox",
-      "version": "1.36.1",
-      "supplier": "OpenSource",
-      "type": "utility"
-    },
-    {
-      "id": "COMP-004",
-      "name": "Linux Kernel",
-      "version": "6.1",
-      "supplier": "OpenSource",
-      "type": "operating_system"
+      "type": "library",
+      "bom-ref": "pkg:generic/zlib@1.3",
+      "name": "zlib",
+      "version": "1.3"
     }
-  ]
+  ],
+  "vulnerabilities": []
 }

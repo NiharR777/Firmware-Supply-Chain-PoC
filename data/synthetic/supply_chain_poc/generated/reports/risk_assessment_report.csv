@@ -1,6 +1,6 @@
 scenario_id,package_id,asset_id,device_type,process_unit,attack_description,mitre_tactic,mitre_technique,risk_score,risk_level,risk_factors,recommendation,deployment_allowed,human_approval_required,real_action_executed
-SC-001,PKG-001,CDU-PLC-001,PLC,Crude Distillation Unit,Tampered firmware package was supplied to the refinery,Impact,Data Manipulation,40,high_risk,hash_integrity_failure,quarantine_review,False,True,False
-SC-002,PKG-002,CDU-DCS-001,DCS Controller,Crude Distillation Unit,Tampered DCS firmware package was supplied to the refinery,Impact,Data Manipulation,40,high_risk,hash_integrity_failure,quarantine_review,False,True,False
+SC-001,PKG-001,CDU-PLC-001,PLC,Crude Distillation Unit,Tampered firmware package was supplied to the refinery,Impact,Data Manipulation,0,normal,,allow_after_human_review,False,True,False
+SC-002,PKG-002,CDU-DCS-001,DCS Controller,Crude Distillation Unit,Tampered DCS firmware package was supplied to the refinery,Impact,Data Manipulation,0,normal,,allow_after_human_review,False,True,False
 SC-003,PKG-003,SIS-001,Safety Controller/SIS,Reactor/Hydrocracker Unit,Invalid firmware signature was detected,Defense Evasion,Impair Defenses,50,high_risk,signature_failure; trusted_root_failure,quarantine_review,False,True,False
 SC-004,PKG-004,OPC-GW-001,Industrial OPC Gateway,Pump or Compressor Area,Vulnerable component exists in firmware,Initial Access,Exploitation for Client Execution,20,investigate,vulnerable_component,investigate,False,True,False
 SC-005,PKG-001,CDU-PLC-001,PLC,Crude Distillation Unit,Unauthorized downgrade to an older firmware version,Defense Evasion,Impair Defenses,40,high_risk,unauthorized_rollback,quarantine_review,False,True,False

@@ -1,29 +1,10 @@
 {
   "scenario_id": "SC-001",
-  "scenario_type": "hash_mismatch",
   "package_id": "PKG-001",
   "product_id": "PROD-001",
   "vendor_id": "VEND-001",
-  "evidence": {
-    "hash_status": "mismatch",
-    "expected_hash": "0abc744e8e1ea82950e46bfaa182e98cd1518695088359088076a271474d1464",
-    "calculated_hash": "0abc744e8e1ea82950e46bfaa182e98cd1518695088359088076a271474d1464",
-    "signature_status": "valid",
-    "trusted_root_status": "trusted",
-    "sbom_status": "complete",
-    "vendor_trust": "trusted",
-    "evidence_freshness": "current",
-    "recommendation": "quarantine_review",
-    "tampered_hash": "0000000000000000000000000000000000000000000000000000000000000000",
-    "affected_asset": "CDU-PLC-001",
-    "device_type": "PLC",
-    "process_unit": "Crude Distillation Unit",
-    "integrity_failure": true,
-    "human_approval_required": true,
-    "real_action_executed": false
-  },
-  "expected_decision": "high_risk",
-  "data_provenance": "SYNTHETIC GROUND TRUTH",
-  "real_action_executed": false,
-  "human_approval_required": true
+  "description": "Tampered PLC firmware received for Crude Distillation Unit",
+  "generator_version": "2.0.0",
+  "seed": 20260827,
+  "data_provenance": "SYNTHETIC SCENARIO MANIFEST"
 }

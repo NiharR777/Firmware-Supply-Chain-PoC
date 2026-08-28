@@ -1,12 +1,12 @@
 {
-  "scenario_id": "SC-003",
   "package_id": "PKG-003",
   "product_id": "PROD-003",
   "vendor_id": "VEND-002",
-  "asset_id": "SIS-001",
-  "device_type": "Safety Controller/SIS",
-  "process_unit": "Reactor/Hydrocracker Unit",
-  "location": "Refinery Safety System",
+  "asset_id": "ASSET-003",
+  "asset_name": "Safety Instrumented System Controller",
+  "device_type": "SIS Controller",
+  "process_unit": "Safety Instrumented System",
+  "location": "Refinery OT Network",
   "deployment_status": "NOT_EXECUTED",
-  "data_provenance": "SYNTHETIC"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

@@ -1,12 +1,12 @@
 {
-  "scenario_id": "SC-010",
   "package_id": "PKG-005",
   "product_id": "PROD-005",
   "vendor_id": "VEND-002",
-  "asset_id": "TANK-RTU-001",
-  "device_type": "Pipeline/Tank-Farm RTU",
+  "asset_id": "ASSET-005",
+  "asset_name": "Tank Farm RTU",
+  "device_type": "RTU",
   "process_unit": "Tank Farm",
-  "location": "Refinery Tank Farm",
+  "location": "Refinery OT Network",
   "deployment_status": "NOT_EXECUTED",
-  "data_provenance": "SYNTHETIC"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

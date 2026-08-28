@@ -1,10 +1,14 @@
 {
-  "scenario_id": "SC-001",
   "package_id": "PKG-001",
   "hash_algorithm": "SHA-256",
-  "trusted_vendor_hash": "SYNTHETIC_TRUSTED_HASH",
-  "calculated_package_hash": "SYNTHETIC_CALCULATED_HASH",
+  "expected_hash": "2242089d86e08fb8e63ae20e008644f83f4dbf2f9ba014d3e284764bd715da5c",
+  "observed_hash": "28073b6f663b1af06c5842ff5d62022770c4f4c4834e1cc9dcca8d6c3d5bb3ed",
   "hash_match": false,
+  "expected_package_path": "data/synthetic/supply_chain_poc/generated/fixtures/clean/PKG-001_2.4.1_clean.bin",
+  "observed_package_path": "data/synthetic/supply_chain_poc/generated/fixtures/modified/SC-001_PKG-001_modified.bin",
+  "expected_package_size_bytes": 77,
+  "observed_package_size_bytes": 122,
+  "calculation_timestamp": "2026-08-28T08:45:59+00:00",
   "integrity_status": "FAILED",
-  "data_provenance": "SYNTHETIC"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

@@ -1,0 +1,8 @@
+{
+  "package_id": "PKG-001",
+  "expected_version": "2.4.1",
+  "observed_version": "2.4.1",
+  "rollback_authorized": true,
+  "version_comparison": "equal_to_expected",
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
+}

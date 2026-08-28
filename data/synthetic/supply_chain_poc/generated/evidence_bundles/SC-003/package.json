@@ -1,9 +1,8 @@
 {
-  "scenario_id": "SC-003",
   "package_id": "PKG-003",
   "product_id": "PROD-003",
   "vendor_id": "VEND-002",
-  "scenario_type": "invalid_signature",
+  "firmware_version": "1.8.2",
   "package_status": "SYNTHETIC",
-  "data_provenance": "SYNTHETIC"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

@@ -1,0 +1,33 @@
+{
+  "scenario_id": "SC-004",
+  "package_id": "PKG-004",
+  "asset_id": "OPC-GW-001",
+  "device_type": "Industrial OPC Gateway",
+  "process_unit": "Pump or Compressor Area",
+  "hash_status": "passed",
+  "signature_status": "valid",
+  "trusted_root_status": "trusted",
+  "sbom_status": "complete",
+  "vulnerability_status": "affected",
+  "vex_status": "unknown",
+  "evidence_freshness": "unknown",
+  "rollback_detected": false,
+  "rollback_authorized": true,
+  "risk_score": 20,
+  "risk_level": "investigate",
+  "risk_factors": [
+    "vulnerable_component"
+  ],
+  "recommendation": "investigate",
+  "deployment_allowed": false,
+  "human_approval_required": true,
+  "real_action_executed": false,
+  "evidence_sources": [
+    "hash_evidence.json",
+    "signature_evidence.json",
+    "sbom.json",
+    "asset_mapping.json",
+    "rollback_evidence.json"
+  ],
+  "data_provenance": "SYNTHETIC"
+}

@@ -1,0 +1,8 @@
+{
+  "package_id": "PKG-005",
+  "expected_vendor_id": "VEND-002",
+  "observed_vendor_id": "VEND-004",
+  "vendor_match": false,
+  "vendor_trust_status": "untrusted",
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
+}

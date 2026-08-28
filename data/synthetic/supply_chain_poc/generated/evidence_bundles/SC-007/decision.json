@@ -1,15 +1,27 @@
 {
   "scenario_id": "SC-007",
   "package_id": "PKG-004",
-  "decision": "investigate",
-  "integrity_failure": false,
+  "risk_score": 20,
+  "risk_level": "investigate",
+  "risk_factors": [
+    "unexpected_component"
+  ],
+  "risk_breakdown": [
+    {
+      "factor": "unexpected_component",
+      "weight": 20
+    }
+  ],
   "recommendation": "investigate",
-  "reason": "An unexpected component was detected in the firmware package.",
-  "affected_asset": "OPC-GW-001",
-  "device_type": "Industrial OPC Gateway",
-  "process_unit": "Pump or Compressor Area",
+  "reasons": [
+    "An unexpected component change was detected in the firmware package."
+  ],
+  "affected_asset": "ASSET-004",
+  "asset_name": "Industrial OPC Gateway",
+  "device_type": "OPC Gateway",
+  "process_unit": "Pump and Compressor Area",
   "human_approval_required": true,
   "deployment_allowed": false,
   "real_action_executed": false,
-  "data_provenance": "SYNTHETIC GROUND TRUTH"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

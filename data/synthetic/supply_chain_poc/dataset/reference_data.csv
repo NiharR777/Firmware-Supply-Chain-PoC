@@ -1,0 +1,23 @@
+reference_type,reference_id,name,trusted,process_unit,version
+vendor,VEND-001,Industrial Controls Vendor A,True,,
+vendor,VEND-002,Safety Systems Vendor B,True,,
+vendor,VEND-003,Industrial Gateway Vendor C,True,,
+vendor,VEND-004,Unknown / Untrusted Vendor,False,,
+product,PROD-001,PLC Controller,,Crude Distillation Unit,
+product,PROD-002,DCS Controller,,Crude Distillation Unit,
+product,PROD-003,SIS Safety Controller,,Safety Instrumented System,
+product,PROD-004,Industrial OPC Gateway,,Pump or Compressor Area,
+product,PROD-005,RTU Controller,,Tank Farm,
+asset,ASSET-PLC-001,PLC,,Crude Distillation Unit,
+asset,ASSET-DCS-001,DCS,,Crude Distillation Unit,
+asset,ASSET-SIS-001,SIS Controller,,Safety Instrumented System,
+asset,ASSET-OPC-001,Industrial OPC Gateway,,Pump or Compressor Area,
+asset,ASSET-RTU-001,RTU,,Tank Farm,
+component,COMP-001,OpenSSL,,,3.0.12
+component,COMP-002,cURL,,,8.4.0
+component,COMP-003,zlib,,,1.3
+component,COMP-004,BusyBox,,,1.36.1
+component,COMP-005,libxml2,,,2.11.5
+component,COMP-006,Unexpected Utility,,,2.0.0
+component,COMP-007,SQLite,,,3.43.1
+component,COMP-008,OpenSSH,,,9.5

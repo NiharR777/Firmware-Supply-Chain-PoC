@@ -1,24 +1,10 @@
 {
   "scenario_id": "SC-003",
-  "scenario_type": "invalid_signature",
   "package_id": "PKG-003",
   "product_id": "PROD-003",
   "vendor_id": "VEND-002",
-  "evidence": {
-    "hash_status": "valid",
-    "expected_hash": "8aff73129a78565567c867ec0992a91d83cee4d2d77765e7800faa807a252a1c",
-    "calculated_hash": "8aff73129a78565567c867ec0992a91d83cee4d2d77765e7800faa807a252a1c",
-    "signature_status": "invalid",
-    "trusted_root_status": "untrusted",
-    "sbom_status": "complete",
-    "vendor_trust": "trusted",
-    "evidence_freshness": "current",
-    "recommendation": "high_risk",
-    "attestation_status": "invalid",
-    "human_approval_required": true
-  },
-  "expected_decision": "high_risk",
-  "data_provenance": "SYNTHETIC GROUND TRUTH",
-  "real_action_executed": false,
-  "human_approval_required": true
+  "description": "Invalid or untrusted signature on SIS safety-controller firmware",
+  "generator_version": "2.0.0",
+  "seed": 20260827,
+  "data_provenance": "SYNTHETIC SCENARIO MANIFEST"
 }

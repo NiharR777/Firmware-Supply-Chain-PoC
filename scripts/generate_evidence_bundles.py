@@ -1,460 +1,818 @@
-from pathlib import Path
+"""
+Generate evidence-driven firmware supply-chain bundles.
+
+Important design rules:
+- scenario_type and expected_decision are NEVER written to evidence inputs.
+- Ground truth is kept separately.
+- Evidence is generated first.
+- Decision artifacts are generated only after evidence exists.
+- Hashes are calculated from real harmless synthetic package bytes.
+- SBOM uses CycloneDX 1.5.
+- All generated data is synthetic and advisory only.
+"""
+
+from __future__ import annotations
+
+import csv
+import hashlib
 import json
-import pandas as pd
+import shutil
+from datetime import datetime, timezone
+from pathlib import Path
 
 
-# ---------------------------------------------------------
-# Project paths
-# ---------------------------------------------------------
+# ============================================================
+# Configuration
+# ============================================================
 
 BASE_DIR = Path("data/synthetic/supply_chain_poc")
 
-SCENARIO_FILE = BASE_DIR / "scenario_catalog.csv"
+CATALOG_FILE = BASE_DIR / "scenario_catalog.csv"
 
-OUTPUT_DIR = (
-    BASE_DIR
-    / "generated"
-    / "evidence_bundles"
-)
+GENERATED_DIR = BASE_DIR / "generated"
+BUNDLE_DIR = GENERATED_DIR / "evidence_bundles"
+SCENARIO_DIR = GENERATED_DIR / "scenarios"
+GROUND_TRUTH_DIR = BASE_DIR / "ground_truth"
 
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+PACKAGE_DIR = BASE_DIR / "packages"
+SBOM_DIR = BASE_DIR / "sbom"
 
+FIXTURE_DIR = GENERATED_DIR / "fixtures"
 
-# ---------------------------------------------------------
-# Load scenario catalog
-# ---------------------------------------------------------
-
-scenarios = pd.read_csv(SCENARIO_FILE)
+GROUND_TRUTH_FILE = GROUND_TRUTH_DIR / "scenario_ground_truth.csv"
+MANIFEST_FILE = GENERATED_DIR / "generation_manifest.json"
 
 
-# ---------------------------------------------------------
-# Refinery asset mapping
-# ---------------------------------------------------------
+GENERATOR_VERSION = "2.0.0"
+DEFAULT_SEED = 20260827
 
-ASSET_MAPPING = {
-    "SC-001": {
-        "asset_id": "CDU-PLC-001",
+
+# ============================================================
+# Utility functions
+# ============================================================
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+
+    with path.open("rb") as file:
+        for chunk in iter(lambda: file.read(1024 * 1024), b""):
+            digest.update(chunk)
+
+    return digest.hexdigest()
+
+
+def write_json(path: Path, data: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with path.open("w", encoding="utf-8") as file:
+        json.dump(data, file, indent=2)
+
+
+def read_catalog() -> list[dict]:
+    if not CATALOG_FILE.exists():
+        raise FileNotFoundError(
+            f"Canonical scenario catalog not found: {CATALOG_FILE}"
+        )
+
+    with CATALOG_FILE.open("r", encoding="utf-8-sig", newline="") as file:
+        rows = list(csv.DictReader(file))
+
+    required = {
+        "scenario_id",
+        "scenario_type",
+        "description",
+        "package_id",
+        "product_id",
+        "vendor_id",
+        "component_id",
+        "vulnerability_id",
+        "expected_decision",
+    }
+
+    if not rows:
+        raise ValueError("Scenario catalog is empty.")
+
+    missing = required - set(rows[0].keys())
+
+    if missing:
+        raise ValueError(
+            f"Scenario catalog missing columns: {sorted(missing)}"
+        )
+
+    ids = [row["scenario_id"] for row in rows]
+
+    if any(not value for value in ids):
+        raise ValueError("Scenario catalog contains an empty scenario_id.")
+
+    if len(ids) != len(set(ids)):
+        raise ValueError("Duplicate scenario_id detected in scenario catalog.")
+
+    return rows
+
+
+def write_csv(path: Path, rows: list[dict], fieldnames: list[str]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with path.open(
+        "w",
+        encoding="utf-8",
+        newline="",
+    ) as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=fieldnames,
+        )
+
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+# ============================================================
+# Canonical refinery asset mapping
+# ============================================================
+
+ASSETS = {
+    "PKG-001": {
+        "asset_id": "ASSET-001",
+        "asset_name": "Crude Distillation Unit PLC",
         "device_type": "PLC",
         "process_unit": "Crude Distillation Unit",
-        "location": "Refinery CDU",
-    },
-    "SC-002": {
-        "asset_id": "CDU-DCS-001",
-        "device_type": "DCS Controller",
-        "process_unit": "Crude Distillation Unit",
-        "location": "Refinery CDU",
-    },
-    "SC-003": {
-        "asset_id": "SIS-001",
-        "device_type": "Safety Controller/SIS",
-        "process_unit": "Reactor/Hydrocracker Unit",
-        "location": "Refinery Safety System",
-    },
-    "SC-004": {
-        "asset_id": "OPC-GW-001",
-        "device_type": "Industrial OPC Gateway",
-        "process_unit": "Pump or Compressor Area",
         "location": "Refinery OT Network",
     },
-    "SC-005": {
-        "asset_id": "CDU-PLC-001",
-        "device_type": "PLC",
-        "process_unit": "Crude Distillation Unit",
-        "location": "Refinery CDU",
-    },
-    "SC-006": {
-        "asset_id": "CDU-DCS-001",
+    "PKG-002": {
+        "asset_id": "ASSET-002",
+        "asset_name": "Crude Distillation Unit DCS Controller",
         "device_type": "DCS Controller",
         "process_unit": "Crude Distillation Unit",
-        "location": "Refinery CDU",
-    },
-    "SC-007": {
-        "asset_id": "OPC-GW-001",
-        "device_type": "Industrial OPC Gateway",
-        "process_unit": "Pump or Compressor Area",
         "location": "Refinery OT Network",
     },
-    "SC-008": {
-        "asset_id": "TANK-RTU-001",
-        "device_type": "Pipeline/Tank-Farm RTU",
-        "process_unit": "Tank Farm",
-        "location": "Refinery Tank Farm",
+    "PKG-003": {
+        "asset_id": "ASSET-003",
+        "asset_name": "Safety Instrumented System Controller",
+        "device_type": "SIS Controller",
+        "process_unit": "Safety Instrumented System",
+        "location": "Refinery OT Network",
     },
-    "SC-009": {
-        "asset_id": "TANK-RTU-001",
-        "device_type": "Pipeline/Tank-Farm RTU",
-        "process_unit": "Tank Farm",
-        "location": "Refinery Tank Farm",
+    "PKG-004": {
+        "asset_id": "ASSET-004",
+        "asset_name": "Industrial OPC Gateway",
+        "device_type": "OPC Gateway",
+        "process_unit": "Pump and Compressor Area",
+        "location": "Refinery OT Network",
     },
-    "SC-010": {
-        "asset_id": "TANK-RTU-001",
-        "device_type": "Pipeline/Tank-Farm RTU",
+    "PKG-005": {
+        "asset_id": "ASSET-005",
+        "asset_name": "Tank Farm RTU",
+        "device_type": "RTU",
         "process_unit": "Tank Farm",
-        "location": "Refinery Tank Farm",
+        "location": "Refinery OT Network",
     },
 }
 
 
-# ---------------------------------------------------------
-# Create evidence bundle
-# ---------------------------------------------------------
+# ============================================================
+# Package definitions
+# ============================================================
 
-def create_bundle(row):
+PACKAGES = {
+    "PKG-001": {
+        "product_id": "PROD-001",
+        "vendor_id": "VEND-001",
+        "firmware_version": "2.4.1",
+        "trusted_version": "2.4.1",
+        "bytes": (
+            b"SYNTHETIC REFINERY PLC FIRMWARE\n"
+            b"PACKAGE PKG-001\n"
+            b"VERSION 2.4.1\n"
+            b"CLEAN BASELINE\n"
+        ),
+    },
+    "PKG-002": {
+        "product_id": "PROD-002",
+        "vendor_id": "VEND-001",
+        "firmware_version": "3.1.0",
+        "trusted_version": "3.1.0",
+        "bytes": (
+            b"SYNTHETIC REFINERY DCS FIRMWARE\n"
+            b"PACKAGE PKG-002\n"
+            b"VERSION 3.1.0\n"
+            b"CLEAN BASELINE\n"
+        ),
+    },
+    "PKG-003": {
+        "product_id": "PROD-003",
+        "vendor_id": "VEND-002",
+        "firmware_version": "1.8.2",
+        "trusted_version": "1.8.2",
+        "bytes": (
+            b"SYNTHETIC REFINERY SIS FIRMWARE\n"
+            b"PACKAGE PKG-003\n"
+            b"VERSION 1.8.2\n"
+            b"CLEAN BASELINE\n"
+        ),
+    },
+    "PKG-004": {
+        "product_id": "PROD-004",
+        "vendor_id": "VEND-003",
+        "firmware_version": "5.2.0",
+        "trusted_version": "5.2.0",
+        "bytes": (
+            b"SYNTHETIC INDUSTRIAL OPC GATEWAY FIRMWARE\n"
+            b"PACKAGE PKG-004\n"
+            b"VERSION 5.2.0\n"
+            b"CLEAN BASELINE\n"
+        ),
+    },
+    "PKG-005": {
+        "product_id": "PROD-005",
+        "vendor_id": "VEND-002",
+        "firmware_version": "4.0.1",
+        "trusted_version": "4.0.1",
+        "bytes": (
+            b"SYNTHETIC TANK FARM RTU FIRMWARE\n"
+            b"PACKAGE PKG-005\n"
+            b"VERSION 4.0.1\n"
+            b"CLEAN BASELINE\n"
+        ),
+    },
+}
 
-    scenario_id = row["scenario_id"]
-    scenario_type = row["scenario_type"]
-    package_id = row["package_id"]
 
-    bundle_dir = OUTPUT_DIR / scenario_id
-    bundle_dir.mkdir(parents=True, exist_ok=True)
+# ============================================================
+# Scenario evidence rules
+# ============================================================
 
-    asset = ASSET_MAPPING.get(
-        scenario_id,
-        {
-            "asset_id": "UNKNOWN",
-            "device_type": "UNKNOWN",
-            "process_unit": "UNKNOWN",
-            "location": "UNKNOWN",
-        },
+def build_hash_evidence(
+    scenario_id: str,
+    package_id: str,
+    scenario_type: str,
+) -> dict:
+
+    package = PACKAGES[package_id]
+
+    clean_dir = FIXTURE_DIR / "clean"
+    modified_dir = FIXTURE_DIR / "modified"
+
+    clean_dir.mkdir(parents=True, exist_ok=True)
+    modified_dir.mkdir(parents=True, exist_ok=True)
+
+    clean_file = (
+        clean_dir
+        / f"{package_id}_{package['firmware_version']}_clean.bin"
     )
 
-    # -----------------------------------------------------
-    # 1. package.json
-    # -----------------------------------------------------
+    clean_file.write_bytes(package["bytes"])
 
-    package_data = {
-        "scenario_id": scenario_id,
-        "package_id": package_id,
-        "product_id": row["product_id"],
-        "vendor_id": row["vendor_id"],
-        "scenario_type": scenario_type,
-        "package_status": "SYNTHETIC",
-        "data_provenance": "SYNTHETIC",
-    }
+    expected_hash = sha256_file(clean_file)
 
-    # -----------------------------------------------------
-    # 2. hash_evidence.json
-    # -----------------------------------------------------
+    if scenario_type == "hash_mismatch":
+        observed_file = (
+            modified_dir
+            / f"{scenario_id}_{package_id}_modified.bin"
+        )
 
-    hash_match = scenario_type not in [
-        "hash_mismatch"
-    ]
+        modified_bytes = (
+            package["bytes"]
+            + b"\nSYNTHETIC_SAFE_TEST_MARKER:HASH_VARIANT_001\n"
+        )
 
-    hash_evidence = {
-        "scenario_id": scenario_id,
+        observed_file.write_bytes(modified_bytes)
+
+    else:
+        observed_file = clean_file
+
+    observed_hash = sha256_file(observed_file)
+
+    return {
         "package_id": package_id,
         "hash_algorithm": "SHA-256",
-        "trusted_vendor_hash": "SYNTHETIC_TRUSTED_HASH",
-        "calculated_package_hash": (
-            "SYNTHETIC_CALCULATED_HASH"
+        "expected_hash": expected_hash,
+        "observed_hash": observed_hash,
+        "hash_match": expected_hash == observed_hash,
+        "expected_package_path": str(
+            clean_file.as_posix()
         ),
-        "hash_match": hash_match,
+        "observed_package_path": str(
+            observed_file.as_posix()
+        ),
+        "expected_package_size_bytes": clean_file.stat().st_size,
+        "observed_package_size_bytes": observed_file.stat().st_size,
+        "calculation_timestamp": utc_now(),
         "integrity_status": (
             "PASSED"
-            if hash_match
+            if expected_hash == observed_hash
             else "FAILED"
         ),
-        "data_provenance": "SYNTHETIC",
+        "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
     }
 
-    # -----------------------------------------------------
-    # 3. signature_evidence.json
-    # -----------------------------------------------------
 
-    signature_valid = (
-        scenario_type != "invalid_signature"
-    )
+def build_signature_evidence(
+    package_id: str,
+    scenario_type: str,
+) -> dict:
 
-    signature_evidence = {
-        "scenario_id": scenario_id,
+    if scenario_type == "invalid_signature":
+        signature_status = "invalid"
+        trusted_root_status = "untrusted"
+    else:
+        signature_status = "valid"
+        trusted_root_status = "trusted"
+
+    # SC-008 is vendor substitution. The signature itself can
+    # remain valid while the observed vendor differs.
+    if scenario_type == "untrusted_vendor":
+        signature_status = "valid"
+        trusted_root_status = "trusted"
+
+    return {
         "package_id": package_id,
         "signature_algorithm": "SYNTHETIC-SIGNATURE",
-        "signature_status": (
-            "valid"
-            if signature_valid
-            else "invalid"
-        ),
-        "trusted_root_status": (
-            "trusted"
-            if signature_valid
-            else "untrusted"
-        ),
-        "human_verification_required": True,
-        "data_provenance": "SYNTHETIC",
+        "signature_status": signature_status,
+        "trusted_root_status": trusted_root_status,
+        "signature_verified": signature_status == "valid",
+        "trusted_root_verified": trusted_root_status == "trusted",
+        "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
     }
 
-    # -----------------------------------------------------
-    # 4. sbom.json
-    # -----------------------------------------------------
+
+def build_sbom(
+    scenario_id: str,
+    package_id: str,
+    scenario_type: str,
+) -> dict:
 
     if scenario_type == "missing_sbom":
-        sbom_status = "incomplete"
-    else:
-        sbom_status = "complete"
-
-    sbom = {
-        "scenario_id": scenario_id,
-        "package_id": package_id,
-        "sbom_format": "SPDX",
-        "sbom_status": sbom_status,
-        "component_count": (
-            0 if sbom_status == "incomplete" else 3
-        ),
-        "components": [
-            {
-                "component_id": "COMP-SYN-001",
-                "name": "OpenSSL",
-                "version": "3.0.12",
-            },
-            {
-                "component_id": "COMP-SYN-002",
-                "name": "cURL",
-                "version": "8.4.0",
-            },
-            {
-                "component_id": "COMP-SYN-003",
-                "name": "zlib",
-                "version": "1.3",
-            },
-        ]
-        if sbom_status == "complete"
-        else [],
-        "data_provenance": "SYNTHETIC",
-    }
-
-    # -----------------------------------------------------
-    # Scenario-specific SBOM changes
-    # -----------------------------------------------------
-
-    if scenario_type == "unexpected_component":
-        sbom["unexpected_component"] = True
-        sbom["component_change"] = "added"
-        sbom["added_component"] = {
-            "component_id": "COMP-006",
-            "name": "Device Driver Pack",
-            "version": "2.2.0",
+        return {
+            "package_id": package_id,
+            "sbom_present": False,
+            "sbom_format": None,
+            "sbom_path": None,
+            "sbom_sha256": None,
+            "sbom_status": "missing",
+            "missing_reason": "SBOM artifact was not supplied",
+            "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
         }
 
-    # -----------------------------------------------------
-    # 5. asset_mapping.json
-    # -----------------------------------------------------
+    components = [
+        {
+            "type": "library",
+            "bom-ref": "pkg:generic/openssl@3.0.12",
+            "name": "OpenSSL",
+            "version": "3.0.12",
+        },
+        {
+            "type": "library",
+            "bom-ref": "pkg:generic/curl@8.4.0",
+            "name": "cURL",
+            "version": "8.4.0",
+        },
+        {
+            "type": "library",
+            "bom-ref": "pkg:generic/zlib@1.3",
+            "name": "zlib",
+            "version": "1.3",
+        },
+    ]
 
-    asset_mapping = {
-        "scenario_id": scenario_id,
+    if scenario_type == "unexpected_component":
+        components.append(
+            {
+                "type": "library",
+                "bom-ref": "pkg:generic/unknown-test-component@9.9.9",
+                "name": "UnexpectedTestComponent",
+                "version": "9.9.9",
+            }
+        )
+
+    vulnerabilities = []
+
+    if scenario_type == "vulnerable_component":
+        vulnerabilities.append(
+            {
+                "id": "VULN-002",
+                "source": {
+                    "name": "Synthetic Vulnerability Database"
+                },
+                "ratings": [
+                    {
+                        "severity": "high"
+                    }
+                ],
+                "affects": [
+                    {
+                        "ref": "pkg:generic/openssl@3.0.12"
+                    }
+                ],
+            }
+        )
+
+    sbom = {
+        "bomFormat": "CycloneDX",
+        "specVersion": "1.5",
+        "serialNumber": (
+            f"urn:uuid:synthetic-{scenario_id.lower()}"
+        ),
+        "version": 1,
+        "metadata": {
+            "component": {
+                "type": "application",
+                "name": package_id,
+                "version": PACKAGES[package_id]["firmware_version"],
+            }
+        },
+        "components": components,
+        "vulnerabilities": vulnerabilities,
+    }
+
+    source_file = (
+        SBOM_DIR
+        / f"{package_id}_sbom.json"
+    )
+
+    source_file.parent.mkdir(parents=True, exist_ok=True)
+
+    # For a modified component scenario, write the
+    # scenario-specific observed SBOM instead of changing
+    # the canonical source artifact.
+    if scenario_type == "unexpected_component":
+        observed_file = (
+            FIXTURE_DIR
+            / "modified_sbom"
+            / f"{scenario_id}_{package_id}_sbom.json"
+        )
+    else:
+        observed_file = source_file
+
+    observed_file.parent.mkdir(parents=True, exist_ok=True)
+
+    write_json(source_file, sbom)
+
+    if observed_file != source_file:
+        write_json(observed_file, sbom)
+
+    digest = sha256_file(observed_file)
+
+    vulnerability_status = (
+        "affected"
+        if scenario_type == "vulnerable_component"
+        else "not_affected"
+    )
+
+    return {
         "package_id": package_id,
-        "product_id": row["product_id"],
-        "vendor_id": row["vendor_id"],
+        "sbom_present": True,
+        "sbom_format": "CycloneDX",
+        "spec_version": "1.5",
+        "sbom_path": str(observed_file.as_posix()),
+        "sbom_sha256": digest,
+        "sbom_status": "complete",
+        "component_count": len(components),
+        "components": components,
+        "vulnerability_status": vulnerability_status,
+        "vulnerabilities": vulnerabilities,
+        "unexpected_component_observed": (
+            scenario_type == "unexpected_component"
+        ),
+        "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
+    }
+
+
+def build_rollback_evidence(
+    package_id: str,
+    scenario_type: str,
+) -> dict:
+
+    package = PACKAGES[package_id]
+
+    if scenario_type in {"rollback"}:
+        observed_version = "1.0.0"
+        expected_version = package["trusted_version"]
+        authorized = False
+    else:
+        observed_version = package["firmware_version"]
+        expected_version = package["trusted_version"]
+        authorized = True
+
+    return {
+        "package_id": package_id,
+        "expected_version": expected_version,
+        "observed_version": observed_version,
+        "rollback_authorized": authorized,
+        "version_comparison": (
+            "older_than_expected"
+            if observed_version != expected_version
+            else "equal_to_expected"
+        ),
+        "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
+    }
+
+
+def build_vendor_evidence(
+    package_id: str,
+    scenario_type: str,
+) -> dict:
+
+    canonical_vendor = PACKAGES[package_id]["vendor_id"]
+
+    if scenario_type == "untrusted_vendor":
+        observed_vendor = "VEND-004"
+    else:
+        observed_vendor = canonical_vendor
+
+    return {
+        "package_id": package_id,
+        "expected_vendor_id": canonical_vendor,
+        "observed_vendor_id": observed_vendor,
+        "vendor_match": canonical_vendor == observed_vendor,
+        "vendor_trust_status": (
+            "trusted"
+            if canonical_vendor == observed_vendor
+            else "untrusted"
+        ),
+        "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
+    }
+
+
+def build_freshness_evidence(
+    package_id: str,
+    scenario_type: str,
+) -> dict:
+
+    if scenario_type == "stale_evidence":
+        age_days = 120
+        status = "stale"
+    else:
+        age_days = 2
+        status = "current"
+
+    return {
+        "package_id": package_id,
+        "evidence_age_days": age_days,
+        "freshness_status": status,
+        "freshness_threshold_days": 30,
+        "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
+    }
+
+
+def build_asset_mapping(package_id: str) -> dict:
+    asset = ASSETS[package_id]
+
+    return {
+        "package_id": package_id,
+        "product_id": PACKAGES[package_id]["product_id"],
+        "vendor_id": PACKAGES[package_id]["vendor_id"],
         "asset_id": asset["asset_id"],
+        "asset_name": asset["asset_name"],
         "device_type": asset["device_type"],
         "process_unit": asset["process_unit"],
         "location": asset["location"],
         "deployment_status": "NOT_EXECUTED",
-        "data_provenance": "SYNTHETIC",
+        "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
     }
 
-    # -----------------------------------------------------
-    # 6. Decision logic
-    # -----------------------------------------------------
 
-    decision = row["expected_decision"]
+# ============================================================
+# Ground truth
+# ============================================================
 
-    recommendation = "investigate"
+def generate_ground_truth(catalog: list[dict]) -> None:
+    rows = []
 
-    if decision == "high_risk":
-        recommendation = "quarantine_review"
-
-    if scenario_type == "hash_mismatch":
-        reason = (
-            "Calculated firmware package hash does not "
-            "match the trusted vendor hash."
+    for row in catalog:
+        rows.append(
+            {
+                "scenario_id": row["scenario_id"],
+                "scenario_type": row["scenario_type"],
+                "expected_decision": row["expected_decision"],
+            }
         )
 
-    elif scenario_type == "invalid_signature":
-        reason = (
-            "Firmware signature is invalid or not "
-            "trusted by the configured trusted root."
-        )
-
-    elif scenario_type == "vulnerable_component":
-        reason = (
-            "Firmware contains a vulnerable component "
-            "with applicable VEX status."
-        )
-
-    elif scenario_type == "rollback":
-        reason = (
-            "Firmware version indicates an unauthorized "
-            "rollback to an older version."
-        )
-
-    elif scenario_type == "missing_sbom":
-        reason = (
-            "SBOM is missing or incomplete, preventing "
-            "complete component verification."
-        )
-
-    elif scenario_type == "unexpected_component":
-        reason = (
-            "An unexpected component was detected in "
-            "the firmware package."
-        )
-
-    elif scenario_type == "untrusted_vendor":
-        reason = (
-            "Firmware package is associated with an "
-            "untrusted vendor."
-        )
-
-    elif scenario_type == "stale_evidence":
-        reason = (
-            "Security evidence is stale or component "
-            "identity cannot be resolved."
-        )
-
-    else:
-        reason = (
-            "Scenario requires review according to "
-            "synthetic ground truth."
-        )
-
-    # -----------------------------------------------------
-    # Vulnerability / VEX information
-    # -----------------------------------------------------
-
-    vulnerability_info = {}
-
-    if scenario_type == "vulnerable_component":
-        vulnerability_info = {
-            "vulnerable_component": True,
-            "component_id": row["component_id"],
-            "vulnerability_id": row["vulnerability_id"],
-            "vex_status": "affected",
-            "severity": "high",
-        }
-
-    # -----------------------------------------------------
-    # Rollback information
-    # -----------------------------------------------------
-
-    rollback_info = {}
-
-    if scenario_type == "rollback":
-        rollback_info = {
-            "version_status": "rollback_detected",
-            "current_version": "4.0.1",
-            "rollback_version": "3.9.8",
-        }
-
-    # -----------------------------------------------------
-    # Decision evidence
-    # -----------------------------------------------------
-
-    decision_data = {
-        "scenario_id": scenario_id,
-        "package_id": package_id,
-        "decision": decision,
-        "integrity_failure": (
-            scenario_type == "hash_mismatch"
-        ),
-        "recommendation": recommendation,
-        "reason": reason,
-        "affected_asset": asset["asset_id"],
-        "device_type": asset["device_type"],
-        "process_unit": asset["process_unit"],
-        "human_approval_required": True,
-        "deployment_allowed": False,
-        "real_action_executed": False,
-        "data_provenance": "SYNTHETIC GROUND TRUTH",
-    }
-
-    decision_data.update(vulnerability_info)
-    decision_data.update(rollback_info)
-
-    # -----------------------------------------------------
-    # Write all files
-    # -----------------------------------------------------
-
-    files = {
-        "package.json": package_data,
-        "hash_evidence.json": hash_evidence,
-        "signature_evidence.json": signature_evidence,
-        "sbom.json": sbom,
-        "asset_mapping.json": asset_mapping,
-        "decision.json": decision_data,
-    }
-
-    for filename, data in files.items():
-
-        output_file = bundle_dir / filename
-
-        with open(
-            output_file,
-            "w",
-            encoding="utf-8",
-        ) as file:
-
-            json.dump(
-                data,
-                file,
-                indent=2,
-            )
-
-    return scenario_id
-
-
-# ---------------------------------------------------------
-# Generate bundles
-# ---------------------------------------------------------
-
-generated = []
-
-for _, row in scenarios.iterrows():
-
-    generated.append(
-        create_bundle(row)
+    write_csv(
+        GROUND_TRUTH_FILE,
+        rows,
+        [
+            "scenario_id",
+            "scenario_type",
+            "expected_decision",
+        ],
     )
 
 
-# ---------------------------------------------------------
-# Final output
-# ---------------------------------------------------------
+# ============================================================
+# Scenario manifests
+# ============================================================
 
-print(
-    "Refinery evidence bundles generated successfully."
-)
+def generate_scenario_manifests(catalog: list[dict]) -> None:
+    SCENARIO_DIR.mkdir(parents=True, exist_ok=True)
 
-print(
-    f"Bundles generated: {len(generated)}"
-)
+    for row in catalog:
+        package_id = row["package_id"]
 
-print(
-    f"Output directory: {OUTPUT_DIR}"
-)
+        scenario = {
+            "scenario_id": row["scenario_id"],
+            "package_id": package_id,
+            "product_id": row["product_id"],
+            "vendor_id": row["vendor_id"],
+            "description": row["description"],
+            "generator_version": GENERATOR_VERSION,
+            "seed": DEFAULT_SEED,
+            "data_provenance": "SYNTHETIC SCENARIO MANIFEST",
+        }
 
-print(
-    "Each bundle contains:"
-)
+        # Intentionally NO:
+        # scenario_type
+        # expected_decision
 
-print(
-    "package.json"
-)
+        write_json(
+            SCENARIO_DIR
+            / f"{row['scenario_id']}.json",
+            scenario,
+        )
 
-print(
-    "hash_evidence.json"
-)
 
-print(
-    "signature_evidence.json"
-)
+# ============================================================
+# Evidence bundles
+# ============================================================
 
-print(
-    "sbom.json"
-)
+def generate_evidence_bundles(catalog: list[dict]) -> None:
 
-print(
-    "asset_mapping.json"
-)
+    if BUNDLE_DIR.exists():
+        shutil.rmtree(BUNDLE_DIR)
 
-print(
-    "decision.json"
-)
+    BUNDLE_DIR.mkdir(parents=True, exist_ok=True)
+
+    for row in catalog:
+
+        scenario_id = row["scenario_id"]
+        scenario_type = row["scenario_type"]
+        package_id = row["package_id"]
+
+        bundle_dir = BUNDLE_DIR / scenario_id
+        bundle_dir.mkdir(parents=True, exist_ok=True)
+
+        package = PACKAGES[package_id]
+
+        package_data = {
+            "package_id": package_id,
+            "product_id": package["product_id"],
+            "vendor_id": package["vendor_id"],
+            "firmware_version": package["firmware_version"],
+            "package_status": "SYNTHETIC",
+            "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
+        }
+
+        hash_evidence = build_hash_evidence(
+            scenario_id,
+            package_id,
+            scenario_type,
+        )
+
+        signature_evidence = build_signature_evidence(
+            package_id,
+            scenario_type,
+        )
+
+        sbom = build_sbom(
+            scenario_id,
+            package_id,
+            scenario_type,
+        )
+
+        rollback = build_rollback_evidence(
+            package_id,
+            scenario_type,
+        )
+
+        vendor = build_vendor_evidence(
+            package_id,
+            scenario_type,
+        )
+
+        freshness = build_freshness_evidence(
+            package_id,
+            scenario_type,
+        )
+
+        asset = build_asset_mapping(package_id)
+
+        write_json(
+            bundle_dir / "package.json",
+            package_data,
+        )
+
+        write_json(
+            bundle_dir / "hash_evidence.json",
+            hash_evidence,
+        )
+
+        write_json(
+            bundle_dir / "signature_evidence.json",
+            signature_evidence,
+        )
+
+        write_json(
+            bundle_dir / "sbom.json",
+            sbom,
+        )
+
+        write_json(
+            bundle_dir / "rollback_evidence.json",
+            rollback,
+        )
+
+        write_json(
+            bundle_dir / "vendor_evidence.json",
+            vendor,
+        )
+
+        write_json(
+            bundle_dir / "freshness_evidence.json",
+            freshness,
+        )
+
+        write_json(
+            bundle_dir / "asset_mapping.json",
+            asset,
+        )
+
+
+# ============================================================
+# Generation manifest
+# ============================================================
+
+def generate_manifest(catalog: list[dict]) -> None:
+
+    manifest = {
+        "generator_version": GENERATOR_VERSION,
+        "seed": DEFAULT_SEED,
+        "generated_timestamp": utc_now(),
+        "scenario_count": len(catalog),
+        "scenario_ids": [
+            row["scenario_id"]
+            for row in catalog
+        ],
+        "data_provenance": "SYNTHETIC",
+        "safety_boundary": {
+            "real_action_executed": False,
+            "firmware_deployment_executed": False,
+            "malware_created": False,
+            "malware_executed": False,
+        },
+    }
+
+    write_json(
+        MANIFEST_FILE,
+        manifest,
+    )
+
+
+# ============================================================
+# Main
+# ============================================================
+
+def main() -> None:
+
+    catalog = read_catalog()
+
+    expected_ids = {
+        f"SC-{number:03d}"
+        for number in range(1, 11)
+    }
+
+    actual_ids = {
+        row["scenario_id"]
+        for row in catalog
+    }
+
+    if actual_ids != expected_ids:
+        raise ValueError(
+            "Canonical catalog must contain exactly SC-001 through SC-010."
+        )
+
+    generate_ground_truth(catalog)
+    generate_scenario_manifests(catalog)
+    generate_evidence_bundles(catalog)
+    generate_manifest(catalog)
+
+    print()
+    print("===== REFINERY EVIDENCE GENERATION =====")
+    print(f"Generator version : {GENERATOR_VERSION}")
+    print(f"Seed              : {DEFAULT_SEED}")
+    print(f"Scenarios         : {len(catalog)}")
+    print(f"Evidence output   : {BUNDLE_DIR}")
+    print(f"Ground truth      : {GROUND_TRUTH_FILE}")
+    print(f"Manifest          : {MANIFEST_FILE}")
+    print()
+    print("Evidence generated successfully.")
+    print("No real firmware deployment was performed.")
+    print("No malware was created or executed.")
+    print()
+
+
+if __name__ == "__main__":
+    main()

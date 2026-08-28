@@ -1,15 +1,27 @@
 {
   "scenario_id": "SC-008",
   "package_id": "PKG-005",
-  "decision": "high_risk",
-  "integrity_failure": false,
+  "risk_score": 40,
+  "risk_level": "high_risk",
+  "risk_factors": [
+    "untrusted_vendor"
+  ],
+  "risk_breakdown": [
+    {
+      "factor": "untrusted_vendor",
+      "weight": 40
+    }
+  ],
   "recommendation": "quarantine_review",
-  "reason": "Firmware package is associated with an untrusted vendor.",
-  "affected_asset": "TANK-RTU-001",
-  "device_type": "Pipeline/Tank-Farm RTU",
+  "reasons": [
+    "Firmware package is associated with an untrusted vendor."
+  ],
+  "affected_asset": "ASSET-005",
+  "asset_name": "Tank Farm RTU",
+  "device_type": "RTU",
   "process_unit": "Tank Farm",
   "human_approval_required": true,
   "deployment_allowed": false,
   "real_action_executed": false,
-  "data_provenance": "SYNTHETIC GROUND TRUTH"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

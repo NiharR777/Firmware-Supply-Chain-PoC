@@ -1,0 +1,26 @@
+{
+  "generator_name": "synthetic_firmware_supply_chain_dataset",
+  "generator_version": "1.0.0",
+  "run_id": "RUN-20260828-01a55fcf",
+  "seed": 20260828,
+  "record_count": 5000,
+  "generated_at_utc": "2026-08-28T08:53:38.495307+00:00",
+  "scenario_distribution": {
+    "valid": 1416,
+    "benign_exception": 404,
+    "vulnerable_component": 481,
+    "hash_mismatch": 632,
+    "invalid_signature": 380,
+    "missing_sbom": 413,
+    "unexpected_component": 317,
+    "untrusted_vendor": 367,
+    "rollback": 299,
+    "stale_evidence": 291
+  },
+  "decision_distribution": {
+    "high_risk": 1379,
+    "investigate": 1801,
+    "normal": 1820
+  },
+  "safety_statement": "Synthetic data only. No real firmware was deployed, modified, executed, or transmitted."
+}

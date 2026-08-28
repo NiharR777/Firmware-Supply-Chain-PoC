@@ -1,9 +1,9 @@
 {
-  "scenario_id": "SC-007",
   "package_id": "PKG-004",
   "signature_algorithm": "SYNTHETIC-SIGNATURE",
   "signature_status": "valid",
   "trusted_root_status": "trusted",
-  "human_verification_required": true,
-  "data_provenance": "SYNTHETIC"
+  "signature_verified": true,
+  "trusted_root_verified": true,
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

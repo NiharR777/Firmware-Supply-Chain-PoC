@@ -1,0 +1,7 @@
+{
+  "package_id": "PKG-005",
+  "evidence_age_days": 120,
+  "freshness_status": "stale",
+  "freshness_threshold_days": 30,
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
+}

@@ -1,24 +1,10 @@
 {
   "scenario_id": "SC-008",
-  "scenario_type": "untrusted_vendor",
   "package_id": "PKG-005",
   "product_id": "PROD-005",
-  "vendor_id": "VEND-004",
-  "evidence": {
-    "hash_status": "valid",
-    "expected_hash": "21eb07df5642d1903dd67c92b73463c234c77b2502dff324948ebd010343a397",
-    "calculated_hash": "21eb07df5642d1903dd67c92b73463c234c77b2502dff324948ebd010343a397",
-    "signature_status": "valid",
-    "trusted_root_status": "trusted",
-    "sbom_status": "complete",
-    "vendor_trust": "untrusted",
-    "evidence_freshness": "current",
-    "recommendation": "high_risk",
-    "provenance_status": "incomplete",
-    "human_approval_required": true
-  },
-  "expected_decision": "high_risk",
-  "data_provenance": "SYNTHETIC GROUND TRUTH",
-  "real_action_executed": false,
-  "human_approval_required": true
+  "vendor_id": "VEND-002",
+  "description": "Observed vendor differs from the canonical trusted vendor for refinery OT firmware",
+  "generator_version": "2.0.0",
+  "seed": 20260827,
+  "data_provenance": "SYNTHETIC SCENARIO MANIFEST"
 }

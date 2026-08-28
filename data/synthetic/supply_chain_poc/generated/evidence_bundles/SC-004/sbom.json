@@ -1,25 +1,51 @@
 {
-  "scenario_id": "SC-004",
   "package_id": "PKG-004",
-  "sbom_format": "SPDX",
+  "sbom_present": true,
+  "sbom_format": "CycloneDX",
+  "spec_version": "1.5",
+  "sbom_path": "data/synthetic/supply_chain_poc/sbom/PKG-004_sbom.json",
+  "sbom_sha256": "d7a4a07c77d73e94dd405821e41084017896755b5cac4301f485a0ad4aab549c",
   "sbom_status": "complete",
   "component_count": 3,
   "components": [
     {
-      "component_id": "COMP-SYN-001",
+      "type": "library",
+      "bom-ref": "pkg:generic/openssl@3.0.12",
       "name": "OpenSSL",
       "version": "3.0.12"
     },
     {
-      "component_id": "COMP-SYN-002",
+      "type": "library",
+      "bom-ref": "pkg:generic/curl@8.4.0",
       "name": "cURL",
       "version": "8.4.0"
     },
     {
-      "component_id": "COMP-SYN-003",
+      "type": "library",
+      "bom-ref": "pkg:generic/zlib@1.3",
       "name": "zlib",
       "version": "1.3"
     }
   ],
-  "data_provenance": "SYNTHETIC"
+  "vulnerability_status": "affected",
+  "vulnerabilities": [
+    {
+      "id": "VULN-002",
+      "source": {
+        "name": "Synthetic Vulnerability Database"
+      },
+      "ratings": [
+        {
+          "severity": "high"
+        }
+      ],
+      "affects": [
+        {
+          "ref": "pkg:generic/openssl@3.0.12"
+        }
+      ]
+    }
+  ],
+  "unexpected_component_observed": false,
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

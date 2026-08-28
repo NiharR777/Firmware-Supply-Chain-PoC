@@ -1,0 +1,33 @@
+{
+  "scenario_id": "SC-001",
+  "package_id": "PKG-001",
+  "asset_id": "CDU-PLC-001",
+  "device_type": "PLC",
+  "process_unit": "Crude Distillation Unit",
+  "hash_status": "failed",
+  "signature_status": "valid",
+  "trusted_root_status": "trusted",
+  "sbom_status": "complete",
+  "vulnerability_status": "unknown",
+  "vex_status": "unknown",
+  "evidence_freshness": "unknown",
+  "rollback_detected": false,
+  "rollback_authorized": true,
+  "risk_score": 40,
+  "risk_level": "high_risk",
+  "risk_factors": [
+    "hash_integrity_failure"
+  ],
+  "recommendation": "quarantine_review",
+  "deployment_allowed": false,
+  "human_approval_required": true,
+  "real_action_executed": false,
+  "evidence_sources": [
+    "hash_evidence.json",
+    "signature_evidence.json",
+    "sbom.json",
+    "asset_mapping.json",
+    "rollback_evidence.json"
+  ],
+  "data_provenance": "SYNTHETIC"
+}

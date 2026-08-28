@@ -1,26 +1,10 @@
 {
   "scenario_id": "SC-007",
-  "scenario_type": "unexpected_component",
   "package_id": "PKG-004",
   "product_id": "PROD-004",
   "vendor_id": "VEND-003",
-  "evidence": {
-    "hash_status": "valid",
-    "expected_hash": "46bd590bb364cd9a028e6361197d8cf9e6e8b7911c774a6b3d5fee6ab4cb6e82",
-    "calculated_hash": "46bd590bb364cd9a028e6361197d8cf9e6e8b7911c774a6b3d5fee6ab4cb6e82",
-    "signature_status": "valid",
-    "trusted_root_status": "trusted",
-    "sbom_status": "complete",
-    "vendor_trust": "trusted",
-    "evidence_freshness": "current",
-    "recommendation": "investigate",
-    "unexpected_component": true,
-    "component_change": "added",
-    "component_id": "COMP-006",
-    "human_approval_required": true
-  },
-  "expected_decision": "investigate",
-  "data_provenance": "SYNTHETIC GROUND TRUTH",
-  "real_action_executed": false,
-  "human_approval_required": true
+  "description": "Unexpected component added to industrial gateway firmware",
+  "generator_version": "2.0.0",
+  "seed": 20260827,
+  "data_provenance": "SYNTHETIC SCENARIO MANIFEST"
 }

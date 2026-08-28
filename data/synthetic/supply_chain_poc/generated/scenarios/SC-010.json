@@ -1,25 +1,10 @@
 {
   "scenario_id": "SC-010",
-  "scenario_type": "stale_evidence",
   "package_id": "PKG-005",
   "product_id": "PROD-005",
   "vendor_id": "VEND-002",
-  "evidence": {
-    "hash_status": "valid",
-    "expected_hash": "21eb07df5642d1903dd67c92b73463c234c77b2502dff324948ebd010343a397",
-    "calculated_hash": "21eb07df5642d1903dd67c92b73463c234c77b2502dff324948ebd010343a397",
-    "signature_status": "valid",
-    "trusted_root_status": "trusted",
-    "sbom_status": "complete",
-    "vendor_trust": "trusted",
-    "evidence_freshness": "stale",
-    "recommendation": "investigate",
-    "component_identity": "unresolved",
-    "component_id": "COMP-008",
-    "human_approval_required": true
-  },
-  "expected_decision": "investigate",
-  "data_provenance": "SYNTHETIC GROUND TRUTH",
-  "real_action_executed": false,
-  "human_approval_required": true
+  "description": "Stale security evidence for Tank Farm RTU firmware requiring review",
+  "generator_version": "2.0.0",
+  "seed": 20260827,
+  "data_provenance": "SYNTHETIC SCENARIO MANIFEST"
 }

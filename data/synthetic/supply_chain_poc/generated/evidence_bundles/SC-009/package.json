@@ -1,9 +1,8 @@
 {
-  "scenario_id": "SC-009",
   "package_id": "PKG-005",
   "product_id": "PROD-005",
   "vendor_id": "VEND-002",
-  "scenario_type": "rollback",
+  "firmware_version": "4.0.1",
   "package_status": "SYNTHETIC",
-  "data_provenance": "SYNTHETIC"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

@@ -1,7 +1,7 @@
 from pathlib import Path
 import csv
 
-from decision_engine import evaluate_scenario
+from .decision_engine import evaluate_scenario
 
 
 # ---------------------------------------------------------
@@ -13,11 +13,14 @@ BASE_DIR = Path("data/synthetic/supply_chain_poc")
 MITRE_FILE = BASE_DIR / "mitre_attack_mapping.csv"
 
 REPORT_DIR = (
-    BASE_DIR / "generated" / "reports"
+    BASE_DIR
+    / "generated"
+    / "reports"
 )
 
 REPORT_FILE = (
-    REPORT_DIR / "risk_assessment_report.csv"
+    REPORT_DIR
+    / "risk_assessment_report.csv"
 )
 
 
@@ -86,13 +89,24 @@ def load_mitre_mapping():
 
 def generate_report():
 
+    print()
+    print(
+        "===== GENERATING REFINERY RISK ASSESSMENT ====="
+    )
+
+    # -----------------------------------------------------
     # Create report directory
+    # -----------------------------------------------------
+
     REPORT_DIR.mkdir(
         parents=True,
         exist_ok=True
     )
 
+    # -----------------------------------------------------
     # Load MITRE mapping
+    # -----------------------------------------------------
+
     mitre_mapping = load_mitre_mapping()
 
     report_rows = []
@@ -130,6 +144,34 @@ def generate_report():
         )
 
         # -------------------------------------------------
+        # Get refinery asset information
+        # -------------------------------------------------
+
+        asset_id = result.get(
+            "asset_id",
+            "N/A"
+        )
+
+        device_type = result.get(
+            "device_type",
+            "N/A"
+        )
+
+        process_unit = result.get(
+            "process_unit",
+            "N/A"
+        )
+
+        # -------------------------------------------------
+        # Get risk factors
+        # -------------------------------------------------
+
+        risk_factors = result.get(
+            "risk_factors",
+            []
+        )
+
+        # -------------------------------------------------
         # Build report row
         # -------------------------------------------------
 
@@ -139,16 +181,19 @@ def generate_report():
                 scenario_id,
 
             "package_id":
-                result.get("package_id"),
+                result.get(
+                    "package_id",
+                    "N/A"
+                ),
 
             "asset_id":
-                result.get("asset_id"),
+                asset_id,
 
             "device_type":
-                result.get("device_type"),
+                device_type,
 
             "process_unit":
-                result.get("process_unit"),
+                process_unit,
 
             "attack_description":
                 mitre.get(
@@ -169,7 +214,10 @@ def generate_report():
                 ),
 
             "risk_score":
-                result.get("risk_score", 0),
+                result.get(
+                    "risk_score",
+                    0
+                ),
 
             "risk_level":
                 result.get(
@@ -179,10 +227,7 @@ def generate_report():
 
             "risk_factors":
                 "; ".join(
-                    result.get(
-                        "risk_factors",
-                        []
-                    )
+                    risk_factors
                 ),
 
             "recommendation":
@@ -211,7 +256,7 @@ def generate_report():
         })
 
     # -----------------------------------------------------
-    # Make sure scenarios were generated
+    # Validate results
     # -----------------------------------------------------
 
     if not report_rows:
@@ -225,20 +270,35 @@ def generate_report():
     # -----------------------------------------------------
 
     fieldnames = [
+
         "scenario_id",
+
         "package_id",
+
         "asset_id",
+
         "device_type",
+
         "process_unit",
+
         "attack_description",
+
         "mitre_tactic",
+
         "mitre_technique",
+
         "risk_score",
+
         "risk_level",
+
         "risk_factors",
+
         "recommendation",
+
         "deployment_allowed",
+
         "human_approval_required",
+
         "real_action_executed"
     ]
 
@@ -269,7 +329,6 @@ def generate_report():
     # -----------------------------------------------------
 
     print()
-
     print(
         "===== RISK ASSESSMENT REPORT ====="
     )
@@ -286,6 +345,21 @@ def generate_report():
         )
 
         print(
+            f"  Asset ID: "
+            f"{row['asset_id']}"
+        )
+
+        print(
+            f"  Device Type: "
+            f"{row['device_type']}"
+        )
+
+        print(
+            f"  Process Unit: "
+            f"{row['process_unit']}"
+        )
+
+        print(
             f"  Attack Type: "
             f"{row['attack_description']}"
         )
@@ -298,7 +372,7 @@ def generate_report():
 
         print(
             f"  Risk Factors: "
-            f"{row['risk_factors']}"
+            f"{row['risk_factors'] or 'None'}"
         )
 
         print(
@@ -309,6 +383,16 @@ def generate_report():
         print(
             f"  Deployment Allowed: "
             f"{row['deployment_allowed']}"
+        )
+
+        print(
+            f"  Human Approval Required: "
+            f"{row['human_approval_required']}"
+        )
+
+        print(
+            f"  Real Action Executed: "
+            f"{row['real_action_executed']}"
         )
 
     # -----------------------------------------------------

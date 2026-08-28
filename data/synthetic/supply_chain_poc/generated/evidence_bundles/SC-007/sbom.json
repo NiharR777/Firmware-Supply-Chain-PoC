@@ -1,32 +1,40 @@
 {
-  "scenario_id": "SC-007",
   "package_id": "PKG-004",
-  "sbom_format": "SPDX",
+  "sbom_present": true,
+  "sbom_format": "CycloneDX",
+  "spec_version": "1.5",
+  "sbom_path": "data/synthetic/supply_chain_poc/generated/fixtures/modified_sbom/SC-007_PKG-004_sbom.json",
+  "sbom_sha256": "b8fc83c4e510456476761baf33f511dd6d0ea93611d681f0b58f48bfa5505b3b",
   "sbom_status": "complete",
-  "component_count": 3,
+  "component_count": 4,
   "components": [
     {
-      "component_id": "COMP-SYN-001",
+      "type": "library",
+      "bom-ref": "pkg:generic/openssl@3.0.12",
       "name": "OpenSSL",
       "version": "3.0.12"
     },
     {
-      "component_id": "COMP-SYN-002",
+      "type": "library",
+      "bom-ref": "pkg:generic/curl@8.4.0",
       "name": "cURL",
       "version": "8.4.0"
     },
     {
-      "component_id": "COMP-SYN-003",
+      "type": "library",
+      "bom-ref": "pkg:generic/zlib@1.3",
       "name": "zlib",
       "version": "1.3"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/unknown-test-component@9.9.9",
+      "name": "UnexpectedTestComponent",
+      "version": "9.9.9"
     }
   ],
-  "data_provenance": "SYNTHETIC",
-  "unexpected_component": true,
-  "component_change": "added",
-  "added_component": {
-    "component_id": "COMP-006",
-    "name": "Device Driver Pack",
-    "version": "2.2.0"
-  }
+  "vulnerability_status": "not_affected",
+  "vulnerabilities": [],
+  "unexpected_component_observed": true,
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

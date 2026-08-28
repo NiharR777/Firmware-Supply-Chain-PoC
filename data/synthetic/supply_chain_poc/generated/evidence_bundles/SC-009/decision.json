@@ -1,18 +1,27 @@
 {
   "scenario_id": "SC-009",
   "package_id": "PKG-005",
-  "decision": "high_risk",
-  "integrity_failure": false,
+  "risk_score": 40,
+  "risk_level": "high_risk",
+  "risk_factors": [
+    "unauthorized_rollback"
+  ],
+  "risk_breakdown": [
+    {
+      "factor": "unauthorized_rollback",
+      "weight": 40
+    }
+  ],
   "recommendation": "quarantine_review",
-  "reason": "Firmware version indicates an unauthorized rollback to an older version.",
-  "affected_asset": "TANK-RTU-001",
-  "device_type": "Pipeline/Tank-Farm RTU",
+  "reasons": [
+    "Unauthorized rollback to an older firmware version was detected."
+  ],
+  "affected_asset": "ASSET-005",
+  "asset_name": "Tank Farm RTU",
+  "device_type": "RTU",
   "process_unit": "Tank Farm",
   "human_approval_required": true,
   "deployment_allowed": false,
   "real_action_executed": false,
-  "data_provenance": "SYNTHETIC GROUND TRUTH",
-  "version_status": "rollback_detected",
-  "current_version": "4.0.1",
-  "rollback_version": "3.9.8"
+  "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

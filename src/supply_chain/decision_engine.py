@@ -1,70 +1,70 @@
-from pathlib import Path
+"""
+Evidence-driven deterministic decision engine.
+
+The engine consumes OBSERVED evidence only.
+
+Forbidden decision inputs:
+- scenario_type
+- expected_decision
+- risk_target
+- labels
+- scenario descriptions
+"""
+
+from __future__ import annotations
+
 import json
-import csv
+from pathlib import Path
 
-from risk_model import calculate_risk_score
+from src.supply_chain.risk_model import calculate_risk_score
 
-
-# ---------------------------------------------------------
-# Project paths
-# ---------------------------------------------------------
 
 BASE_DIR = Path("data/synthetic/supply_chain_poc")
 
 EVIDENCE_DIR = (
-    BASE_DIR / "generated" / "evidence_bundles"
+    BASE_DIR
+    / "generated"
+    / "evidence_bundles"
 )
 
-MITRE_MAPPING_FILE = (
-    BASE_DIR / "mitre_attack_mapping.csv"
-)
+
+FORBIDDEN_INPUT_FIELDS = {
+    "scenario_type",
+    "expected_decision",
+    "risk_target",
+    "target",
+    "label",
+    "ground_truth",
+}
 
 
-# ---------------------------------------------------------
-# Load JSON
-# ---------------------------------------------------------
+def load_json(path: Path) -> dict:
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Required evidence file not found: {path}"
+        )
 
-def load_json(file_path):
-    with open(file_path, "r", encoding="utf-8") as file:
+    with path.open("r", encoding="utf-8") as file:
         return json.load(file)
 
 
-# ---------------------------------------------------------
-# Load MITRE mapping
-# ---------------------------------------------------------
+def _check_forbidden_fields(data: dict) -> None:
+    leaked = FORBIDDEN_INPUT_FIELDS.intersection(data.keys())
 
-def load_mitre_mapping():
-    mapping = {}
-
-    if not MITRE_MAPPING_FILE.exists():
-        return mapping
-
-    with open(
-        MITRE_MAPPING_FILE,
-        "r",
-        encoding="utf-8",
-        newline=""
-    ) as file:
-
-        reader = csv.DictReader(file)
-
-        for row in reader:
-            mapping[row["scenario_id"]] = row
-
-    return mapping
+    if leaked:
+        raise ValueError(
+            "Forbidden answer-bearing fields found in decision input: "
+            + ", ".join(sorted(leaked))
+        )
 
 
-# ---------------------------------------------------------
-# Decision Engine
-# ---------------------------------------------------------
-
-def evaluate_scenario(scenario_id):
+def evaluate_scenario(scenario_id: str) -> dict:
 
     bundle_dir = EVIDENCE_DIR / scenario_id
 
     if not bundle_dir.exists():
         raise ValueError(
-            f"Evidence bundle {scenario_id} not found."
+            f"Evidence bundle not found: {scenario_id}"
         )
 
     package = load_json(
@@ -83,402 +83,346 @@ def evaluate_scenario(scenario_id):
         bundle_dir / "sbom.json"
     )
 
+    rollback = load_json(
+        bundle_dir / "rollback_evidence.json"
+    )
+
+    vendor = load_json(
+        bundle_dir / "vendor_evidence.json"
+    )
+
+    freshness = load_json(
+        bundle_dir / "freshness_evidence.json"
+    )
+
     asset = load_json(
         bundle_dir / "asset_mapping.json"
     )
 
-    # -----------------------------------------------------
-    # Basic information
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # Leakage protection
+    # --------------------------------------------------------
 
-    scenario_type = package.get("scenario_type")
+    for evidence in [
+        package,
+        hash_evidence,
+        signature,
+        sbom,
+        rollback,
+        vendor,
+        freshness,
+        asset,
+    ]:
+        _check_forbidden_fields(evidence)
 
-    reasons = []
+    # --------------------------------------------------------
+    # Risk factors
+    # --------------------------------------------------------
 
     risk_factors = []
+    reasons = []
 
-    deployment_allowed = True
+    # --------------------------------------------------------
+    # 1. Hash integrity
+    # --------------------------------------------------------
 
-    # -----------------------------------------------------
-    # 1. HASH INTEGRITY
-    # -----------------------------------------------------
+    expected_hash = hash_evidence.get(
+        "expected_hash"
+    )
 
-    if hash_evidence.get("hash_match") is False:
+    observed_hash = hash_evidence.get(
+        "observed_hash"
+    )
 
+    if not expected_hash or not observed_hash:
+        raise ValueError(
+            "Hash evidence must contain expected_hash and observed_hash."
+        )
+
+    if expected_hash != observed_hash:
         risk_factors.append(
             "hash_integrity_failure"
         )
-
-        deployment_allowed = False
 
         reasons.append(
             "Firmware package hash does not match "
             "the trusted vendor hash."
         )
 
-    # -----------------------------------------------------
-    # 2. SIGNATURE
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # 2. Signature
+    # --------------------------------------------------------
 
-    if signature.get("signature_status") in [
+    if signature.get("signature_status") in {
         "invalid",
-        "untrusted"
-    ]:
+        "untrusted",
+    }:
 
         risk_factors.append(
             "signature_failure"
         )
-
-        deployment_allowed = False
 
         reasons.append(
             "Firmware package signature is invalid "
             "or not trusted."
         )
 
-    # -----------------------------------------------------
-    # 3. TRUSTED ROOT
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # 3. Trusted root
+    # --------------------------------------------------------
 
-    if signature.get("trusted_root_status") in [
+    if signature.get("trusted_root_status") in {
+        "invalid",
         "untrusted",
-        "invalid"
-    ]:
+    }:
 
         risk_factors.append(
             "trusted_root_failure"
         )
-
-        deployment_allowed = False
 
         reasons.append(
             "Firmware package is not anchored "
             "to a trusted vendor root."
         )
 
-    # -----------------------------------------------------
-    # 4. SBOM
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # 4. Vendor trust
+    # --------------------------------------------------------
 
-    if sbom.get("sbom_status") in [
-        "missing",
-        "incomplete"
-    ]:
+    expected_vendor = vendor.get(
+        "expected_vendor_id"
+    )
 
-        risk_factors.append(
-            "missing_sbom"
-        )
+    observed_vendor = vendor.get(
+        "observed_vendor_id"
+    )
 
-        deployment_allowed = False
-
-        reasons.append(
-            "SBOM evidence is missing or incomplete."
-        )
-
-    # -----------------------------------------------------
-    # 5. VULNERABLE COMPONENT
-    # -----------------------------------------------------
-
-    if (
-        sbom.get("vulnerability_status") == "affected"
-        or
-        sbom.get("vex_status") == "affected"
-        or
-        scenario_type == "vulnerable_component"
-    ):
-
-        risk_factors.append(
-            "vulnerable_component"
-        )
-
-        deployment_allowed = False
-
-        reasons.append(
-            "A vulnerable component affects "
-            "the firmware package."
-        )
-
-    # -----------------------------------------------------
-    # 6. UNEXPECTED COMPONENT
-    # -----------------------------------------------------
-
-    if (
-        sbom.get("unexpected_component") is True
-        or
-        scenario_type == "unexpected_component"
-    ):
-
-        risk_factors.append(
-            "unexpected_component"
-        )
-
-        deployment_allowed = False
-
-        reasons.append(
-            "An unexpected component change was "
-            "detected in the firmware package."
-        )
-
-    # -----------------------------------------------------
-    # 7. UNTRUSTED VENDOR
-    # -----------------------------------------------------
-
-    if (
-        signature.get("vendor_trust") == "untrusted"
-        or
-        package.get("vendor_trust") == "untrusted"
-        or
-        scenario_type == "untrusted_vendor"
-    ):
+    if expected_vendor != observed_vendor:
 
         risk_factors.append(
             "untrusted_vendor"
         )
-
-        deployment_allowed = False
 
         reasons.append(
             "Firmware package is associated "
             "with an untrusted vendor."
         )
 
-    # -----------------------------------------------------
-    # 8. UNAUTHORIZED ROLLBACK
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # 5. Rollback
+    # --------------------------------------------------------
 
-    if scenario_type == "rollback":
+    expected_version = rollback.get(
+        "expected_version"
+    )
+
+    observed_version = rollback.get(
+        "observed_version"
+    )
+
+    rollback_authorized = rollback.get(
+        "rollback_authorized"
+    )
+
+    if (
+        observed_version != expected_version
+        and rollback_authorized is False
+    ):
 
         risk_factors.append(
             "unauthorized_rollback"
         )
-
-        deployment_allowed = False
 
         reasons.append(
             "Unauthorized rollback to an older "
             "firmware version was detected."
         )
 
-    # -----------------------------------------------------
-    # 9. STALE SECURITY EVIDENCE
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # 6. SBOM
+    # --------------------------------------------------------
+
+    if sbom.get("sbom_present") is False:
+
+        risk_factors.append(
+            "missing_sbom"
+        )
+
+        reasons.append(
+            "SBOM evidence is missing or incomplete."
+        )
+
+    elif sbom.get("sbom_status") != "complete":
+
+        risk_factors.append(
+            "missing_sbom"
+        )
+
+        reasons.append(
+            "SBOM evidence is missing or incomplete."
+        )
+
+    # --------------------------------------------------------
+    # 7. Vulnerability
+    # --------------------------------------------------------
 
     if (
-        scenario_type == "stale_evidence"
-        or
-        sbom.get("evidence_freshness") == "stale"
+        sbom.get("vulnerability_status")
+        == "affected"
     ):
+
+        risk_factors.append(
+            "vulnerable_component"
+        )
+
+        reasons.append(
+            "A vulnerable component affects "
+            "the firmware package."
+        )
+
+    # --------------------------------------------------------
+    # 8. Unexpected component
+    # --------------------------------------------------------
+
+    if sbom.get(
+        "unexpected_component_observed"
+    ) is True:
+
+        risk_factors.append(
+            "unexpected_component"
+        )
+
+        reasons.append(
+            "An unexpected component change was "
+            "detected in the firmware package."
+        )
+
+    # --------------------------------------------------------
+    # 9. Evidence freshness
+    # --------------------------------------------------------
+
+    if freshness.get(
+        "freshness_status"
+    ) == "stale":
 
         risk_factors.append(
             "stale_evidence"
         )
-
-        deployment_allowed = False
 
         reasons.append(
             "Security evidence is stale and requires "
             "review before deployment."
         )
 
-    # -----------------------------------------------------
-    # 10. CALCULATE EXPLAINABLE RISK
-    # -----------------------------------------------------
+    # --------------------------------------------------------
+    # Risk model
+    # --------------------------------------------------------
 
     risk_result = calculate_risk_score(
         risk_factors
     )
 
     risk_score = risk_result["risk_score"]
-
     risk_level = risk_result["risk_level"]
 
-    risk_breakdown = risk_result["breakdown"]
+    # --------------------------------------------------------
+    # Safety gate
+    # --------------------------------------------------------
 
-    # -----------------------------------------------------
-    # 11. LOAD MITRE INFORMATION
-    # -----------------------------------------------------
+    deployment_allowed = False
+    human_approval_required = True
+    real_action_executed = False
 
-    mitre_mapping = load_mitre_mapping()
-
-    mitre_data = mitre_mapping.get(
-        scenario_id,
-        {}
-    )
-
-    attack_description = mitre_data.get(
-        "attack_description",
-        "Not mapped"
-    )
-
-    mitre_tactic = mitre_data.get(
-        "mitre_tactic",
-        "Not mapped"
-    )
-
-    mitre_technique = mitre_data.get(
-        "mitre_technique",
-        "Not mapped"
-    )
-
-    # -----------------------------------------------------
-    # 12. FINAL RECOMMENDATION
-    # -----------------------------------------------------
-
-    if risk_level == "high_risk":
-
-        recommendation = "quarantine_review"
-
-    elif risk_level == "investigate":
-
+    if risk_level == "normal":
+        recommendation = (
+            "allow_after_human_review"
+        )
+    elif risk_level == "high_risk":
+        recommendation = (
+            "quarantine_review"
+        )
+    else:
         recommendation = "investigate"
 
-    else:
+    # --------------------------------------------------------
+    # Result
+    # --------------------------------------------------------
 
-        recommendation = "allow_after_human_review"
-
-    # -----------------------------------------------------
-    # 13. FINAL DECISION OBJECT
-    # -----------------------------------------------------
-
-    decision = {
-
-        "scenario_id":
-            scenario_id,
-
-        "package_id":
-            package.get("package_id"),
-
-        "asset_id":
-            asset.get("asset_id"),
-
-        "device_type":
-            asset.get("device_type"),
-
-        "process_unit":
-            asset.get("process_unit"),
-
-        # Explainable risk information
-        "risk_score":
-            risk_score,
-
-        "risk_level":
-            risk_level,
-
-        "risk_factors":
-            risk_factors,
-
-        "risk_breakdown":
-            risk_breakdown,
-
-        # MITRE information
-        "attack_description":
-            attack_description,
-
-        "mitre_tactic":
-            mitre_tactic,
-
-        "mitre_technique":
-            mitre_technique,
-
-        "deployment_allowed":
-            deployment_allowed,
-
-        "recommendation":
-            recommendation,
-
-        "reasons":
-            reasons,
-
-        "human_approval_required":
-            True,
-
-        "real_action_executed":
-            False,
-
-        "data_provenance":
-            "SYNTHETIC GROUND TRUTH"
+    return {
+        "scenario_id": scenario_id,
+        "package_id": package.get("package_id"),
+        "risk_score": risk_score,
+        "risk_level": risk_level,
+        "risk_factors": risk_factors,
+        "risk_breakdown": risk_result["breakdown"],
+        "recommendation": recommendation,
+        "reasons": reasons,
+        "affected_asset": asset.get("asset_id"),
+        "asset_name": asset.get("asset_name"),
+        "device_type": asset.get("device_type"),
+        "process_unit": asset.get("process_unit"),
+        "human_approval_required": human_approval_required,
+        "deployment_allowed": deployment_allowed,
+        "real_action_executed": real_action_executed,
+        "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
     }
 
-    return decision
 
+def write_decision(scenario_id: str) -> dict:
 
-# ---------------------------------------------------------
-# Test all refinery scenarios
-# ---------------------------------------------------------
-
-if __name__ == "__main__":
-
-    print()
-
-    print(
-        "===== REFINERY FIRMWARE SUPPLY-CHAIN "
-        "RISK DECISION ====="
+    result = evaluate_scenario(
+        scenario_id
     )
+
+    output_file = (
+        EVIDENCE_DIR
+        / scenario_id
+        / "decision.json"
+    )
+
+    with output_file.open(
+        "w",
+        encoding="utf-8",
+    ) as file:
+        json.dump(
+            result,
+            file,
+            indent=2,
+        )
+
+    return result
+
+
+def generate_all_decisions() -> None:
 
     for number in range(1, 11):
 
-        scenario_id = f"SC-{number:03d}"
+        scenario_id = (
+            f"SC-{number:03d}"
+        )
 
-        try:
+        result = write_decision(
+            scenario_id
+        )
 
-            result = evaluate_scenario(
-                scenario_id
-            )
+        print(
+            f"{scenario_id} | "
+            f"Risk: {result['risk_level']} | "
+            f"Score: {result['risk_score']} | "
+            f"Recommendation: "
+            f"{result['recommendation']}"
+        )
 
-            print()
 
-            print(
-                f"{scenario_id} | "
-                f"Package: {result['package_id']} | "
-                f"Score: {result['risk_score']} | "
-                f"Risk: {result['risk_level']} | "
-                f"Deployment: "
-                f"{result['deployment_allowed']} | "
-                f"Recommendation: "
-                f"{result['recommendation']}"
-            )
-
-            print(
-                f"  Attack Type: "
-                f"{result['attack_description']}"
-            )
-
-            print(
-                f"  MITRE Tactic: "
-                f"{result['mitre_tactic']}"
-            )
-
-            print(
-                f"  MITRE Technique: "
-                f"{result['mitre_technique']}"
-            )
-
-            print(
-                f"  Risk Factors: "
-                f"{result['risk_factors']}"
-            )
-
-            print(
-                f"  Risk Breakdown: "
-                f"{result['risk_breakdown']}"
-            )
-
-            for reason in result["reasons"]:
-
-                print(
-                    f"  - {reason}"
-                )
-
-        except Exception as error:
-
-            print()
-
-            print(
-                f"{scenario_id} | ERROR: {error}"
-            )
-
-    print()
+if __name__ == "__main__":
 
     print(
-        "===== RISK DECISION EVALUATION COMPLETE ====="
+        "\n===== REFINERY FIRMWARE "
+        "SUPPLY-CHAIN DECISION =====\n"
+    )
+
+    generate_all_decisions()
+
+    print(
+        "\n===== DECISION GENERATION COMPLETE ====="
     )

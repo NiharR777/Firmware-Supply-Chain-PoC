@@ -1,0 +1,33 @@
+{
+  "scenario_id": "SC-010",
+  "package_id": "PKG-005",
+  "asset_id": "TANK-RTU-001",
+  "device_type": "Pipeline/Tank-Farm RTU",
+  "process_unit": "Tank Farm",
+  "hash_status": "passed",
+  "signature_status": "valid",
+  "trusted_root_status": "trusted",
+  "sbom_status": "complete",
+  "vulnerability_status": "unknown",
+  "vex_status": "unknown",
+  "evidence_freshness": "stale",
+  "rollback_detected": false,
+  "rollback_authorized": true,
+  "risk_score": 10,
+  "risk_level": "investigate",
+  "risk_factors": [
+    "stale_evidence"
+  ],
+  "recommendation": "investigate",
+  "deployment_allowed": false,
+  "human_approval_required": true,
+  "real_action_executed": false,
+  "evidence_sources": [
+    "hash_evidence.json",
+    "signature_evidence.json",
+    "sbom.json",
+    "asset_mapping.json",
+    "rollback_evidence.json"
+  ],
+  "data_provenance": "SYNTHETIC"
+}
