@@ -2,7 +2,7 @@
   "package_id": "PKG-005",
   "product_id": "PROD-005",
   "vendor_id": "VEND-002",
-  "asset_id": "ASSET-005",
+  "asset_id": "ASSET-006",
   "asset_name": "Tank Farm RTU",
   "device_type": "RTU",
   "process_unit": "Tank Farm",

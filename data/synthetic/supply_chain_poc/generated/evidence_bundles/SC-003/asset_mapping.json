@@ -2,7 +2,7 @@
   "package_id": "PKG-003",
   "product_id": "PROD-003",
   "vendor_id": "VEND-002",
-  "asset_id": "ASSET-003",
+  "asset_id": "ASSET-004",
   "asset_name": "Safety Instrumented System Controller",
   "device_type": "SIS Controller",
   "process_unit": "Safety Instrumented System",

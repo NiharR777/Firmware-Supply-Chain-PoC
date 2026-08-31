@@ -1,5 +1,5 @@
 vulnerability_id,component_id,cve_id,severity,status
 VULN-001,COMP-001,CVE-2024-0001,high,open
-VULN-002,COMP-002,CVE-2024-0002,medium,open
+VULN-002,COMP-002,CVE-2024-0002,high,open
 VULN-003,COMP-003,CVE-2023-0003,low,open
 VULN-004,COMP-005,CVE-2024-0004,critical,open

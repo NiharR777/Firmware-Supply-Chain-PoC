@@ -1,0 +1,13 @@
+reference_type,reference_id,name,trusted,version
+vendor,VEND-001,Industrial Controls Vendor A,True,
+vendor,VEND-002,Safety Systems Vendor B,True,
+vendor,VEND-003,Industrial Gateway Vendor C,True,
+vendor,VEND-004,Unknown / Untrusted Vendor,False,
+component,COMP-001,OpenSSL,,3.0.12
+component,COMP-002,cURL,,8.4.0
+component,COMP-003,zlib,,1.3
+component,COMP-004,BusyBox,,1.36.1
+component,COMP-005,libxml2,,2.11.5
+component,COMP-006,Device Driver Pack,,2.2.0
+component,COMP-007,SQLite,,3.43.1
+component,COMP-008,OpenSSH,,9.5

@@ -16,7 +16,7 @@
   "reasons": [
     "An unexpected component change was detected in the firmware package."
   ],
-  "affected_asset": "ASSET-004",
+  "affected_asset": "ASSET-005",
   "asset_name": "Industrial OPC Gateway",
   "device_type": "OPC Gateway",
   "process_unit": "Pump and Compressor Area",

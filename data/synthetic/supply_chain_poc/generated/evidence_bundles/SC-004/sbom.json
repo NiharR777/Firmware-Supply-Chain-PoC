@@ -4,7 +4,7 @@
   "sbom_format": "CycloneDX",
   "spec_version": "1.5",
   "sbom_path": "data/synthetic/supply_chain_poc/sbom/PKG-004_sbom.json",
-  "sbom_sha256": "d7a4a07c77d73e94dd405821e41084017896755b5cac4301f485a0ad4aab549c",
+  "sbom_sha256": "46e71813b069b5396f63ee4ff6a962f7d9ea600bf55aecd686c1ce12be838ef5",
   "sbom_status": "complete",
   "component_count": 3,
   "components": [
@@ -41,7 +41,7 @@
       ],
       "affects": [
         {
-          "ref": "pkg:generic/openssl@3.0.12"
+          "ref": "pkg:generic/curl@8.4.0"
         }
       ]
     }

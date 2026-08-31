@@ -2,7 +2,7 @@
   "package_id": "PKG-002",
   "product_id": "PROD-002",
   "vendor_id": "VEND-001",
-  "asset_id": "ASSET-002",
+  "asset_id": "ASSET-003",
   "asset_name": "Crude Distillation Unit DCS Controller",
   "device_type": "DCS Controller",
   "process_unit": "Crude Distillation Unit",

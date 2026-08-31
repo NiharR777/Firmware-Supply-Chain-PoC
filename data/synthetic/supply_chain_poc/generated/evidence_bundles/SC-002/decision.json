@@ -16,7 +16,7 @@
   "reasons": [
     "Firmware package hash does not match the trusted vendor hash."
   ],
-  "affected_asset": "ASSET-002",
+  "affected_asset": "ASSET-003",
   "asset_name": "Crude Distillation Unit DCS Controller",
   "device_type": "DCS Controller",
   "process_unit": "Crude Distillation Unit",

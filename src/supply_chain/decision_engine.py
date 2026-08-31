@@ -14,6 +14,7 @@ Forbidden decision inputs:
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from src.supply_chain.risk_model import calculate_risk_score
@@ -49,7 +50,16 @@ def load_json(path: Path) -> dict:
 
 
 def _check_forbidden_fields(data: dict) -> None:
-    leaked = FORBIDDEN_INPUT_FIELDS.intersection(data.keys())
+    def keys(value):
+        if isinstance(value, dict):
+            for key, child in value.items():
+                yield key
+                yield from keys(child)
+        elif isinstance(value, list):
+            for child in value:
+                yield from keys(child)
+
+    leaked = FORBIDDEN_INPUT_FIELDS.intersection(keys(data))
 
     if leaked:
         raise ValueError(
@@ -69,6 +79,10 @@ def evaluate_scenario(scenario_id: str) -> dict:
 
     package = load_json(
         bundle_dir / "package.json"
+    )
+
+    reference = load_json(
+        bundle_dir / "reference_evidence.json"
     )
 
     hash_evidence = load_json(
@@ -105,6 +119,7 @@ def evaluate_scenario(scenario_id: str) -> dict:
 
     for evidence in [
         package,
+        reference,
         hash_evidence,
         signature,
         sbom,
@@ -126,8 +141,8 @@ def evaluate_scenario(scenario_id: str) -> dict:
     # 1. Hash integrity
     # --------------------------------------------------------
 
-    expected_hash = hash_evidence.get(
-        "expected_hash"
+    expected_hash = reference.get(
+        "trusted_sha256"
     )
 
     observed_hash = hash_evidence.get(
@@ -189,15 +204,18 @@ def evaluate_scenario(scenario_id: str) -> dict:
     # 4. Vendor trust
     # --------------------------------------------------------
 
-    expected_vendor = vendor.get(
-        "expected_vendor_id"
+    expected_vendor = reference.get(
+        "approved_vendor_id"
     )
 
     observed_vendor = vendor.get(
         "observed_vendor_id"
     )
 
-    if expected_vendor != observed_vendor:
+    if (
+        expected_vendor != observed_vendor
+        or vendor.get("vendor_trust_status") == "untrusted"
+    ):
 
         risk_factors.append(
             "untrusted_vendor"
@@ -212,8 +230,8 @@ def evaluate_scenario(scenario_id: str) -> dict:
     # 5. Rollback
     # --------------------------------------------------------
 
-    expected_version = rollback.get(
-        "expected_version"
+    expected_version = reference.get(
+        "approved_version"
     )
 
     observed_version = rollback.get(
@@ -224,8 +242,14 @@ def evaluate_scenario(scenario_id: str) -> dict:
         "rollback_authorized"
     )
 
+    def version_tuple(value: str) -> tuple[int, ...]:
+        numbers = re.findall(r"\d+", value or "")
+        if not numbers:
+            raise ValueError(f"Invalid firmware version: {value!r}")
+        return tuple(int(number) for number in numbers)
+
     if (
-        observed_version != expected_version
+        version_tuple(observed_version) < version_tuple(expected_version)
         and rollback_authorized is False
     ):
 
@@ -301,9 +325,15 @@ def evaluate_scenario(scenario_id: str) -> dict:
     # 9. Evidence freshness
     # --------------------------------------------------------
 
-    if freshness.get(
-        "freshness_status"
-    ) == "stale":
+    evidence_age_days = freshness.get("evidence_age_days")
+    freshness_threshold_days = freshness.get("freshness_threshold_days")
+
+    if not isinstance(evidence_age_days, int) or not isinstance(
+        freshness_threshold_days, int
+    ):
+        raise ValueError("Freshness evidence requires integer age/threshold")
+
+    if evidence_age_days > freshness_threshold_days:
 
         risk_factors.append(
             "stale_evidence"

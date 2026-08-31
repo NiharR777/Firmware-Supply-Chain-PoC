@@ -1,0 +1,9 @@
+{
+  "package_id": "PKG-004",
+  "trusted_sha256": "2979bb6e685cd4ad7026df0b77403f85b57b0ced1085952a12b62ab693b527d1",
+  "trusted_package_path": "data/synthetic/supply_chain_poc/generated/fixtures/clean/PKG-004_5.2.0_clean.bin",
+  "trusted_package_size_bytes": 87,
+  "approved_vendor_id": "VEND-003",
+  "approved_version": "5.2.0",
+  "data_provenance": "SYNTHETIC REFERENCE DATA"
+}

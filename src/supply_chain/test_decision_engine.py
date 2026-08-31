@@ -183,6 +183,19 @@ def test_no_answer_leakage_in_package_input():
         "ground_truth",
     }
 
+    def collect_keys(value):
+        if isinstance(value, dict):
+            keys = set(value)
+            for child in value.values():
+                keys.update(collect_keys(child))
+            return keys
+        if isinstance(value, list):
+            keys = set()
+            for child in value:
+                keys.update(collect_keys(child))
+            return keys
+        return set()
+
     for number in range(1, 11):
 
         scenario_id = (
@@ -196,6 +209,7 @@ def test_no_answer_leakage_in_package_input():
 
         for filename in [
             "package.json",
+            "reference_evidence.json",
             "hash_evidence.json",
             "signature_evidence.json",
             "sbom.json",
@@ -215,9 +229,7 @@ def test_no_answer_leakage_in_package_input():
                 )
             )
 
-            assert forbidden.isdisjoint(
-                data.keys()
-            )
+            assert forbidden.isdisjoint(collect_keys(data))
 
 
 def test_hash_files_reproduce():
@@ -241,10 +253,13 @@ def test_hash_files_reproduce():
             )
         )
 
-        for key in [
-            "expected_package_path",
-            "observed_package_path",
-        ]:
+        reference = json.loads(
+            (EVIDENCE_DIR / scenario_id / "reference_evidence.json").read_text(
+                encoding="utf-8"
+            )
+        )
+
+        for key in ["observed_package_path"]:
 
             path = Path(
                 evidence[key]
@@ -256,14 +271,13 @@ def test_hash_files_reproduce():
                 path.read_bytes()
             ).hexdigest()
 
-            if key == "expected_package_path":
-                assert digest == evidence[
-                    "expected_hash"
-                ]
-            else:
-                assert digest == evidence[
-                    "observed_hash"
-                ]
+            assert digest == evidence["observed_hash"]
+
+        trusted_path = Path(reference["trusted_package_path"])
+        assert trusted_path.exists()
+        assert hashlib.sha256(trusted_path.read_bytes()).hexdigest() == reference[
+            "trusted_sha256"
+        ]
 
     assert (
         json.loads(
@@ -296,3 +310,16 @@ def test_sc004_uses_cyclonedx():
     assert sbom["sbom_format"] == "CycloneDX"
     assert sbom["spec_version"] == "1.5"
     assert sbom["sbom_present"] is True
+
+
+def test_sc004_vulnerability_matches_reference():
+    sbom = json.loads((EVIDENCE_DIR / "SC-004" / "sbom.json").read_text(encoding="utf-8"))
+    vulnerability = sbom["vulnerabilities"][0]
+    assert vulnerability["ratings"][0]["severity"] == "high"
+    assert vulnerability["affects"][0]["ref"] == "pkg:generic/curl@8.4.0"
+
+
+def test_sc008_asset_reference_is_correct():
+    asset = json.loads((EVIDENCE_DIR / "SC-008" / "asset_mapping.json").read_text(encoding="utf-8"))
+    assert asset["asset_id"] == "ASSET-006"
+    assert asset["product_id"] == "PROD-005"

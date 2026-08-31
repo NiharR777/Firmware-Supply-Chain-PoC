@@ -16,7 +16,7 @@
   "reasons": [
     "Firmware package is associated with an untrusted vendor."
   ],
-  "affected_asset": "ASSET-005",
+  "affected_asset": "ASSET-006",
   "asset_name": "Tank Farm RTU",
   "device_type": "RTU",
   "process_unit": "Tank Farm",

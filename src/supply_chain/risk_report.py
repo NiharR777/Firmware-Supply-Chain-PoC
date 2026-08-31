@@ -148,7 +148,7 @@ def generate_report():
         # -------------------------------------------------
 
         asset_id = result.get(
-            "asset_id",
+            "affected_asset",
             "N/A"
         )
 

@@ -22,7 +22,7 @@
     "Firmware package signature is invalid or not trusted.",
     "Firmware package is not anchored to a trusted vendor root."
   ],
-  "affected_asset": "ASSET-003",
+  "affected_asset": "ASSET-004",
   "asset_name": "Safety Instrumented System Controller",
   "device_type": "SIS Controller",
   "process_unit": "Safety Instrumented System",

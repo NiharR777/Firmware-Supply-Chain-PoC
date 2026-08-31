@@ -2,7 +2,7 @@
   "package_id": "PKG-004",
   "product_id": "PROD-004",
   "vendor_id": "VEND-003",
-  "asset_id": "ASSET-004",
+  "asset_id": "ASSET-005",
   "asset_name": "Industrial OPC Gateway",
   "device_type": "OPC Gateway",
   "process_unit": "Pump and Compressor Area",

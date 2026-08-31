@@ -49,12 +49,48 @@ It will not:
 
 ## Machine Learning
 
-Machine learning will be used only to identify unusual behaviour and help rank the risk.
+Machine learning is not implemented in this correction release. The validated
+dataset and leakage-safe feature matrix are inputs to the next stage: a
+documented, grouped model-training and evaluation experiment.
 
-It will not override important deterministic checks such as an invalid hash or signature.
+When introduced, ML will remain advisory. It must not override deterministic
+hard evidence such as hash, signature, trusted-root, vendor, rollback, or SBOM
+failures. Rule/ML disagreement will be recorded as an investigation signal.
+
+## Validated Dataset Contract
+
+The synthetic dataset contains 5,000 assessments across 500 firmware package
+lineages (10 assessments per lineage). Data roles are isolated:
+
+- `reference_data.csv`: approved vendor, hash, version, freshness, and component facts
+- `reference_catalog.csv`: vendor trust and component catalog
+- `observable_features.csv`: runtime-visible observations only
+- `ground_truth_labels.csv`: labels and deterministic label provenance
+- `scenario_manifests.csv`: generation recipes and safe mutation parameters
+- `split_assignments.csv`: 70/15/15 lineage-grouped assignments
+- `engineered_features.csv`: numeric, leakage-safe model features
+
+Every record has a reproducible seed and run ID. All members of a lineage stay
+within one split.
+
+## Validation Commands
+
+```text
+python scripts/generate_evidence_bundles.py
+python -m src.supply_chain.decision_engine
+python scripts/verify_evidence_bundle.py
+python scripts/generate_dataset.py
+python scripts/feature_engineering.py
+python scripts/validate_dataset.py
+python scripts/validate_grouped_split.py
+python -m pytest -q
+```
 
 ## Current Status
 
-Sprint 0 - Project setup and scope definition
+Correction, dataset generation, dataset validation, grouped splitting, and
+feature engineering are complete.
 
-Status: In Progress
+Status: Ready for an ML training/evaluation specification and baseline model
+experiment. ML training, rule/ML fusion, API integration, and dashboard work
+have not been implemented in this release.

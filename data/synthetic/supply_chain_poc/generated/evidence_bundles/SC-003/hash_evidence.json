@@ -1,14 +1,11 @@
 {
   "package_id": "PKG-003",
   "hash_algorithm": "SHA-256",
-  "expected_hash": "1bd5d59c7a91044ce02b15c317ac5a9bd98f3f1b584870ef87325049a9fd66e6",
   "observed_hash": "1bd5d59c7a91044ce02b15c317ac5a9bd98f3f1b584870ef87325049a9fd66e6",
   "hash_match": true,
-  "expected_package_path": "data/synthetic/supply_chain_poc/generated/fixtures/clean/PKG-003_1.8.2_clean.bin",
   "observed_package_path": "data/synthetic/supply_chain_poc/generated/fixtures/clean/PKG-003_1.8.2_clean.bin",
-  "expected_package_size_bytes": 77,
   "observed_package_size_bytes": 77,
-  "calculation_timestamp": "2026-08-28T08:46:01+00:00",
+  "calculation_timestamp": "2026-08-28T10:16:21+00:00",
   "integrity_status": "PASSED",
   "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }

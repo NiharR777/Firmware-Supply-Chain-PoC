@@ -55,6 +55,9 @@ def load_evidence_bundle(scenario_id: str) -> dict:
         )
 
     evidence = {
+        "reference": load_json(
+            bundle_dir / "reference_evidence.json"
+        ),
         "hash": load_json(
             bundle_dir / "hash_evidence.json"
         ),
@@ -73,6 +76,14 @@ def load_evidence_bundle(scenario_id: str) -> dict:
 
         "rollback": load_json(
             bundle_dir / "rollback_evidence.json"
+        ),
+
+        "vendor": load_json(
+            bundle_dir / "vendor_evidence.json"
+        ),
+
+        "freshness": load_json(
+            bundle_dir / "freshness_evidence.json"
         ),
     }
 
@@ -104,6 +115,7 @@ def fuse_evidence(
     sbom_evidence = evidence["sbom"]
     asset_evidence = evidence["asset"]
     rollback_evidence = evidence["rollback"]
+    freshness_evidence = evidence["freshness"]
 
     # -----------------------------------------------------
     # Evidence status
@@ -140,14 +152,15 @@ def fuse_evidence(
         "unknown"
     )
 
-    evidence_freshness = sbom_evidence.get(
-        "evidence_freshness",
-        "unknown"
+    evidence_freshness = (
+        "stale"
+        if freshness_evidence.get("evidence_age_days", 0)
+        > freshness_evidence.get("freshness_threshold_days", 30)
+        else "current"
     )
 
-    rollback_detected = rollback_evidence.get(
-        "rollback_detected",
-        False
+    rollback_detected = "unauthorized_rollback" in decision.get(
+        "risk_factors", []
     )
 
     rollback_authorized = rollback_evidence.get(
@@ -167,7 +180,7 @@ def fuse_evidence(
         ),
 
         "asset_id": decision.get(
-            "asset_id"
+            "affected_asset"
         ),
 
         "device_type": decision.get(
@@ -232,14 +245,17 @@ def fuse_evidence(
         ),
 
         "evidence_sources": [
+            "reference_evidence.json",
             "hash_evidence.json",
             "signature_evidence.json",
             "sbom.json",
             "asset_mapping.json",
             "rollback_evidence.json",
+            "vendor_evidence.json",
+            "freshness_evidence.json",
         ],
 
-        "data_provenance": "SYNTHETIC",
+        "data_provenance": "SYNTHETIC FUSED OBSERVED EVIDENCE",
     }
 
     return fused_result

@@ -1,6 +1,5 @@
 {
   "package_id": "PKG-001",
-  "expected_vendor_id": "VEND-001",
   "observed_vendor_id": "VEND-001",
   "vendor_match": true,
   "vendor_trust_status": "trusted",

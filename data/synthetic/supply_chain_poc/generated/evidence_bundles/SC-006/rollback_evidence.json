@@ -1,6 +1,5 @@
 {
   "package_id": "PKG-002",
-  "expected_version": "3.1.0",
   "observed_version": "3.1.0",
   "rollback_authorized": true,
   "version_comparison": "equal_to_expected",

@@ -144,28 +144,28 @@ ASSETS = {
         "location": "Refinery OT Network",
     },
     "PKG-002": {
-        "asset_id": "ASSET-002",
+        "asset_id": "ASSET-003",
         "asset_name": "Crude Distillation Unit DCS Controller",
         "device_type": "DCS Controller",
         "process_unit": "Crude Distillation Unit",
         "location": "Refinery OT Network",
     },
     "PKG-003": {
-        "asset_id": "ASSET-003",
+        "asset_id": "ASSET-004",
         "asset_name": "Safety Instrumented System Controller",
         "device_type": "SIS Controller",
         "process_unit": "Safety Instrumented System",
         "location": "Refinery OT Network",
     },
     "PKG-004": {
-        "asset_id": "ASSET-004",
+        "asset_id": "ASSET-005",
         "asset_name": "Industrial OPC Gateway",
         "device_type": "OPC Gateway",
         "process_unit": "Pump and Compressor Area",
         "location": "Refinery OT Network",
     },
     "PKG-005": {
-        "asset_id": "ASSET-005",
+        "asset_id": "ASSET-006",
         "asset_name": "Tank Farm RTU",
         "device_type": "RTU",
         "process_unit": "Tank Farm",
@@ -405,7 +405,7 @@ def build_sbom(
                 ],
                 "affects": [
                     {
-                        "ref": "pkg:generic/openssl@3.0.12"
+                        "ref": "pkg:generic/curl@8.4.0"
                     }
                 ],
             }
@@ -700,9 +700,32 @@ def generate_evidence_bundles(catalog: list[dict]) -> None:
 
         asset = build_asset_mapping(package_id)
 
+        # Trusted/approved reference facts are isolated from
+        # runtime-observed evidence. The decision engine joins this
+        # file by package_id; labels and scenario recipes are never
+        # placed in the evidence bundle.
+        reference_evidence = {
+            "package_id": package_id,
+            "trusted_sha256": hash_evidence.pop("expected_hash"),
+            "trusted_package_path": hash_evidence.pop(
+                "expected_package_path"
+            ),
+            "trusted_package_size_bytes": hash_evidence.pop(
+                "expected_package_size_bytes"
+            ),
+            "approved_vendor_id": vendor.pop("expected_vendor_id"),
+            "approved_version": rollback.pop("expected_version"),
+            "data_provenance": "SYNTHETIC REFERENCE DATA",
+        }
+
         write_json(
             bundle_dir / "package.json",
             package_data,
+        )
+
+        write_json(
+            bundle_dir / "reference_evidence.json",
+            reference_evidence,
         )
 
         write_json(
