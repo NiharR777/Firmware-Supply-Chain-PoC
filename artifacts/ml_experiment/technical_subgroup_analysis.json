@@ -1,0 +1,526 @@
+{
+  "evidence_failure": {
+    "failure_absent": {
+      "accuracy": 1.0,
+      "count": 375,
+      "high_risk_recall": 1.0,
+      "macro_f1": 0.6666666666666666
+    },
+    "failure_present": {
+      "accuracy": 1.0,
+      "count": 375,
+      "high_risk_recall": 1.0,
+      "macro_f1": 0.6666666666666666
+    }
+  },
+  "lineage": {
+    "LINEAGE-0006": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0012": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0022": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0023": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0035": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0036": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0050": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0052": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0064": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0065": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0066": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0080": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0083": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0094": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0096": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0099": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0103": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0104": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0112": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0116": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0131": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0133": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0149": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0151": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0152": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0155": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0160": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0198": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0201": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0208": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0212": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0220": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0222": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0243": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0246": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0247": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0250": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0267": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0289": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0290": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0291": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0294": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0295": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0298": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0300": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0306": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0333": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0336": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0338": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0339": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0352": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0354": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0360": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0361": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0382": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0393": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0395": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0396": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0397": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0404": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0406": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0411": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0413": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0415": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0420": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0428": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0435": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0441": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0445": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0457": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0461": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0487": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0497": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0499": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "LINEAGE-0500": {
+      "accuracy": 1.0,
+      "count": 10,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    }
+  },
+  "product": {
+    "PROD-001": {
+      "accuracy": 1.0,
+      "count": 180,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "PROD-002": {
+      "accuracy": 1.0,
+      "count": 110,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "PROD-003": {
+      "accuracy": 1.0,
+      "count": 80,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "PROD-004": {
+      "accuracy": 1.0,
+      "count": 170,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "PROD-005": {
+      "accuracy": 1.0,
+      "count": 210,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    }
+  },
+  "vendor": {
+    "VEND-001": {
+      "accuracy": 1.0,
+      "count": 216,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "VEND-002": {
+      "accuracy": 1.0,
+      "count": 216,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "VEND-003": {
+      "accuracy": 1.0,
+      "count": 243,
+      "high_risk_recall": 1.0,
+      "macro_f1": 1.0
+    },
+    "VEND-004": {
+      "accuracy": 1.0,
+      "count": 75,
+      "high_risk_recall": 1.0,
+      "macro_f1": 0.3333333333333333
+    }
+  }
+}

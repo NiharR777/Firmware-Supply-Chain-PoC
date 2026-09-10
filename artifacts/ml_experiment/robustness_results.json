@@ -1,0 +1,56 @@
+{
+  "baseline_accuracy": 1.0,
+  "cases": {
+    "inf": {
+      "accepted": true,
+      "class_distribution": {
+        "high_risk": 300,
+        "investigate": 300,
+        "normal": 150
+      },
+      "error": null,
+      "prediction_count": 750
+    },
+    "missing_feature": {
+      "accepted": true,
+      "class_distribution": {
+        "high_risk": 300,
+        "investigate": 300,
+        "normal": 150
+      },
+      "error": null,
+      "prediction_count": 750
+    },
+    "nan": {
+      "accepted": true,
+      "class_distribution": {
+        "high_risk": 300,
+        "investigate": 300,
+        "normal": 150
+      },
+      "error": null,
+      "prediction_count": 750
+    },
+    "ood_10_sigma": {
+      "accepted": true,
+      "class_distribution": {
+        "high_risk": 360,
+        "investigate": 345,
+        "normal": 45
+      },
+      "error": null,
+      "prediction_count": 750
+    },
+    "small_numeric_perturbation": {
+      "accepted": true,
+      "class_distribution": {
+        "high_risk": 300,
+        "investigate": 300,
+        "normal": 150
+      },
+      "error": null,
+      "prediction_count": 750
+    }
+  },
+  "seed": 20260903
+}

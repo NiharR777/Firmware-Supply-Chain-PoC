@@ -1,0 +1,12 @@
+{
+  "factor_fidelity": 1.0,
+  "factor_matches": 5000,
+  "label_fidelity": 1.0,
+  "label_matches": 5000,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "overall_exact_fidelity": 1.0,
+  "records": 5000,
+  "score_fidelity": 1.0,
+  "score_matches": 5000
+}

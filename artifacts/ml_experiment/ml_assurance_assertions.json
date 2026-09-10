@@ -1,0 +1,16 @@
+{
+  "all_pass": true,
+  "assertions": {
+    "all_candidates_have_cv": true,
+    "all_candidates_have_validation": true,
+    "candidate_count_146": true,
+    "deterministic_policy_exact": true,
+    "feature_count_22": true,
+    "lineage_no_cross_split_leakage": true,
+    "record_count_5000": true,
+    "selected_family_not_extra_trees": true,
+    "split_test_750": true,
+    "split_train_3500": true,
+    "split_validation_750": true
+  }
+}

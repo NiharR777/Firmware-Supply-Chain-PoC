@@ -1,0 +1,437 @@
+{
+  "artifact_hashes": {
+    "artifacts\\ml_experiment\\candidate_results.json": "7e95e29776944ef8b5741593afb2b09a10caf17a031bfffe1e302204403b88d5",
+    "artifacts\\ml_experiment\\deterministic_policy_fidelity.json": "32fbbed96628a41f6ec4547d19d0e030b2fca5c7acf9d4a52e7dac2822fd1e9e",
+    "artifacts\\ml_experiment\\final_test_predictions.csv": "aa90212277aabcba31bc04b1bccffd562188ab37fdc73515628157c1601f5e95",
+    "artifacts\\ml_experiment\\global_permutation_importance.json": "753e50c76ec3a4f4efcfa5a59d6b1ecc4db4a2fcb6aaf1f141b6ee81f4317f62",
+    "artifacts\\ml_experiment\\local_model_sensitivity.json": "b339e14c0b96076f6ba005b7b426c7730b1e3002aa219c050e9a87ed9d9a6df7",
+    "artifacts\\ml_experiment\\metrics.json": "aca61f31d9c8a056962362500d4acaa08979a0165ee92e8a76be253ffa566cac",
+    "artifacts\\ml_experiment\\ml_assurance_assertions.json": "82d624b04ba32656a4d6c893f07b8b754288b9a341ae077cf173757147dcb67e",
+    "artifacts\\ml_experiment\\robustness_results.json": "ae575e047ff3e7c46115d55381f534ee6cdc16500e6f3689daf984f17a90d878",
+    "artifacts\\ml_experiment\\technical_subgroup_analysis.json": "5a020d54b2d9d738865df8b7b39d1af5df678de229a718dcb5f8c0b7ffe80c2e",
+    "models\\ml\\isolation_forest.joblib": "ad8fe9300ac320d347562ac0c9c0c095dbe37be465325c4930d08e5f95da9885",
+    "models\\ml\\selected_calibrated_model.joblib": "ef78cfbc825efaaec2adef57405dadd346237691e7413da737785895c7622e1f",
+    "models\\ml\\selected_uncalibrated_model.joblib": "04b5283db72373f32fb6210b6482ef2d157438ce8a2738b5b5ca2eee10ca8eff"
+  },
+  "calibration": {
+    "diagnostic_only_on_validation": true,
+    "fit_split": "validation",
+    "method": "sigmoid",
+    "validation_labels_used_for_calibration": true
+  },
+  "candidate_count": 146,
+  "candidate_families": [
+    "DummyClassifier",
+    "LogisticRegression",
+    "RandomForestClassifier",
+    "HistGradientBoostingClassifier"
+  ],
+  "classification_test_gates": {
+    "all_pass": true,
+    "gates": {
+      "ece": true,
+      "high_risk_recall": true,
+      "log_loss": true,
+      "macro_f1": true,
+      "min_per_class_f1": true,
+      "multiclass_brier": true,
+      "per_class_precision": true,
+      "per_class_recall": true
+    }
+  },
+  "classification_test_metrics": {
+    "accuracy": 1.0,
+    "confusion_matrix": [
+      [
+        150,
+        0,
+        0
+      ],
+      [
+        0,
+        300,
+        0
+      ],
+      [
+        0,
+        0,
+        300
+      ]
+    ],
+    "ece_fixed_10_bins": 0.0040148079759049216,
+    "high_risk_recall": 1.0,
+    "log_loss": 0.004023299165522727,
+    "macro_f1": 1.0,
+    "min_per_class_f1": 1.0,
+    "min_per_class_precision": 1.0,
+    "min_per_class_recall": 1.0,
+    "multiclass_brier": 2.575360261007839e-05,
+    "per_class": {
+      "high_risk": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "investigate": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "normal": {
+        "f1": 1.0,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "reliability": [
+      {
+        "accuracy": null,
+        "bin": 0,
+        "count": 0,
+        "lower": 0.0,
+        "mean_confidence": null,
+        "upper": 0.1
+      },
+      {
+        "accuracy": null,
+        "bin": 1,
+        "count": 0,
+        "lower": 0.1,
+        "mean_confidence": null,
+        "upper": 0.2
+      },
+      {
+        "accuracy": null,
+        "bin": 2,
+        "count": 0,
+        "lower": 0.2,
+        "mean_confidence": null,
+        "upper": 0.3
+      },
+      {
+        "accuracy": null,
+        "bin": 3,
+        "count": 0,
+        "lower": 0.3,
+        "mean_confidence": null,
+        "upper": 0.4
+      },
+      {
+        "accuracy": null,
+        "bin": 4,
+        "count": 0,
+        "lower": 0.4,
+        "mean_confidence": null,
+        "upper": 0.5
+      },
+      {
+        "accuracy": null,
+        "bin": 5,
+        "count": 0,
+        "lower": 0.5,
+        "mean_confidence": null,
+        "upper": 0.6
+      },
+      {
+        "accuracy": null,
+        "bin": 6,
+        "count": 0,
+        "lower": 0.6,
+        "mean_confidence": null,
+        "upper": 0.7
+      },
+      {
+        "accuracy": null,
+        "bin": 7,
+        "count": 0,
+        "lower": 0.7,
+        "mean_confidence": null,
+        "upper": 0.8
+      },
+      {
+        "accuracy": null,
+        "bin": 8,
+        "count": 0,
+        "lower": 0.8,
+        "mean_confidence": null,
+        "upper": 0.9
+      },
+      {
+        "accuracy": 1.0,
+        "bin": 9,
+        "count": 750,
+        "lower": 0.9,
+        "mean_confidence": 0.9959851920240951,
+        "upper": 1.0
+      }
+    ]
+  },
+  "created_utc": "20260908T140924Z",
+  "cv": {
+    "folds": 5,
+    "group_column": "group_id",
+    "method": "GroupKFold",
+    "random_state": "Not applicable when shuffle=False",
+    "shuffle": false
+  },
+  "dataset": {
+    "features": 22,
+    "grouped_split": true,
+    "lineage_leakage": false,
+    "records": 5000,
+    "test_records": 750,
+    "train_records": 3500,
+    "validation_records": 750
+  },
+  "deterministic_policy_fidelity": {
+    "factor_fidelity": 1.0,
+    "factor_matches": 5000,
+    "label_fidelity": 1.0,
+    "label_matches": 5000,
+    "mismatch_count": 0,
+    "mismatches": [],
+    "overall_exact_fidelity": 1.0,
+    "records": 5000,
+    "score_fidelity": 1.0,
+    "score_matches": 5000
+  },
+  "excluded_model_family": [
+    "ExtraTrees"
+  ],
+  "experiment_id": "ML-EXP-20260908T133328Z",
+  "forbidden_model_inputs": [
+    "ground_truth_label",
+    "ground_truth_score",
+    "ground_truth_factors",
+    "scenario_type",
+    "expected_decision",
+    "risk_target",
+    "target",
+    "label",
+    "scenario manifests",
+    "provenance identifiers",
+    "record_id",
+    "group_id",
+    "run_id"
+  ],
+  "generation_seed": 20260828,
+  "input_hashes": {
+    "data\\synthetic\\supply_chain_poc\\dataset\\engineered_features.csv": "8a830c727cdde0cef1d21d3d109a642e275b9cc623af8528d73e019282ac91ab",
+    "data\\synthetic\\supply_chain_poc\\dataset\\feature_metadata.json": "1efef7c7bf94fc434485ae6b30f8a377375ee6a23c5e2a8c163410b5c5c13182",
+    "data\\synthetic\\supply_chain_poc\\dataset\\generation_parameters.json": "c5277deb57845da913407235ad8abbfc01561dba8637beab978a070142b0e8af",
+    "data\\synthetic\\supply_chain_poc\\dataset\\ground_truth_labels.csv": "b0272e46b569e9c4d6ca59fbd9651dc080fdab4c844d8cf1005366d5a64be04a",
+    "data\\synthetic\\supply_chain_poc\\dataset\\observable_features.csv": "8dedca1e9315d8d1107de50ab661b957405d1b856e17faab6a84f8af1cf067c1",
+    "data\\synthetic\\supply_chain_poc\\dataset\\reference_data.csv": "053bada9e03b256eaabc78b23fb9c8d377815f9b75305fc04740ba5735c3f9af",
+    "data\\synthetic\\supply_chain_poc\\dataset\\split_assignments.csv": "4519c27a96776084c5aa5663598c13b40a37202029787e7355cfd903fb9d3c9d"
+  },
+  "isolation_forest": {
+    "scenario_metadata_consulted": false,
+    "threshold_selection_split": "validation",
+    "training_rows_restricted_to": "ground_truth_label == normal"
+  },
+  "isolation_forest_results": {
+    "all_pass": false,
+    "artifact": "models\\ml\\isolation_forest.joblib",
+    "gates": {
+      "auprc": false,
+      "auroc": false,
+      "recall_at_5pct_fpr": false
+    },
+    "test_auprc": 0.7879067830524495,
+    "test_auroc": 0.46973333333333334,
+    "test_confusion_matrix": [
+      [
+        147,
+        3
+      ],
+      [
+        575,
+        25
+      ]
+    ],
+    "test_fpr_at_selected_threshold": 0.02,
+    "test_recall_at_selected_threshold": 0.041666666666666664,
+    "training_label_restriction": "ground_truth_label == normal",
+    "training_rows": 700,
+    "validation_auprc": 0.7746433518990632,
+    "validation_auroc": 0.4499777777777778,
+    "validation_confusion_matrix": [
+      [
+        144,
+        6
+      ],
+      [
+        570,
+        30
+      ]
+    ],
+    "validation_fpr_at_threshold": 0.04,
+    "validation_recall_at_threshold": 0.05,
+    "validation_selected_threshold": 0.6137543957034244
+  },
+  "limitations": [
+    "Labels are derived from deterministic policy/risk rules; the classifier is a surrogate of those rules, not independent security intelligence.",
+    "The dataset is synthetic and does not establish production generalization.",
+    "Framework mappings are benchmark/coverage evidence, not certification or compliance claims.",
+    "ML remains advisory and deterministic hard-failure precedence is retained."
+  ],
+  "robustness_seed": 20260903,
+  "run_id": "RUN-20260828-01a55fcf",
+  "selected_model": {
+    "candidate_index": 99,
+    "family": "HistGradientBoostingClassifier",
+    "params": {
+      "l2_regularization": 0,
+      "learning_rate": 0.1,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 10,
+      "weighting": "unweighted"
+    },
+    "validation_metrics": {
+      "accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          150,
+          0,
+          0
+        ],
+        [
+          0,
+          300,
+          0
+        ],
+        [
+          0,
+          0,
+          300
+        ]
+      ],
+      "ece_fixed_10_bins": 1.3191236903908887e-06,
+      "high_risk_recall": 1.0,
+      "log_loss": 1.319124949080924e-06,
+      "macro_f1": 1.0,
+      "min_per_class_f1": 1.0,
+      "min_per_class_precision": 1.0,
+      "min_per_class_recall": 1.0,
+      "multiclass_brier": 4.109862196855914e-12,
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "investigate": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "normal": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "reliability": [
+        {
+          "accuracy": null,
+          "bin": 0,
+          "count": 0,
+          "lower": 0.0,
+          "mean_confidence": null,
+          "upper": 0.1
+        },
+        {
+          "accuracy": null,
+          "bin": 1,
+          "count": 0,
+          "lower": 0.1,
+          "mean_confidence": null,
+          "upper": 0.2
+        },
+        {
+          "accuracy": null,
+          "bin": 2,
+          "count": 0,
+          "lower": 0.2,
+          "mean_confidence": null,
+          "upper": 0.3
+        },
+        {
+          "accuracy": null,
+          "bin": 3,
+          "count": 0,
+          "lower": 0.3,
+          "mean_confidence": null,
+          "upper": 0.4
+        },
+        {
+          "accuracy": null,
+          "bin": 4,
+          "count": 0,
+          "lower": 0.4,
+          "mean_confidence": null,
+          "upper": 0.5
+        },
+        {
+          "accuracy": null,
+          "bin": 5,
+          "count": 0,
+          "lower": 0.5,
+          "mean_confidence": null,
+          "upper": 0.6
+        },
+        {
+          "accuracy": null,
+          "bin": 6,
+          "count": 0,
+          "lower": 0.6,
+          "mean_confidence": null,
+          "upper": 0.7
+        },
+        {
+          "accuracy": null,
+          "bin": 7,
+          "count": 0,
+          "lower": 0.7,
+          "mean_confidence": null,
+          "upper": 0.8
+        },
+        {
+          "accuracy": null,
+          "bin": 8,
+          "count": 0,
+          "lower": 0.8,
+          "mean_confidence": null,
+          "upper": 0.9
+        },
+        {
+          "accuracy": 1.0,
+          "bin": 9,
+          "count": 750,
+          "lower": 0.9,
+          "mean_confidence": 0.9999986808763096,
+          "upper": 1.0
+        }
+      ]
+    }
+  },
+  "selection": {
+    "primary": "validation_macro_f1",
+    "tie_breakers": [
+      "validation_high_risk_recall",
+      "validation_min_per_class_f1",
+      "validation_lower_log_loss",
+      "lower_complexity"
+    ]
+  },
+  "source_of_truth": "Framework-benchmarked pre-ML repository",
+  "status": "REJECTED",
+  "status_interpretation": "This experiment is rejected if any mandatory gate fails. A rejected experiment is not final acceptance evidence and must not be represented as a production-ready model.",
+  "test_policy": {
+    "no_test_retuning": true,
+    "no_threshold_retuning_on_test": true,
+    "opened_after_model_freeze": true
+  },
+  "training_seed": 20260828
+}

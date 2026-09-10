@@ -1,0 +1,1257 @@
+{
+  "interpretation": "Model-sensitivity indicators; not causal explanations.",
+  "method": "One-feature baseline ablation",
+  "records": [
+    {
+      "record_index": 0,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999969215947005,
+          "feature": "evidence_issue_count",
+          "probability_change": {
+            "high_risk": 5.363306352961322e-07,
+            "investigate": -0.9999969215947005,
+            "normal": 0.9999963852640654
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "trusted_root_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "vendor_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 1,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999987796467097,
+          "feature": "hard_failure_count",
+          "probability_change": {
+            "high_risk": -0.9999987796467097,
+            "investigate": 8.317366437410607e-07,
+            "normal": 0.9999979479100659
+          }
+        },
+        {
+          "absolute_probability_change": 8.83194809665528e-08,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 6.429313548217408e-08,
+            "investigate": 2.4026345457347036e-08,
+            "normal": -8.83194809665528e-08
+          }
+        },
+        {
+          "absolute_probability_change": 4.283965456768322e-08,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 3.976218221346528e-08,
+            "investigate": 3.0774722822912923e-09,
+            "normal": -4.283965456768322e-08
+          }
+        },
+        {
+          "absolute_probability_change": 2.8059584164672073e-08,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": -2.8059574552763422e-08,
+            "investigate": 2.8059584164672073e-08,
+            "normal": -9.514844339801381e-15
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 2,
+      "top_5": [
+        {
+          "absolute_probability_change": 4.25360624137911e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 8.32242572525773e-08,
+            "investigate": -4.25360624137911e-07,
+            "normal": 3.421363669042776e-07
+          }
+        },
+        {
+          "absolute_probability_change": 3.423706220750944e-07,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": 4.150364577132401e-08,
+            "investigate": 3.008669761398193e-07,
+            "normal": -3.423706220750944e-07
+          }
+        },
+        {
+          "absolute_probability_change": 3.307781283323763e-07,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 8.330947290644655e-08,
+            "investigate": 2.4746865535953465e-07,
+            "normal": -3.307781283323763e-07
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 3,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999986124817658,
+          "feature": "hard_failure_count",
+          "probability_change": {
+            "high_risk": -0.9999986124817658,
+            "investigate": 1.3898990115039464e-06,
+            "normal": 0.9999972225827544
+          }
+        },
+        {
+          "absolute_probability_change": 4.008793165997551e-08,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": -4.008792031662267e-08,
+            "investigate": 4.008793165997551e-08,
+            "normal": -1.1184971124456885e-14
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "trusted_root_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 4,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999983342620887,
+          "feature": "hard_failure_count",
+          "probability_change": {
+            "high_risk": -0.9999983342620887,
+            "investigate": 2.35429335282607e-06,
+            "normal": 0.999995979968736
+          }
+        },
+        {
+          "absolute_probability_change": 1.4048860097481963e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 1.4048860097481963e-07,
+            "investigate": -1.404426952733247e-07,
+            "normal": -4.590564223035843e-11
+          }
+        },
+        {
+          "absolute_probability_change": 2.787662904064192e-08,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": -2.787662123360235e-08,
+            "investigate": 2.787662904064192e-08,
+            "normal": -7.779165040083157e-15
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 5,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999964431911709,
+          "feature": "evidence_issue_count",
+          "probability_change": {
+            "high_risk": 6.249129187279249e-07,
+            "investigate": -0.9999964431911709,
+            "normal": 0.9999958182782523
+          }
+        },
+        {
+          "absolute_probability_change": 3.5118773766829037e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 8.31552251369265e-08,
+            "investigate": -3.5118773766829037e-07,
+            "normal": 2.6803251280743734e-07
+          }
+        },
+        {
+          "absolute_probability_change": 3.690772731879122e-08,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": -1.1531851208833712e-08,
+            "investigate": 3.690772731879122e-08,
+            "normal": -2.5375875932213914e-08
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 6,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999958151711349,
+          "feature": "vulnerability_applicable",
+          "probability_change": {
+            "high_risk": 2.995652791444422e-07,
+            "investigate": -0.9999958151711349,
+            "normal": 0.9999955156058558
+          }
+        },
+        {
+          "absolute_probability_change": 1.7302761530224586e-06,
+          "feature": "max_cvss_score",
+          "probability_change": {
+            "high_risk": 1.7359958841278833e-07,
+            "investigate": -1.7302761530224586e-06,
+            "normal": 1.5566765645444357e-06
+          }
+        },
+        {
+          "absolute_probability_change": 5.256257872730283e-07,
+          "feature": "vulnerability_present",
+          "probability_change": {
+            "high_risk": 2.5454190620989353e-09,
+            "investigate": 5.230803681310903e-07,
+            "normal": -5.256257872730283e-07
+          }
+        },
+        {
+          "absolute_probability_change": 2.6549220744076507e-07,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": -2.7148364938690935e-08,
+            "investigate": 2.6549220744076507e-07,
+            "normal": -2.3834384256018388e-07
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 7,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999984013394463,
+          "feature": "hard_failure_count",
+          "probability_change": {
+            "high_risk": -0.9999984013394463,
+            "investigate": 2.1282164362520793e-06,
+            "normal": 0.9999962731230102
+          }
+        },
+        {
+          "absolute_probability_change": 1.4048860097481963e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 1.4048860097481963e-07,
+            "investigate": -1.404426952733247e-07,
+            "normal": -4.590564223035843e-11
+          }
+        },
+        {
+          "absolute_probability_change": 2.787662904064192e-08,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": -2.787662123360235e-08,
+            "investigate": 2.787662904064192e-08,
+            "normal": -7.779165040083157e-15
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 8,
+      "top_5": [
+        {
+          "absolute_probability_change": 1.763166303847541e-06,
+          "feature": "vulnerability_present",
+          "probability_change": {
+            "high_risk": 3.593593453525404e-07,
+            "investigate": 1.4038069584832302e-06,
+            "normal": -1.763166303847541e-06
+          }
+        },
+        {
+          "absolute_probability_change": 1.6466840639939306e-06,
+          "feature": "max_cvss_score",
+          "probability_change": {
+            "high_risk": -1.806171978655217e-07,
+            "investigate": -1.4660668659389856e-06,
+            "normal": 1.6466840639939306e-06
+          }
+        },
+        {
+          "absolute_probability_change": 5.778095868436139e-07,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": 4.972798879450803e-08,
+            "investigate": 5.280815980702538e-07,
+            "normal": -5.778095868436139e-07
+          }
+        },
+        {
+          "absolute_probability_change": 2.3596312259677177e-07,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": -4.497086501740417e-08,
+            "investigate": -1.9099225748936156e-07,
+            "normal": 2.3596312259677177e-07
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 9,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999956848214616,
+          "feature": "unexpected_component",
+          "probability_change": {
+            "high_risk": 6.272145466744896e-07,
+            "investigate": -0.9999956848214616,
+            "normal": 0.9999950576069148
+          }
+        },
+        {
+          "absolute_probability_change": 6.822555095320482e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 1.0163812220657447e-07,
+            "investigate": -6.822555095320482e-07,
+            "normal": 5.806173870600407e-07
+          }
+        },
+        {
+          "absolute_probability_change": 3.259929334384899e-08,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": -1.409506622382607e-08,
+            "investigate": -1.8504227372595494e-08,
+            "normal": 3.259929334384899e-08
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 10,
+      "top_5": [
+        {
+          "absolute_probability_change": 6.678750732458383e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 1.7064187082124668e-07,
+            "investigate": 4.972332024686034e-07,
+            "normal": -6.678750732458383e-07
+          }
+        },
+        {
+          "absolute_probability_change": 2.3037652263635522e-07,
+          "feature": "version_changed",
+          "probability_change": {
+            "high_risk": 6.221006459269912e-08,
+            "investigate": 1.6816645795323215e-07,
+            "normal": -2.3037652263635522e-07
+          }
+        },
+        {
+          "absolute_probability_change": 2.2547381939297395e-07,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 6.343761238347051e-08,
+            "investigate": 1.62036207085457e-07,
+            "normal": -2.2547381939297395e-07
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 11,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.999998594285062,
+          "feature": "hard_failure_count",
+          "probability_change": {
+            "high_risk": -0.999998594285062,
+            "investigate": 1.3718227834887256e-06,
+            "normal": 0.9999972224622785
+          }
+        },
+        {
+          "absolute_probability_change": 6.435588239997305e-08,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 5.758067567196434e-08,
+            "investigate": 6.775206521139865e-09,
+            "normal": -6.435588239997305e-08
+          }
+        },
+        {
+          "absolute_probability_change": 2.9488732566917975e-08,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 2.9488732566917975e-08,
+            "investigate": -2.0425611413731965e-09,
+            "normal": -2.74461714697077e-08
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 12,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999985320749974,
+          "feature": "hard_failure_count",
+          "probability_change": {
+            "high_risk": -0.9999985320749974,
+            "investigate": 1.5399892414419576e-06,
+            "normal": 0.9999969920857559
+          }
+        },
+        {
+          "absolute_probability_change": 6.435588239997305e-08,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 5.758067567196434e-08,
+            "investigate": 6.775206521139865e-09,
+            "normal": -6.435588239997305e-08
+          }
+        },
+        {
+          "absolute_probability_change": 2.9488732566917975e-08,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 2.9488732566917975e-08,
+            "investigate": -2.0425611413731965e-09,
+            "normal": -2.74461714697077e-08
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 13,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999961737801073,
+          "feature": "unexpected_component",
+          "probability_change": {
+            "high_risk": 3.2247912969342763e-07,
+            "investigate": -0.9999961737801073,
+            "normal": 0.9999958513009775
+          }
+        },
+        {
+          "absolute_probability_change": 2.488652998122731e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": -3.382467061563098e-08,
+            "investigate": 2.488652998122731e-07,
+            "normal": -2.1504062938482883e-07
+          }
+        },
+        {
+          "absolute_probability_change": 1.949181411645644e-07,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": 7.448118057458883e-14,
+            "investigate": 1.9491806657612187e-07,
+            "normal": -1.949181411645644e-07
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 14,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999984765710299,
+          "feature": "hard_failure_count",
+          "probability_change": {
+            "high_risk": -0.9999984765710299,
+            "investigate": 1.7842118717514245e-06,
+            "normal": 0.9999966923591581
+          }
+        },
+        {
+          "absolute_probability_change": 3.786666450870965e-09,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 3.786664870553125e-09,
+            "investigate": 1.6295725412068622e-15,
+            "normal": -3.786666450870965e-09
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "trusted_root_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 15,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999955543281004,
+          "feature": "vulnerability_applicable",
+          "probability_change": {
+            "high_risk": 3.657426939379147e-07,
+            "investigate": -0.9999955543281004,
+            "normal": 0.9999951885854064
+          }
+        },
+        {
+          "absolute_probability_change": 1.0409857463811178e-06,
+          "feature": "max_cvss_score",
+          "probability_change": {
+            "high_risk": 9.44349968281286e-08,
+            "investigate": -1.0409857463811178e-06,
+            "normal": 9.46550749663369e-07
+          }
+        },
+        {
+          "absolute_probability_change": 4.216746560482525e-07,
+          "feature": "vulnerability_present",
+          "probability_change": {
+            "high_risk": 2.004468788709805e-09,
+            "investigate": 4.196701872682951e-07,
+            "normal": -4.216746560482525e-07
+          }
+        },
+        {
+          "absolute_probability_change": 1.5376879697643672e-07,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 6.840515017880961e-10,
+            "investigate": 1.5308474565767227e-07,
+            "normal": -1.5376879697643672e-07
+          }
+        },
+        {
+          "absolute_probability_change": 1.1023117324498069e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 3.3517017523522296e-08,
+            "investigate": 7.67141558055684e-08,
+            "normal": -1.1023117324498069e-07
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 16,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999962925848501,
+          "feature": "evidence_issue_count",
+          "probability_change": {
+            "high_risk": 6.326519098268734e-07,
+            "investigate": -0.9999962925848501,
+            "normal": 0.9999956599329404
+          }
+        },
+        {
+          "absolute_probability_change": 1.9113910831869418e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 6.332696507940926e-08,
+            "investigate": -1.9113910831869418e-07,
+            "normal": 1.2781214344936683e-07
+          }
+        },
+        {
+          "absolute_probability_change": 2.4616024996149122e-08,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 7.011458173425234e-09,
+            "investigate": -2.4616024996149122e-08,
+            "normal": 1.7604566975973588e-08
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 17,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999972716325389,
+          "feature": "evidence_issue_count",
+          "probability_change": {
+            "high_risk": 3.6339136445340043e-07,
+            "investigate": -0.9999972716325389,
+            "normal": 0.9999969082411746
+          }
+        },
+        {
+          "absolute_probability_change": 2.690674745231547e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": -2.8785717498680228e-08,
+            "investigate": 2.690674745231547e-07,
+            "normal": -2.402817568966489e-07
+          }
+        },
+        {
+          "absolute_probability_change": 9.185582706348404e-08,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 2.5536237719207057e-10,
+            "investigate": 9.160046476885952e-08,
+            "normal": -9.185582706348404e-08
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 18,
+      "top_5": [
+        {
+          "absolute_probability_change": 3.293247807789612e-07,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": -7.925382219153863e-08,
+            "investigate": -2.500709586412296e-07,
+            "normal": 3.293247807789612e-07
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "trusted_root_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "vendor_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 19,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999984433097067,
+          "feature": "hard_failure_count",
+          "probability_change": {
+            "high_risk": -0.9999984433097067,
+            "investigate": 1.92308086942751e-06,
+            "normal": 0.9999965202288373
+          }
+        },
+        {
+          "absolute_probability_change": 8.688769248855939e-09,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 1.6252243995040772e-10,
+            "investigate": -8.688769248855939e-09,
+            "normal": 8.526246914752039e-09
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "trusted_root_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 20,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.9999987764135153,
+          "feature": "hard_failure_count",
+          "probability_change": {
+            "high_risk": -0.9999987764135153,
+            "investigate": 9.235562220743464e-07,
+            "normal": 0.999997852857293
+          }
+        },
+        {
+          "absolute_probability_change": 9.126421685046182e-08,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": -9.126421685046182e-08,
+            "investigate": 8.624410542935727e-08,
+            "normal": 5.0201111644699295e-09
+          }
+        },
+        {
+          "absolute_probability_change": 1.649865266090487e-08,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 1.139361693880403e-08,
+            "investigate": 5.1050356099043395e-09,
+            "normal": -1.649865266090487e-08
+          }
+        },
+        {
+          "absolute_probability_change": 1.0186383176529894e-08,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 1.018638007277417e-08,
+            "investigate": -1.0186383176529894e-08,
+            "normal": 2.9666258010299185e-15
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 21,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.999995933783746,
+          "feature": "unexpected_component",
+          "probability_change": {
+            "high_risk": 5.444089390079229e-07,
+            "investigate": -0.999995933783746,
+            "normal": 0.9999953893748071
+          }
+        },
+        {
+          "absolute_probability_change": 9.459364493924483e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 1.584198750733919e-07,
+            "investigate": -9.459364493924483e-07,
+            "normal": 7.875165743737616e-07
+          }
+        },
+        {
+          "absolute_probability_change": 1.562414342348717e-07,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": -4.035135107551118e-08,
+            "investigate": 1.562414342348717e-07,
+            "normal": -1.1589008314506535e-07
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 22,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.99999844798168,
+          "feature": "hard_failure_count",
+          "probability_change": {
+            "high_risk": -0.99999844798168,
+            "investigate": 1.8976049299115303e-06,
+            "normal": 0.9999965503767501
+          }
+        },
+        {
+          "absolute_probability_change": 2.105729247636745e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 2.105729247636745e-07,
+            "investigate": -1.562350559803545e-07,
+            "normal": -5.4337868603857244e-08
+          }
+        },
+        {
+          "absolute_probability_change": 1.3139286025865005e-07,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": -1.3139286025865005e-07,
+            "investigate": 9.7924692250683e-08,
+            "normal": 3.346816814872e-08
+          }
+        },
+        {
+          "absolute_probability_change": 1.9590360452664903e-08,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 7.208074470632653e-09,
+            "investigate": 1.2382285988389445e-08,
+            "normal": -1.9590360452664903e-08
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 23,
+      "top_5": [
+        {
+          "absolute_probability_change": 0.99999712118163,
+          "feature": "evidence_issue_count",
+          "probability_change": {
+            "high_risk": 4.608539275049572e-07,
+            "investigate": -0.99999712118163,
+            "normal": 0.9999966603277025
+          }
+        },
+        {
+          "absolute_probability_change": 1.181892547164054e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": -2.7673670352511562e-08,
+            "investigate": 1.181892547164054e-07,
+            "normal": -9.051558431317636e-08
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "signature_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "trusted_root_invalid",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "record_index": 24,
+      "top_5": [
+        {
+          "absolute_probability_change": 6.990101953929795e-07,
+          "feature": "component_count",
+          "probability_change": {
+            "high_risk": 9.494897716378328e-08,
+            "investigate": 6.040612181102034e-07,
+            "normal": -6.990101953929795e-07
+          }
+        },
+        {
+          "absolute_probability_change": 2.4323175740192937e-07,
+          "feature": "version_changed",
+          "probability_change": {
+            "high_risk": 8.215862190072739e-08,
+            "investigate": 1.6107313548147205e-07,
+            "normal": -2.4323175740192937e-07
+          }
+        },
+        {
+          "absolute_probability_change": 1.4457712671500644e-07,
+          "feature": "evidence_age_days",
+          "probability_change": {
+            "high_risk": 4.177338426347995e-08,
+            "investigate": 1.0280374248739177e-07,
+            "normal": -1.4457712671500644e-07
+          }
+        },
+        {
+          "absolute_probability_change": 5.500241984091048e-08,
+          "feature": "package_size_mb",
+          "probability_change": {
+            "high_risk": 1.8496372970798842e-08,
+            "investigate": 3.6506046870475965e-08,
+            "normal": -5.500241984091048e-08
+          }
+        },
+        {
+          "absolute_probability_change": 0.0,
+          "feature": "hash_mismatch",
+          "probability_change": {
+            "high_risk": 0.0,
+            "investigate": 0.0,
+            "normal": 0.0
+          }
+        }
+      ]
+    }
+  ],
+  "records_evaluated": 25
+}

@@ -1,0 +1,118 @@
+{
+  "method": "Global permutation importance",
+  "metric": "macro_f1",
+  "ranking": [
+    {
+      "feature": "hard_failure_count",
+      "importance_mean": 0.4747405468138256,
+      "importance_std": 0.017684875932471172
+    },
+    {
+      "feature": "evidence_issue_count",
+      "importance_mean": 0.2257578704212802,
+      "importance_std": 0.00977255870115505
+    },
+    {
+      "feature": "unexpected_component",
+      "importance_mean": 0.12932840695773926,
+      "importance_std": 0.007575722980834456
+    },
+    {
+      "feature": "vulnerability_applicable",
+      "importance_mean": 0.12834764779372104,
+      "importance_std": 0.0056219961278482266
+    },
+    {
+      "feature": "hash_mismatch",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "signature_invalid",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "trusted_root_invalid",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "vendor_mismatch",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "vendor_untrusted",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "sbom_missing",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "sbom_incomplete",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "version_changed",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "version_major_delta",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "unauthorized_rollback",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "vulnerability_present",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "evidence_age_days",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "stale_evidence",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "package_size_mb",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "component_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "component_count_delta",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "known_vulnerability_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "max_cvss_score",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    }
+  ],
+  "repeats": 20,
+  "seed": 20260828
+}
