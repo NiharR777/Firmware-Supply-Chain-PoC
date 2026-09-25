@@ -1,0 +1,14 @@
+Checking supply-chain schema files...
+
+[OK] products.csv -> 5 records
+[OK] vendors.csv -> 4 records
+[OK] packages.csv -> 5 records
+[OK] components.csv -> 8 records
+[OK] dependencies.csv -> 16 records
+[OK] deployed_assets.csv -> 6 records
+[OK] vulnerabilities.csv -> 4 records
+[OK] vex_records.csv -> 4 records
+[OK] trusted_roots.csv -> 3 records
+[OK] package_evidence.csv -> 5 records
+
+Schema validation completed.

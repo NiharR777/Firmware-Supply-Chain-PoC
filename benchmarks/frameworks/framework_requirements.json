@@ -1,0 +1,54 @@
+{
+  "benchmark_version": "1.0.0",
+  "claim_boundary": "This is a coverage and conformance benchmark, not a certification or compliance claim.",
+  "frameworks": [
+    {
+      "framework": "CycloneDX",
+      "version": "1.5",
+      "official_url": "https://cyclonedx.org/schema/bom-1.5.schema.json",
+      "requirements": [
+        {"requirement_id": "CDX-SCHEMA", "requirement": "Raw SBOM documents conform to the official JSON schema", "status": "covered", "evidence": "Official schema validation of canonical and modified SBOM fixtures"},
+        {"requirement_id": "CDX-COMP", "requirement": "Component inventory has typed components, versions and unique BOM references", "status": "covered", "evidence": "data/synthetic/supply_chain_poc/sbom/*.json"},
+        {"requirement_id": "CDX-VULN", "requirement": "Vulnerabilities reference components through affects/ref", "status": "covered", "evidence": "SC-004 raw SBOM and schema validation"},
+        {"requirement_id": "CDX-VEX", "requirement": "Vulnerability exploitability analysis is represented in a standard machine-readable structure", "status": "partial", "evidence": "VEX records exist as separate CSV; no CycloneDX analysis object is emitted"},
+        {"requirement_id": "CDX-SIGN", "requirement": "BOM signature can be verified", "status": "gap", "evidence": "No cryptographic CycloneDX signature in the synthetic fixtures"}
+      ]
+    },
+    {
+      "framework": "SLSA",
+      "version": "1.2",
+      "official_url": "https://slsa.dev/spec/v1.2/",
+      "requirements": [
+        {"requirement_id": "SLSA-ARTIFACT", "requirement": "Artifact is identified by cryptographic digest", "status": "covered", "evidence": "trusted_hash and observed_hash"},
+        {"requirement_id": "SLSA-PROV", "requirement": "Build provenance describes builder, process and inputs", "status": "gap", "evidence": "No SLSA provenance attestation is generated"},
+        {"requirement_id": "SLSA-AUTH", "requirement": "Provenance authenticity is verifiable", "status": "gap", "evidence": "Signature observations are synthetic booleans, not signed provenance"},
+        {"requirement_id": "SLSA-SOURCE", "requirement": "Source provenance and source-control properties are recorded", "status": "gap", "evidence": "Dataset does not model source revisions or source attestations"},
+        {"requirement_id": "SLSA-BUILD", "requirement": "Build platform and build isolation properties are recorded", "status": "gap", "evidence": "Dataset does not model a real build platform"}
+      ]
+    },
+    {
+      "framework": "NIST SP 800-193",
+      "version": "Final 2018",
+      "official_url": "https://csrc.nist.gov/pubs/sp/800/193/final",
+      "requirements": [
+        {"requirement_id": "NIST193-PROTECT", "requirement": "Protect firmware authenticity and integrity against unauthorized change", "status": "partial", "evidence": "Trusted hash, signature, root and vendor observations are modelled; enforcement hardware is not"},
+        {"requirement_id": "NIST193-DETECT", "requirement": "Detect unauthorized firmware or critical-data changes", "status": "covered", "evidence": "Hash mismatch, signature/root failure, unexpected component and rollback cases"},
+        {"requirement_id": "NIST193-ROLLBACK", "requirement": "Prevent or identify unauthorized rollback", "status": "covered", "evidence": "Observed/approved versions and rollback_authorized"},
+        {"requirement_id": "NIST193-RECOVER", "requirement": "Recover firmware and critical data to an authorised state", "status": "gap", "evidence": "Recovery is outside the PoC safety boundary"}
+      ]
+    },
+    {
+      "framework": "NIST SP 800-218 SSDF",
+      "version": "1.1",
+      "official_url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "requirements": [
+        {"requirement_id": "SSDF-PS.2", "requirement": "Verify software release integrity", "status": "partial", "evidence": "Synthetic hash and signature evidence; no production release process"},
+        {"requirement_id": "SSDF-PS.3", "requirement": "Archive and protect releases and supporting integrity data", "status": "partial", "evidence": "Trusted references and dataset hashes are retained; no organisational archive control"},
+        {"requirement_id": "SSDF-PS.4", "requirement": "Collect and share provenance data for releases", "status": "gap", "evidence": "No standard provenance attestation"},
+        {"requirement_id": "SSDF-PW.4", "requirement": "Assess and track third-party components", "status": "partial", "evidence": "SBOM, component, vendor and vulnerability observations"},
+        {"requirement_id": "SSDF-RV.1", "requirement": "Identify and confirm vulnerabilities", "status": "covered", "evidence": "Vulnerability presence, applicability, count, severity and VEX reference data"},
+        {"requirement_id": "SSDF-RV.2", "requirement": "Assess, prioritise and remediate vulnerabilities", "status": "partial", "evidence": "Severity/applicability risk assessment exists; remediation workflow is outside scope"}
+      ]
+    }
+  ]
+}

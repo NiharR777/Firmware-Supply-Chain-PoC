@@ -1,0 +1,21 @@
+framework,version,requirement_id,requirement,status,evidence,official_url
+CycloneDX,1.5,CDX-SCHEMA,Raw SBOM documents conform to the official JSON schema,covered,Official schema validation of canonical and modified SBOM fixtures,https://cyclonedx.org/schema/bom-1.5.schema.json
+CycloneDX,1.5,CDX-COMP,"Component inventory has typed components, versions and unique BOM references",covered,data/synthetic/supply_chain_poc/sbom/*.json,https://cyclonedx.org/schema/bom-1.5.schema.json
+CycloneDX,1.5,CDX-VULN,Vulnerabilities reference components through affects/ref,covered,SC-004 raw SBOM and schema validation,https://cyclonedx.org/schema/bom-1.5.schema.json
+CycloneDX,1.5,CDX-VEX,Vulnerability exploitability analysis is represented in a standard machine-readable structure,partial,VEX records exist as separate CSV; no CycloneDX analysis object is emitted,https://cyclonedx.org/schema/bom-1.5.schema.json
+CycloneDX,1.5,CDX-SIGN,BOM signature can be verified,gap,No cryptographic CycloneDX signature in the synthetic fixtures,https://cyclonedx.org/schema/bom-1.5.schema.json
+SLSA,1.2,SLSA-ARTIFACT,Artifact is identified by cryptographic digest,covered,trusted_hash and observed_hash,https://slsa.dev/spec/v1.2/
+SLSA,1.2,SLSA-PROV,"Build provenance describes builder, process and inputs",gap,No SLSA provenance attestation is generated,https://slsa.dev/spec/v1.2/
+SLSA,1.2,SLSA-AUTH,Provenance authenticity is verifiable,gap,"Signature observations are synthetic booleans, not signed provenance",https://slsa.dev/spec/v1.2/
+SLSA,1.2,SLSA-SOURCE,Source provenance and source-control properties are recorded,gap,Dataset does not model source revisions or source attestations,https://slsa.dev/spec/v1.2/
+SLSA,1.2,SLSA-BUILD,Build platform and build isolation properties are recorded,gap,Dataset does not model a real build platform,https://slsa.dev/spec/v1.2/
+NIST SP 800-193,Final 2018,NIST193-PROTECT,Protect firmware authenticity and integrity against unauthorized change,partial,"Trusted hash, signature, root and vendor observations are modelled; enforcement hardware is not",https://csrc.nist.gov/pubs/sp/800/193/final
+NIST SP 800-193,Final 2018,NIST193-DETECT,Detect unauthorized firmware or critical-data changes,covered,"Hash mismatch, signature/root failure, unexpected component and rollback cases",https://csrc.nist.gov/pubs/sp/800/193/final
+NIST SP 800-193,Final 2018,NIST193-ROLLBACK,Prevent or identify unauthorized rollback,covered,Observed/approved versions and rollback_authorized,https://csrc.nist.gov/pubs/sp/800/193/final
+NIST SP 800-193,Final 2018,NIST193-RECOVER,Recover firmware and critical data to an authorised state,gap,Recovery is outside the PoC safety boundary,https://csrc.nist.gov/pubs/sp/800/193/final
+NIST SP 800-218 SSDF,1.1,SSDF-PS.2,Verify software release integrity,partial,Synthetic hash and signature evidence; no production release process,https://csrc.nist.gov/pubs/sp/800/218/final
+NIST SP 800-218 SSDF,1.1,SSDF-PS.3,Archive and protect releases and supporting integrity data,partial,Trusted references and dataset hashes are retained; no organisational archive control,https://csrc.nist.gov/pubs/sp/800/218/final
+NIST SP 800-218 SSDF,1.1,SSDF-PS.4,Collect and share provenance data for releases,gap,No standard provenance attestation,https://csrc.nist.gov/pubs/sp/800/218/final
+NIST SP 800-218 SSDF,1.1,SSDF-PW.4,Assess and track third-party components,partial,"SBOM, component, vendor and vulnerability observations",https://csrc.nist.gov/pubs/sp/800/218/final
+NIST SP 800-218 SSDF,1.1,SSDF-RV.1,Identify and confirm vulnerabilities,covered,"Vulnerability presence, applicability, count, severity and VEX reference data",https://csrc.nist.gov/pubs/sp/800/218/final
+NIST SP 800-218 SSDF,1.1,SSDF-RV.2,"Assess, prioritise and remediate vulnerabilities",partial,Severity/applicability risk assessment exists; remediation workflow is outside scope,https://csrc.nist.gov/pubs/sp/800/218/final

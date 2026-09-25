@@ -1,0 +1,10 @@
+........................................................................ [ 92%]
+......                                                                   [100%]
+============================== warnings summary ===============================
+src/supply_chain/test_ml_correction.py: 1828 warnings
+  C:\Users\Lenovo\Documents\Codex\2026-08-26\urai-firmware-nihar\work\ml_correction_env\Lib\site-packages\joblib\numpy_pickle.py:207: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+  As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+    array.shape = self.shape
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+78 passed, 1828 warnings in 5.94s

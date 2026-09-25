@@ -1,0 +1,91 @@
+{
+  "added": [
+    "artifacts/correction/calibration_report.json",
+    "artifacts/correction/environment_record.json",
+    "artifacts/correction/explanation_report.json",
+    "artifacts/correction/input_profile.json",
+    "artifacts/correction/integrity_verification.json",
+    "artifacts/correction/privacy_scan.json",
+    "artifacts/correction/reload_verification.json",
+    "artifacts/correction/review_status.json",
+    "artifacts/correction/robustness_report.json",
+    "artifacts/correction/selected_validation_importance.json",
+    "artifacts/correction/subgroup_evaluation.json",
+    "artifacts/ml_experiment/candidate_results.json",
+    "artifacts/ml_experiment/deterministic_policy_fidelity.json",
+    "artifacts/ml_experiment/experiment_manifest.json",
+    "artifacts/ml_experiment/final_test_predictions.csv",
+    "artifacts/ml_experiment/global_permutation_importance.json",
+    "artifacts/ml_experiment/local_model_sensitivity.json",
+    "artifacts/ml_experiment/metrics.json",
+    "artifacts/ml_experiment/ml_assurance_assertions.json",
+    "artifacts/ml_experiment/robustness_results.json",
+    "artifacts/ml_experiment/technical_subgroup_analysis.json",
+    "docs/CORRECTION_HANDOVER.md",
+    "docs/RESPONSIBLE_AI_ASSURANCE_MATRIX.md",
+    "docs/approved_specification.docx",
+    "docs/data_card.md",
+    "docs/model_card.md",
+    "docs/monitoring_and_rollback.md",
+    "docs/operational_boundary.md",
+    "evidence/correction_checks/01.log",
+    "evidence/correction_checks/02.log",
+    "evidence/correction_checks/03.log",
+    "evidence/correction_checks/04.log",
+    "evidence/correction_checks/05.log",
+    "evidence/correction_checks/06.log",
+    "evidence/correction_checks/evidence_generation.log",
+    "evidence/correction_checks/summary.json",
+    "evidence/v1/baseline_comparison.json",
+    "evidence/v1/baseline_file_hashes.json",
+    "evidence/v1/original_submission.zip",
+    "evidence/v1/requirements_original.txt",
+    "evidence/v1/restoration_audit.json",
+    "evidence/v1/train_and_evaluate_ml.py.txt",
+    "models/ml/isolation_forest.joblib",
+    "models/ml/selected_calibrated_model.joblib",
+    "models/ml/selected_uncalibrated_model.joblib",
+    "package_manifest.json",
+    "requirements-correction.txt",
+    "scripts/correction_evidence.py",
+    "scripts/run_correction_checks.py",
+    "scripts/train_and_evaluate_ml.py",
+    "scripts/validate_correction.py",
+    "src/supply_chain/ml_input_guard.py",
+    "src/supply_chain/test_ml_correction.py"
+  ],
+  "changed": [
+    {
+      "baseline_sha256": "c61b4e8e20339f3088bc3d7cf6b2d46e6c4114aabf117b2c04bdab4f3410e761",
+      "correction_sha256": "8ed1fb9bdd0419d0bdf4306536e4ad53fc9694bf2fb7ba7b6225ba88f16edf92",
+      "path": ".gitattributes"
+    },
+    {
+      "baseline_sha256": "3b156a6ed8110b5fda51e36fda4cac6264b6a1b9824cd04ff8b0cbaefb9437b0",
+      "correction_sha256": "7c1ec85a4f97f5d4028181c4ad2f798fbd75e8d998b4c2edd39a136dfc2fc2c6",
+      "path": ".gitignore"
+    },
+    {
+      "baseline_sha256": "842d033db1f3c482fc39fa1a195ba96d7d699b740095d2310511dd22de948109",
+      "correction_sha256": "5d3c3dbea7a01290dfd51cca7542942bb6c88f0d92b61f84260ffee90f1911e4",
+      "path": "CORRECTION_SUMMARY.md"
+    },
+    {
+      "baseline_sha256": "7299791ba9f717f416427a260d84c570606de00429443e01e9f1c0b195ae6cd4",
+      "correction_sha256": "3dc89a1c222e1697e09b90c5606002e59fa709a0e740eeb0d55f5f4900c48306",
+      "path": "README.md"
+    },
+    {
+      "baseline_sha256": "5bee8b6719c182daa65317489d3ca02f4705744e8b06d096233f456e73a648e8",
+      "correction_sha256": "bd77bd638ab2bdcdd769bce7fe799bbb2e537d147916a6a91889907a94e66787",
+      "path": "VALIDATION_RESULTS.md"
+    },
+    {
+      "baseline_sha256": "84f6b8f109372a4d93153838cc16ac678b4e3ed4b9429b7ffba8170388610074",
+      "correction_sha256": "a9f1fa17c32251955cad9a2602a5274ab5e51c95ab495c2b547f9628bd588cb2",
+      "path": "scripts/validate_dataset.py"
+    }
+  ],
+  "missing": [],
+  "unchanged_count": 207
+}

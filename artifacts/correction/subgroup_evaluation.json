@@ -1,0 +1,6409 @@
+{
+  "absolute_gap_limit": 0.1,
+  "definition": "One-vs-rest per class; acceptance gaps use high_risk versus all other labels. Undefined denominators remain null, never zero.",
+  "gate_failure_count": 0,
+  "groups": [
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 72,
+        "investigate": 96,
+        "normal": 48
+      },
+      "count": 216,
+      "dimension": "observed_vendor_id",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "VEND-001",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 144,
+          "tp": 72
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 120,
+          "tp": 96
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 168,
+          "tp": 48
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 72,
+        "investigate": 96,
+        "normal": 48
+      },
+      "count": 216,
+      "dimension": "observed_vendor_id",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "VEND-002",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 144,
+          "tp": 72
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 120,
+          "tp": 96
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 168,
+          "tp": 48
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 81,
+        "investigate": 108,
+        "normal": 54
+      },
+      "count": 243,
+      "dimension": "observed_vendor_id",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "VEND-003",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 162,
+          "tp": 81
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 135,
+          "tp": 108
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 189,
+          "tp": 54
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 75
+      },
+      "count": 75,
+      "dimension": "observed_vendor_id",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "NOT_ESTIMABLE",
+        "recall": "PASS"
+      },
+      "group": "VEND-004",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": null,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "investigate": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 72,
+        "investigate": 72,
+        "normal": 36
+      },
+      "count": 180,
+      "dimension": "product_id",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "PROD-001",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 108,
+          "tp": 72
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 108,
+          "tp": 72
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 144,
+          "tp": 36
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 44,
+        "investigate": 44,
+        "normal": 22
+      },
+      "count": 110,
+      "dimension": "product_id",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "PROD-002",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 66,
+          "tp": 44
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 66,
+          "tp": 44
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 88,
+          "tp": 22
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 32,
+        "investigate": 32,
+        "normal": 16
+      },
+      "count": 80,
+      "dimension": "product_id",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "PROD-003",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 48,
+          "tp": 32
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 48,
+          "tp": 32
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 64,
+          "tp": 16
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 68,
+        "investigate": 68,
+        "normal": 34
+      },
+      "count": 170,
+      "dimension": "product_id",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "PROD-004",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 102,
+          "tp": 68
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 102,
+          "tp": 68
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 136,
+          "tp": 34
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 84,
+        "investigate": 84,
+        "normal": 42
+      },
+      "count": 210,
+      "dimension": "product_id",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "PROD-005",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 126,
+          "tp": 84
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 126,
+          "tp": 84
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 168,
+          "tp": 42
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0006",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0012",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0022",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0023",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0035",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0036",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0050",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0052",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0064",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0065",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0066",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0080",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0083",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0094",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0096",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0099",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0103",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0104",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0112",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0116",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0131",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0133",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0149",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0151",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0152",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0155",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0160",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0198",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0201",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0208",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0212",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0220",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0222",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0243",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0246",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0247",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0250",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0267",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0289",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0290",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0291",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0294",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0295",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0298",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0300",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0306",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0333",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0336",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0338",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0339",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0352",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0354",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0360",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0361",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0382",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0393",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0395",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0396",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0397",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0404",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0406",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0411",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0413",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0415",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0420",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0428",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0435",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0441",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0445",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0457",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0461",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0487",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0497",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0499",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 4,
+        "investigate": 4,
+        "normal": 2
+      },
+      "count": 10,
+      "dimension": "lineage_id",
+      "eligible_n_ge_30": false,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "LINEAGE-0500",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 6,
+          "tp": 4
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 8,
+          "tp": 2
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "DESCRIPTIVE_ONLY"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 225,
+        "investigate": 300,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "hash_mismatch=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "NOT_ESTIMABLE",
+        "recall": "PASS"
+      },
+      "group": "hash_mismatch=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": null,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "investigate": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 225,
+        "investigate": 300,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "signature_invalid=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "NOT_ESTIMABLE",
+        "recall": "PASS"
+      },
+      "group": "signature_invalid=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": null,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "investigate": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 225,
+        "investigate": 300,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "trusted_root_invalid=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "NOT_ESTIMABLE",
+        "recall": "PASS"
+      },
+      "group": "trusted_root_invalid=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": null,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "investigate": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 225,
+        "investigate": 300,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "vendor_mismatch=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "NOT_ESTIMABLE",
+        "recall": "PASS"
+      },
+      "group": "vendor_mismatch=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": null,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "investigate": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 225,
+        "investigate": 300,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "vendor_untrusted=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "NOT_ESTIMABLE",
+        "recall": "PASS"
+      },
+      "group": "vendor_untrusted=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": null,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "investigate": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 300,
+        "investigate": 225,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "sbom_missing=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "investigate": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "NOT_ESTIMABLE"
+      },
+      "group": "sbom_missing=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": null,
+        "fpr": 0.0,
+        "recall": null
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 300,
+        "investigate": 225,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "sbom_incomplete=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "investigate": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "NOT_ESTIMABLE"
+      },
+      "group": "sbom_incomplete=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": null,
+        "fpr": 0.0,
+        "recall": null
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 225,
+        "investigate": 300,
+        "normal": 103
+      },
+      "count": 628,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "version_changed=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 403,
+          "tp": 225
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 328,
+          "tp": 300
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 103
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 75,
+        "normal": 47
+      },
+      "count": 122,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "version_changed=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 47,
+          "tp": 75
+        },
+        "investigate": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 122,
+          "tp": 0
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 75,
+          "tp": 47
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 225,
+        "investigate": 300,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "unauthorized_rollback=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "NOT_ESTIMABLE",
+        "recall": "PASS"
+      },
+      "group": "unauthorized_rollback=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": null,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "investigate": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 300,
+        "investigate": 225,
+        "normal": 122
+      },
+      "count": 647,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "vulnerability_present=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 347,
+          "tp": 300
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 422,
+          "tp": 225
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 122
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "investigate": 75,
+        "normal": 28
+      },
+      "count": 103,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "NOT_ESTIMABLE"
+      },
+      "group": "vulnerability_present=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": null,
+        "fpr": 0.0,
+        "recall": null
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 103,
+          "tp": 0
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 28,
+          "tp": 75
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 75,
+          "tp": 28
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 300,
+        "investigate": 225,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "vulnerability_applicable=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "investigate": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "NOT_ESTIMABLE"
+      },
+      "group": "vulnerability_applicable=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": null,
+        "fpr": 0.0,
+        "recall": null
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 300,
+        "investigate": 225,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "unexpected_component=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "investigate": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "NOT_ESTIMABLE"
+      },
+      "group": "unexpected_component=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": null,
+        "fpr": 0.0,
+        "recall": null
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "high_risk": 300,
+        "investigate": 225,
+        "normal": 150
+      },
+      "count": 675,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "PASS"
+      },
+      "group": "stale_evidence=0",
+      "high_risk_gaps_vs_overall": {
+        "fnr": 0.0,
+        "fpr": 0.0,
+        "recall": 0.0
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 375,
+          "tp": 300
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 450,
+          "tp": 225
+        },
+        "normal": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 525,
+          "tp": 150
+        }
+      },
+      "remediation": "None for this descriptive synthetic audit.",
+      "status": "PASS"
+    },
+    {
+      "accuracy": 1.0,
+      "class_counts": {
+        "investigate": 75
+      },
+      "count": 75,
+      "dimension": "evidence_category",
+      "eligible_n_ge_30": true,
+      "gate_checks": {
+        "fpr": "PASS",
+        "recall": "NOT_ESTIMABLE"
+      },
+      "group": "stale_evidence=1",
+      "high_risk_gaps_vs_overall": {
+        "fnr": null,
+        "fpr": 0.0,
+        "recall": null
+      },
+      "per_class": {
+        "high_risk": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        },
+        "investigate": {
+          "f1": 1.0,
+          "fn": 0,
+          "fnr": 0.0,
+          "fp": 0,
+          "fpr": null,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tn": 0,
+          "tp": 75
+        },
+        "normal": {
+          "f1": null,
+          "fn": 0,
+          "fnr": null,
+          "fp": 0,
+          "fpr": 0.0,
+          "precision": null,
+          "recall": null,
+          "tn": 75,
+          "tp": 0
+        }
+      },
+      "remediation": "Need independent labelled coverage of absent classes before operational claims.",
+      "status": "PARTIAL_NOT_ESTIMABLE"
+    }
+  ],
+  "kind": "POST_HOC_FROZEN_PREDICTION_AUDIT",
+  "limitation": "Synthetic technical groups, not demographic fairness or real vendor-performance evidence.",
+  "minimum_group_size": 30,
+  "not_estimable_group_count": 13,
+  "overall": {
+    "accuracy": 1.0,
+    "class_counts": {
+      "high_risk": 300,
+      "investigate": 300,
+      "normal": 150
+    },
+    "count": 750,
+    "per_class": {
+      "high_risk": {
+        "f1": 1.0,
+        "fn": 0,
+        "fnr": 0.0,
+        "fp": 0,
+        "fpr": 0.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tn": 450,
+        "tp": 300
+      },
+      "investigate": {
+        "f1": 1.0,
+        "fn": 0,
+        "fnr": 0.0,
+        "fp": 0,
+        "fpr": 0.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tn": 450,
+        "tp": 300
+      },
+      "normal": {
+        "f1": 1.0,
+        "fn": 0,
+        "fnr": 0.0,
+        "fp": 0,
+        "fpr": 0.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "tn": 600,
+        "tp": 150
+      }
+    }
+  }
+}

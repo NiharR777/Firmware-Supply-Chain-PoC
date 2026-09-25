@@ -1,0 +1,8 @@
+{
+  "max_probability_absolute_error": 0.0,
+  "model_sha256": "ef78cfbc825efaaec2adef57405dadd346237691e7413da737785895c7622e1f",
+  "no_fitting": true,
+  "predictions_match": true,
+  "records": 750,
+  "tolerance": 1e-10
+}

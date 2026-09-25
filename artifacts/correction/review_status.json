@@ -1,0 +1,15 @@
+{
+  "experiment_v1_status": "REJECTED",
+  "fusion_api_dashboard_authorized": false,
+  "new_holdout_generated": false,
+  "next_gate": "Clean package validation and Nihar merge confirmation; then approve an Experiment v2 protocol and independent quarantined holdout if further modeling is required.",
+  "package_correction_status": "IMPLEMENTED_PENDING_CLEAN_VALIDATION",
+  "training_performed": false,
+  "unrecoverable_v1_gaps": [
+    "Original training runtime/log/commit absent",
+    "Only one anomaly configuration fitted",
+    "Supervised hyperparameter selection used validation across configurations",
+    "Validation anomaly gates failed before test was opened",
+    "All-candidate validation importance and logistic coefficients absent"
+  ]
+}

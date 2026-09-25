@@ -1,0 +1,117 @@
+{
+  "all_documents_valid": true,
+  "all_present_references_match": true,
+  "documents": [
+    {
+      "errors": [],
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-001_sbom.json",
+      "sha256": "39468f967d3bf2ae3ba6e67ce466c4e1179e6eb5643def323792cff4a748382d",
+      "valid": true
+    },
+    {
+      "errors": [],
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-002_sbom.json",
+      "sha256": "38c92d6765fe78aaea7d53aa0cb230a108e6ab587441d033816addd87da62ed7",
+      "valid": true
+    },
+    {
+      "errors": [],
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-003_sbom.json",
+      "sha256": "2728b5e61284a57c4056d6de983a12333cb324be3d01cd0a800da4e2b78844ae",
+      "valid": true
+    },
+    {
+      "errors": [],
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-004_sbom.json",
+      "sha256": "0ef2dad52147242fcfa8162e53652ef3b5f16f6fafb68dbc78471e0a7cd97e8a",
+      "valid": true
+    },
+    {
+      "errors": [],
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-005_sbom.json",
+      "sha256": "73b7cf661d8b3c6b0f6eb76ca493391dc84e7ef23f80275ccef7c746689150ec",
+      "valid": true
+    },
+    {
+      "errors": [],
+      "path": "data/synthetic/supply_chain_poc/generated/fixtures/modified_sbom/SC-004_PKG-004_sbom.json",
+      "sha256": "47b47a9e72cbf5cbb783bb0cb009905f3d8d81ce98c41a5f8b206a4ee44e4906",
+      "valid": true
+    },
+    {
+      "errors": [],
+      "path": "data/synthetic/supply_chain_poc/generated/fixtures/modified_sbom/SC-007_PKG-004_sbom.json",
+      "sha256": "3134144ff36e9d4a7fd05c01956995fe3a016dc063725072f993c6191d5cd91b",
+      "valid": true
+    }
+  ],
+  "documents_checked": 7,
+  "documents_valid": 7,
+  "evidence_references": [
+    {
+      "hash_match": true,
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-001_sbom.json",
+      "scenario_id": "SC-001",
+      "status": "present"
+    },
+    {
+      "hash_match": true,
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-002_sbom.json",
+      "scenario_id": "SC-002",
+      "status": "present"
+    },
+    {
+      "hash_match": true,
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-003_sbom.json",
+      "scenario_id": "SC-003",
+      "status": "present"
+    },
+    {
+      "hash_match": true,
+      "path": "data/synthetic/supply_chain_poc/generated/fixtures/modified_sbom/SC-004_PKG-004_sbom.json",
+      "scenario_id": "SC-004",
+      "status": "present"
+    },
+    {
+      "hash_match": true,
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-001_sbom.json",
+      "scenario_id": "SC-005",
+      "status": "present"
+    },
+    {
+      "hash_match": null,
+      "path": null,
+      "scenario_id": "SC-006",
+      "status": "expected_missing"
+    },
+    {
+      "hash_match": true,
+      "path": "data/synthetic/supply_chain_poc/generated/fixtures/modified_sbom/SC-007_PKG-004_sbom.json",
+      "scenario_id": "SC-007",
+      "status": "present"
+    },
+    {
+      "hash_match": true,
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-005_sbom.json",
+      "scenario_id": "SC-008",
+      "status": "present"
+    },
+    {
+      "hash_match": true,
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-005_sbom.json",
+      "scenario_id": "SC-009",
+      "status": "present"
+    },
+    {
+      "hash_match": true,
+      "path": "data/synthetic/supply_chain_poc/sbom/PKG-005_sbom.json",
+      "scenario_id": "SC-010",
+      "status": "present"
+    }
+  ],
+  "framework": "CycloneDX",
+  "jsf_schema_sha256": "2faf5eb3651f2ae5f46091a131770d8d847bbd121139d19c85fc7051bfa58c46",
+  "official_schema_sha256": "a00fcba23a44b72179ac1f288be4c3529b59f6e1b3719709a40685f177516b46",
+  "official_schema_source": "https://cyclonedx.org/schema/bom-1.5.schema.json",
+  "version": "1.5"
+}

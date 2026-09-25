@@ -1,0 +1,82 @@
+{
+  "all_pass": true,
+  "dataset_hash_count": 9,
+  "historical_hashes": [
+    {
+      "pass": true,
+      "path": "artifacts/ml_experiment/candidate_results.json"
+    },
+    {
+      "pass": true,
+      "path": "artifacts/ml_experiment/deterministic_policy_fidelity.json"
+    },
+    {
+      "pass": true,
+      "path": "artifacts/ml_experiment/final_test_predictions.csv"
+    },
+    {
+      "pass": true,
+      "path": "artifacts/ml_experiment/global_permutation_importance.json"
+    },
+    {
+      "pass": true,
+      "path": "artifacts/ml_experiment/local_model_sensitivity.json"
+    },
+    {
+      "pass": true,
+      "path": "artifacts/ml_experiment/metrics.json"
+    },
+    {
+      "pass": true,
+      "path": "artifacts/ml_experiment/ml_assurance_assertions.json"
+    },
+    {
+      "pass": true,
+      "path": "artifacts/ml_experiment/robustness_results.json"
+    },
+    {
+      "pass": true,
+      "path": "artifacts/ml_experiment/technical_subgroup_analysis.json"
+    },
+    {
+      "pass": true,
+      "path": "models/ml/isolation_forest.joblib"
+    },
+    {
+      "pass": true,
+      "path": "models/ml/selected_calibrated_model.joblib"
+    },
+    {
+      "pass": true,
+      "path": "models/ml/selected_uncalibrated_model.joblib"
+    },
+    {
+      "pass": true,
+      "path": "data/synthetic/supply_chain_poc/dataset/engineered_features.csv"
+    },
+    {
+      "pass": true,
+      "path": "data/synthetic/supply_chain_poc/dataset/feature_metadata.json"
+    },
+    {
+      "pass": true,
+      "path": "data/synthetic/supply_chain_poc/dataset/generation_parameters.json"
+    },
+    {
+      "pass": true,
+      "path": "data/synthetic/supply_chain_poc/dataset/ground_truth_labels.csv"
+    },
+    {
+      "pass": true,
+      "path": "data/synthetic/supply_chain_poc/dataset/observable_features.csv"
+    },
+    {
+      "pass": true,
+      "path": "data/synthetic/supply_chain_poc/dataset/reference_data.csv"
+    },
+    {
+      "pass": true,
+      "path": "data/synthetic/supply_chain_poc/dataset/split_assignments.csv"
+    }
+  ]
+}

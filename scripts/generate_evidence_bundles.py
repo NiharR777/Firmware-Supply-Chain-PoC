@@ -17,6 +17,7 @@ import csv
 import hashlib
 import json
 import shutil
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -358,7 +359,7 @@ def build_sbom(
             "data_provenance": "SYNTHETIC OBSERVED EVIDENCE",
         }
 
-    components = [
+    base_components = [
         {
             "type": "library",
             "bom-ref": "pkg:generic/openssl@3.0.12",
@@ -378,6 +379,8 @@ def build_sbom(
             "version": "1.3",
         },
     ]
+
+    components = list(base_components)
 
     if scenario_type == "unexpected_component":
         components.append(
@@ -411,11 +414,17 @@ def build_sbom(
             }
         )
 
-    sbom = {
+    baseline_sbom = {
         "bomFormat": "CycloneDX",
         "specVersion": "1.5",
         "serialNumber": (
-            f"urn:uuid:synthetic-{scenario_id.lower()}"
+            "urn:uuid:"
+            + str(
+                uuid.uuid5(
+                    uuid.NAMESPACE_URL,
+                    f"urai.example/firmware-sbom/{package_id}",
+                )
+            )
         ),
         "version": 1,
         "metadata": {
@@ -425,9 +434,21 @@ def build_sbom(
                 "version": PACKAGES[package_id]["firmware_version"],
             }
         },
-        "components": components,
-        "vulnerabilities": vulnerabilities,
+        "components": base_components,
+        "vulnerabilities": [],
     }
+
+    sbom = dict(baseline_sbom)
+    sbom["components"] = components
+    sbom["vulnerabilities"] = vulnerabilities
+
+    if scenario_type in {"unexpected_component", "vulnerable_component"}:
+        sbom["serialNumber"] = "urn:uuid:" + str(
+            uuid.uuid5(
+                uuid.NAMESPACE_URL,
+                f"urai.example/firmware-sbom/{scenario_id}/{package_id}",
+            )
+        )
 
     source_file = (
         SBOM_DIR
@@ -436,10 +457,9 @@ def build_sbom(
 
     source_file.parent.mkdir(parents=True, exist_ok=True)
 
-    # For a modified component scenario, write the
-    # scenario-specific observed SBOM instead of changing
-    # the canonical source artifact.
-    if scenario_type == "unexpected_component":
+    # Scenario-modified SBOMs are distinct observed artifacts.
+    # The canonical package SBOM always remains a clean baseline.
+    if scenario_type in {"unexpected_component", "vulnerable_component"}:
         observed_file = (
             FIXTURE_DIR
             / "modified_sbom"
@@ -450,7 +470,7 @@ def build_sbom(
 
     observed_file.parent.mkdir(parents=True, exist_ok=True)
 
-    write_json(source_file, sbom)
+    write_json(source_file, baseline_sbom)
 
     if observed_file != source_file:
         write_json(observed_file, sbom)

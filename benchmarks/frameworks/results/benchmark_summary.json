@@ -1,0 +1,15 @@
+{
+  "benchmark_date": "2026-09-01",
+  "benchmark_status": "passed_with_documented_gaps",
+  "coverage_counts": {
+    "covered": 7,
+    "gap": 7,
+    "partial": 6
+  },
+  "cyclonedx_documents_checked": 7,
+  "cyclonedx_documents_valid": 7,
+  "dataset_records_checked": 5000,
+  "external_real_world_dataset_used": false,
+  "framework_requirement_count": 20,
+  "ml_training_authorized_by_this_benchmark": false
+}

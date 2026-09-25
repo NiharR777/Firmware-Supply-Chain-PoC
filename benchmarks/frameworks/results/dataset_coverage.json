@@ -1,0 +1,54 @@
+{
+  "engineered_feature_count": 22,
+  "external_real_world_dataset_used": false,
+  "label_distribution": {
+    "high_risk": 2000,
+    "investigate": 2000,
+    "normal": 1000
+  },
+  "lineage_count": 500,
+  "realism_limitation": "The benchmark verifies standards representation and internal invariants. It does not establish that synthetic feature distributions match deployed firmware ecosystems.",
+  "realism_status": "synthetic_only",
+  "record_count": 5000,
+  "records_per_lineage": 10,
+  "required_observed_fields_present": [
+    "evidence_age_days",
+    "observed_hash",
+    "observed_vendor_id",
+    "observed_version",
+    "record_seed",
+    "rollback_authorized",
+    "run_id",
+    "sbom_complete",
+    "sbom_present",
+    "signature_valid",
+    "trusted_root_valid",
+    "unexpected_component",
+    "vulnerability_applicable",
+    "vulnerability_present"
+  ],
+  "required_reference_fields_present": [
+    "approved_component_count",
+    "approved_vendor_id",
+    "approved_version",
+    "freshness_threshold_days",
+    "trusted_hash"
+  ],
+  "scenario_distribution": {
+    "benign_exception": 500,
+    "hash_mismatch": 500,
+    "invalid_signature": 500,
+    "missing_sbom": 500,
+    "rollback": 500,
+    "stale_evidence": 500,
+    "unexpected_component": 500,
+    "untrusted_vendor": 500,
+    "valid": 500,
+    "vulnerable_component": 500
+  },
+  "split_distribution": {
+    "test": 750,
+    "train": 3500,
+    "validation": 750
+  }
+}

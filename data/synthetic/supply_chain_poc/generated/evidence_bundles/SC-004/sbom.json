@@ -3,8 +3,8 @@
   "sbom_present": true,
   "sbom_format": "CycloneDX",
   "spec_version": "1.5",
-  "sbom_path": "data/synthetic/supply_chain_poc/sbom/PKG-004_sbom.json",
-  "sbom_sha256": "46e71813b069b5396f63ee4ff6a962f7d9ea600bf55aecd686c1ce12be838ef5",
+  "sbom_path": "data/synthetic/supply_chain_poc/generated/fixtures/modified_sbom/SC-004_PKG-004_sbom.json",
+  "sbom_sha256": "47b47a9e72cbf5cbb783bb0cb009905f3d8d81ce98c41a5f8b206a4ee44e4906",
   "sbom_status": "complete",
   "component_count": 3,
   "components": [

@@ -5,7 +5,7 @@
   "hash_match": true,
   "observed_package_path": "data/synthetic/supply_chain_poc/generated/fixtures/clean/PKG-002_3.1.0_clean.bin",
   "observed_package_size_bytes": 77,
-  "calculation_timestamp": "2026-08-28T10:16:22+00:00",
+  "calculation_timestamp": "2026-09-01T11:15:41+00:00",
   "integrity_status": "PASSED",
   "data_provenance": "SYNTHETIC OBSERVED EVIDENCE"
 }
