@@ -1,0 +1,4 @@
+[PASS] 500 independent lineages, each containing 10 assessments
+[PASS] No lineage crosses train/validation/test
+[PASS] Split sizes: train=3500, validation=750, test=750
+[PASS] Every split contains all three decision classes

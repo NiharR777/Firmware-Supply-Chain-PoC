@@ -1,0 +1,73 @@
+{
+  "ece_10_fixed_bins": 0.0040148079759049216,
+  "gates": {
+    "brier": true,
+    "ece": true,
+    "log_loss": true
+  },
+  "log_loss": 0.004023299165522727,
+  "multiclass_brier_sum_over_classes": 2.5753602610078386e-05,
+  "reliability_bins": [
+    {
+      "accuracy": null,
+      "bin": 0,
+      "confidence": null,
+      "count": 0
+    },
+    {
+      "accuracy": null,
+      "bin": 1,
+      "confidence": null,
+      "count": 0
+    },
+    {
+      "accuracy": null,
+      "bin": 2,
+      "confidence": null,
+      "count": 0
+    },
+    {
+      "accuracy": null,
+      "bin": 3,
+      "confidence": null,
+      "count": 0
+    },
+    {
+      "accuracy": null,
+      "bin": 4,
+      "confidence": null,
+      "count": 0
+    },
+    {
+      "accuracy": null,
+      "bin": 5,
+      "confidence": null,
+      "count": 0
+    },
+    {
+      "accuracy": null,
+      "bin": 6,
+      "confidence": null,
+      "count": 0
+    },
+    {
+      "accuracy": null,
+      "bin": 7,
+      "confidence": null,
+      "count": 0
+    },
+    {
+      "accuracy": null,
+      "bin": 8,
+      "confidence": null,
+      "count": 0
+    },
+    {
+      "accuracy": 1.0,
+      "bin": 9,
+      "confidence": 0.9959851920240951,
+      "count": 750
+    }
+  ],
+  "source": "Existing frozen prediction CSV; no refitting or threshold change"
+}

@@ -1,0 +1,140 @@
+{
+  "baseline_zip_sha256": "c21d97fa63ce6f691148159cba697dfd037cca6e46071f9a67e951f237519875",
+  "submission_zip_sha256": "3c6a90b9263143b4a1dc32c3b098cc1fd9eaaef55031ab5150733e27bc9d815d",
+  "restorations": [
+    {
+      "path": "artifacts/ml_experiment/candidate_results.json",
+      "submitted_sha256": "ca8a3074f7257c566dedbbc3a9e0ad194d3914e465fdc9993f6ad29f3cc6c381",
+      "restored_sha256": "7e95e29776944ef8b5741593afb2b09a10caf17a031bfffe1e302204403b88d5",
+      "historical_manifest_sha256": "7e95e29776944ef8b5741593afb2b09a10caf17a031bfffe1e302204403b88d5",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "artifacts/ml_experiment/deterministic_policy_fidelity.json",
+      "submitted_sha256": "484f6900323fb5e0023fc93a743cb1a2ca1b5d80005d145655a949ddd3beae1e",
+      "restored_sha256": "32fbbed96628a41f6ec4547d19d0e030b2fca5c7acf9d4a52e7dac2822fd1e9e",
+      "historical_manifest_sha256": "32fbbed96628a41f6ec4547d19d0e030b2fca5c7acf9d4a52e7dac2822fd1e9e",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "artifacts/ml_experiment/final_test_predictions.csv",
+      "submitted_sha256": "eee7fa0612d961d61f327782d852ac4c3b01119dce96c2fcf99cd67b4321b67d",
+      "restored_sha256": "aa90212277aabcba31bc04b1bccffd562188ab37fdc73515628157c1601f5e95",
+      "historical_manifest_sha256": "aa90212277aabcba31bc04b1bccffd562188ab37fdc73515628157c1601f5e95",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "artifacts/ml_experiment/global_permutation_importance.json",
+      "submitted_sha256": "79a57b093d7b5d7b5cec49229bce7631b154541f092225def9cb7dbf02f6caf6",
+      "restored_sha256": "753e50c76ec3a4f4efcfa5a59d6b1ecc4db4a2fcb6aaf1f141b6ee81f4317f62",
+      "historical_manifest_sha256": "753e50c76ec3a4f4efcfa5a59d6b1ecc4db4a2fcb6aaf1f141b6ee81f4317f62",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "artifacts/ml_experiment/local_model_sensitivity.json",
+      "submitted_sha256": "df392f0d15b613adfda266d348dc233f4a7bf28db2aa7ba9f064d147a4eceaca",
+      "restored_sha256": "b339e14c0b96076f6ba005b7b426c7730b1e3002aa219c050e9a87ed9d9a6df7",
+      "historical_manifest_sha256": "b339e14c0b96076f6ba005b7b426c7730b1e3002aa219c050e9a87ed9d9a6df7",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "artifacts/ml_experiment/metrics.json",
+      "submitted_sha256": "2c39c4da5f4a42b864dc93bd972e9ca77bc4888ec3f3c95c6e0791aceb2cb3f2",
+      "restored_sha256": "aca61f31d9c8a056962362500d4acaa08979a0165ee92e8a76be253ffa566cac",
+      "historical_manifest_sha256": "aca61f31d9c8a056962362500d4acaa08979a0165ee92e8a76be253ffa566cac",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "artifacts/ml_experiment/ml_assurance_assertions.json",
+      "submitted_sha256": "3d00bcab1a03ab2b010ac0af1fddc9573569de8be8823dd8915b7a5624f01d9d",
+      "restored_sha256": "82d624b04ba32656a4d6c893f07b8b754288b9a341ae077cf173757147dcb67e",
+      "historical_manifest_sha256": "82d624b04ba32656a4d6c893f07b8b754288b9a341ae077cf173757147dcb67e",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "artifacts/ml_experiment/robustness_results.json",
+      "submitted_sha256": "6fd6e9fd0ebee2aee5ef5722807376835f912a887fc41e098353ed24e7ce0c0e",
+      "restored_sha256": "ae575e047ff3e7c46115d55381f534ee6cdc16500e6f3689daf984f17a90d878",
+      "historical_manifest_sha256": "ae575e047ff3e7c46115d55381f534ee6cdc16500e6f3689daf984f17a90d878",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "artifacts/ml_experiment/technical_subgroup_analysis.json",
+      "submitted_sha256": "3ca736030db9bcedf22c99c214d39aa9b2296cba3e12f920f4d4f691804c3b8d",
+      "restored_sha256": "5a020d54b2d9d738865df8b7b39d1af5df678de229a718dcb5f8c0b7ffe80c2e",
+      "historical_manifest_sha256": "5a020d54b2d9d738865df8b7b39d1af5df678de229a718dcb5f8c0b7ffe80c2e",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "models/ml/isolation_forest.joblib",
+      "submitted_sha256": "ad8fe9300ac320d347562ac0c9c0c095dbe37be465325c4930d08e5f95da9885",
+      "restored_sha256": "ad8fe9300ac320d347562ac0c9c0c095dbe37be465325c4930d08e5f95da9885",
+      "historical_manifest_sha256": "ad8fe9300ac320d347562ac0c9c0c095dbe37be465325c4930d08e5f95da9885",
+      "action": "as_submitted"
+    },
+    {
+      "path": "models/ml/selected_calibrated_model.joblib",
+      "submitted_sha256": "ef78cfbc825efaaec2adef57405dadd346237691e7413da737785895c7622e1f",
+      "restored_sha256": "ef78cfbc825efaaec2adef57405dadd346237691e7413da737785895c7622e1f",
+      "historical_manifest_sha256": "ef78cfbc825efaaec2adef57405dadd346237691e7413da737785895c7622e1f",
+      "action": "as_submitted"
+    },
+    {
+      "path": "models/ml/selected_uncalibrated_model.joblib",
+      "submitted_sha256": "04b5283db72373f32fb6210b6482ef2d157438ce8a2738b5b5ca2eee10ca8eff",
+      "restored_sha256": "04b5283db72373f32fb6210b6482ef2d157438ce8a2738b5b5ca2eee10ca8eff",
+      "historical_manifest_sha256": "04b5283db72373f32fb6210b6482ef2d157438ce8a2738b5b5ca2eee10ca8eff",
+      "action": "as_submitted"
+    },
+    {
+      "path": "data/synthetic/supply_chain_poc/dataset/engineered_features.csv",
+      "submitted_sha256": "8a830c727cdde0cef1d21d3d109a642e275b9cc623af8528d73e019282ac91ab",
+      "restored_sha256": "8a830c727cdde0cef1d21d3d109a642e275b9cc623af8528d73e019282ac91ab",
+      "historical_manifest_sha256": "8a830c727cdde0cef1d21d3d109a642e275b9cc623af8528d73e019282ac91ab",
+      "action": "as_submitted"
+    },
+    {
+      "path": "data/synthetic/supply_chain_poc/dataset/feature_metadata.json",
+      "submitted_sha256": "0eb8d704b11a2d1e46fd049b8250329dccb7b5dba122c4f8ad6466ed3787a842",
+      "restored_sha256": "1efef7c7bf94fc434485ae6b30f8a377375ee6a23c5e2a8c163410b5c5c13182",
+      "historical_manifest_sha256": "1efef7c7bf94fc434485ae6b30f8a377375ee6a23c5e2a8c163410b5c5c13182",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "data/synthetic/supply_chain_poc/dataset/generation_parameters.json",
+      "submitted_sha256": "4b73720ea1b1ff7b2358a1ba0a696fe748f9680ef9ab32f9dcb7603e1e2bcfe0",
+      "restored_sha256": "c5277deb57845da913407235ad8abbfc01561dba8637beab978a070142b0e8af",
+      "historical_manifest_sha256": "c5277deb57845da913407235ad8abbfc01561dba8637beab978a070142b0e8af",
+      "action": "restored_CRLF"
+    },
+    {
+      "path": "data/synthetic/supply_chain_poc/dataset/ground_truth_labels.csv",
+      "submitted_sha256": "b0272e46b569e9c4d6ca59fbd9651dc080fdab4c844d8cf1005366d5a64be04a",
+      "restored_sha256": "b0272e46b569e9c4d6ca59fbd9651dc080fdab4c844d8cf1005366d5a64be04a",
+      "historical_manifest_sha256": "b0272e46b569e9c4d6ca59fbd9651dc080fdab4c844d8cf1005366d5a64be04a",
+      "action": "as_submitted"
+    },
+    {
+      "path": "data/synthetic/supply_chain_poc/dataset/observable_features.csv",
+      "submitted_sha256": "8dedca1e9315d8d1107de50ab661b957405d1b856e17faab6a84f8af1cf067c1",
+      "restored_sha256": "8dedca1e9315d8d1107de50ab661b957405d1b856e17faab6a84f8af1cf067c1",
+      "historical_manifest_sha256": "8dedca1e9315d8d1107de50ab661b957405d1b856e17faab6a84f8af1cf067c1",
+      "action": "as_submitted"
+    },
+    {
+      "path": "data/synthetic/supply_chain_poc/dataset/reference_data.csv",
+      "submitted_sha256": "053bada9e03b256eaabc78b23fb9c8d377815f9b75305fc04740ba5735c3f9af",
+      "restored_sha256": "053bada9e03b256eaabc78b23fb9c8d377815f9b75305fc04740ba5735c3f9af",
+      "historical_manifest_sha256": "053bada9e03b256eaabc78b23fb9c8d377815f9b75305fc04740ba5735c3f9af",
+      "action": "as_submitted"
+    },
+    {
+      "path": "data/synthetic/supply_chain_poc/dataset/split_assignments.csv",
+      "submitted_sha256": "4519c27a96776084c5aa5663598c13b40a37202029787e7355cfd903fb9d3c9d",
+      "restored_sha256": "4519c27a96776084c5aa5663598c13b40a37202029787e7355cfd903fb9d3c9d",
+      "historical_manifest_sha256": "4519c27a96776084c5aa5663598c13b40a37202029787e7355cfd903fb9d3c9d",
+      "action": "as_submitted"
+    }
+  ],
+  "note": "Only bytes matching existing historical hashes restored. Original ZIP and manifest preserved. No results or models fitted/changed."
+}

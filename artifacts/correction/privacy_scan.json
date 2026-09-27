@@ -1,0 +1,137 @@
+{
+  "files": [
+    {
+      "fields": [
+        "record_id",
+        "hash_mismatch",
+        "signature_invalid",
+        "trusted_root_invalid",
+        "vendor_mismatch",
+        "vendor_untrusted",
+        "sbom_missing",
+        "sbom_incomplete",
+        "version_changed",
+        "version_major_delta",
+        "unauthorized_rollback",
+        "vulnerability_present",
+        "vulnerability_applicable",
+        "unexpected_component",
+        "evidence_age_days",
+        "stale_evidence",
+        "package_size_mb",
+        "component_count",
+        "component_count_delta",
+        "known_vulnerability_count",
+        "max_cvss_score",
+        "hard_failure_count",
+        "evidence_issue_count"
+      ],
+      "path": "data/synthetic/supply_chain_poc/dataset/engineered_features.csv",
+      "records": 5000,
+      "sha256": "8a830c727cdde0cef1d21d3d109a642e275b9cc623af8528d73e019282ac91ab"
+    },
+    {
+      "fields": [
+        "record_id",
+        "ground_truth_label",
+        "ground_truth_score",
+        "ground_truth_factors"
+      ],
+      "path": "data/synthetic/supply_chain_poc/dataset/ground_truth_labels.csv",
+      "records": 5000,
+      "sha256": "b0272e46b569e9c4d6ca59fbd9651dc080fdab4c844d8cf1005366d5a64be04a"
+    },
+    {
+      "fields": [
+        "record_id",
+        "package_id",
+        "lineage_id",
+        "product_id",
+        "asset_id",
+        "observed_vendor_id",
+        "observed_hash",
+        "signature_valid",
+        "trusted_root_valid",
+        "sbom_present",
+        "sbom_complete",
+        "observed_version",
+        "rollback_authorized",
+        "vulnerability_present",
+        "vulnerability_applicable",
+        "unexpected_component",
+        "evidence_age_days",
+        "package_size_bytes",
+        "component_count",
+        "known_vulnerability_count",
+        "max_cvss_score",
+        "record_seed",
+        "run_id"
+      ],
+      "path": "data/synthetic/supply_chain_poc/dataset/observable_features.csv",
+      "records": 5000,
+      "sha256": "8dedca1e9315d8d1107de50ab661b957405d1b856e17faab6a84f8af1cf067c1"
+    },
+    {
+      "fields": [
+        "reference_type",
+        "reference_id",
+        "name",
+        "trusted",
+        "version"
+      ],
+      "path": "data/synthetic/supply_chain_poc/dataset/reference_catalog.csv",
+      "records": 12,
+      "sha256": "e8d4cf03ae2396b86f3ef6f882105982ac514dd895d7c29931a118e2829032e0"
+    },
+    {
+      "fields": [
+        "record_id",
+        "package_id",
+        "lineage_id",
+        "approved_vendor_id",
+        "trusted_hash",
+        "approved_version",
+        "freshness_threshold_days",
+        "approved_component_count",
+        "reference_profile_version"
+      ],
+      "path": "data/synthetic/supply_chain_poc/dataset/reference_data.csv",
+      "records": 5000,
+      "sha256": "053bada9e03b256eaabc78b23fb9c8d377815f9b75305fc04740ba5735c3f9af"
+    },
+    {
+      "fields": [
+        "scenario_manifest_id",
+        "record_id",
+        "package_id",
+        "lineage_id",
+        "scenario_type",
+        "injected_conditions",
+        "attack_parameters",
+        "generator_version",
+        "record_seed",
+        "run_id"
+      ],
+      "path": "data/synthetic/supply_chain_poc/dataset/scenario_manifests.csv",
+      "records": 5000,
+      "sha256": "cf3efe804dd75098ca63b666e1c48eaa1884c3633273bf20803b346f935ddb9a"
+    },
+    {
+      "fields": [
+        "record_id",
+        "package_id",
+        "split",
+        "group_id",
+        "run_id"
+      ],
+      "path": "data/synthetic/supply_chain_poc/dataset/split_assignments.csv",
+      "records": 5000,
+      "sha256": "4519c27a96776084c5aa5663598c13b40a37202029787e7355cfd903fb9d3c9d"
+    }
+  ],
+  "findings": [],
+  "limitation": "Pattern checks are not proof of absence of all personal or confidential information.",
+  "schema_review": "Synthetic record/asset/vendor/product identifiers and evidence fields; no direct personal-data columns expected.",
+  "scope": "Frozen dataset CSV fields and values only; does not scan proprietary firmware, binary models or arbitrary archives.",
+  "status": "PASS_LIMITED_SCAN"
+}

@@ -1,0 +1,1874 @@
+{
+  "all_pass": true,
+  "boundary": "Offline guard only. No policy decision is overwritten and no rejected model is activated.",
+  "cases": [
+    {
+      "case": "valid_training_record",
+      "expected": "INPUT_VALID",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [],
+        "review_route": null,
+        "status": "INPUT_VALID"
+      }
+    },
+    {
+      "case": "nonmapping",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "input_must_be_a_mapping"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:hash_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:hash_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:hash_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:hash_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:hash_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:hash_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:hash_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:hash_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:hash_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:hash_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:hash_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:signature_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:signature_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:signature_invalid"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:signature_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:signature_invalid"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:signature_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:signature_invalid"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:signature_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:signature_invalid"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:signature_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:signature_invalid"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:trusted_root_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:trusted_root_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:trusted_root_invalid"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:trusted_root_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:trusted_root_invalid"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:trusted_root_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:trusted_root_invalid"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:trusted_root_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:trusted_root_invalid"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:trusted_root_invalid",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:trusted_root_invalid"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:vendor_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:vendor_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vendor_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:vendor_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vendor_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:vendor_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vendor_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:vendor_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vendor_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:vendor_mismatch",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vendor_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:vendor_untrusted",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:vendor_untrusted",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vendor_untrusted"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:vendor_untrusted",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vendor_untrusted"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:vendor_untrusted",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vendor_untrusted"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:vendor_untrusted",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vendor_untrusted"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:vendor_untrusted",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vendor_untrusted"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:sbom_missing",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:sbom_missing",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:sbom_missing"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:sbom_missing",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:sbom_missing"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:sbom_missing",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:sbom_missing"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:sbom_missing",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:sbom_missing"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:sbom_missing",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:sbom_missing"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:sbom_incomplete",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:sbom_incomplete",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:sbom_incomplete"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:sbom_incomplete",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:sbom_incomplete"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:sbom_incomplete",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:sbom_incomplete"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:sbom_incomplete",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:sbom_incomplete"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:sbom_incomplete",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:sbom_incomplete"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:version_changed",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:version_changed",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:version_changed"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:version_changed",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:version_changed"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:version_changed",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:version_changed"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:version_changed",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:version_changed"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:version_changed",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:version_changed"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:version_major_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:version_major_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:version_major_delta"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:version_major_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:version_major_delta"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:version_major_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:version_major_delta"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:version_major_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:version_major_delta"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:version_major_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:version_major_delta"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:unauthorized_rollback",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:unauthorized_rollback",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:unauthorized_rollback"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:unauthorized_rollback",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:unauthorized_rollback"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:unauthorized_rollback",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:unauthorized_rollback"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:unauthorized_rollback",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:unauthorized_rollback"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:unauthorized_rollback",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:unauthorized_rollback"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:vulnerability_present",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:vulnerability_present",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vulnerability_present"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:vulnerability_present",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vulnerability_present"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:vulnerability_present",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vulnerability_present"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:vulnerability_present",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vulnerability_present"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:vulnerability_present",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vulnerability_present"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:vulnerability_applicable",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:vulnerability_applicable",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vulnerability_applicable"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:vulnerability_applicable",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vulnerability_applicable"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:vulnerability_applicable",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vulnerability_applicable"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:vulnerability_applicable",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vulnerability_applicable"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:vulnerability_applicable",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:vulnerability_applicable"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:unexpected_component",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:unexpected_component",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:unexpected_component"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:unexpected_component",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:unexpected_component"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:unexpected_component",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:unexpected_component"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:unexpected_component",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:unexpected_component"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:unexpected_component",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:unexpected_component"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:evidence_age_days",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:evidence_age_days",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:evidence_age_days"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:evidence_age_days",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:evidence_age_days"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:evidence_age_days",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:evidence_age_days"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:evidence_age_days",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:evidence_age_days"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:evidence_age_days",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:evidence_age_days"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:stale_evidence",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:stale_evidence",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:stale_evidence"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:stale_evidence",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:stale_evidence"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:stale_evidence",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:stale_evidence"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:stale_evidence",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:stale_evidence"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:stale_evidence",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:stale_evidence"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:package_size_mb",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:package_size_mb",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:package_size_mb"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:package_size_mb",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:package_size_mb"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:package_size_mb",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:package_size_mb"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:package_size_mb",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:package_size_mb"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:package_size_mb",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:package_size_mb"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:component_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:component_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:component_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:component_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:component_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:component_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:component_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:component_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:component_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:component_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:component_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:component_count_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:component_count_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:component_count_delta"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:component_count_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:component_count_delta"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:component_count_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:component_count_delta"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:component_count_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:component_count_delta"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:component_count_delta",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:component_count_delta"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:known_vulnerability_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:known_vulnerability_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:known_vulnerability_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:known_vulnerability_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:known_vulnerability_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:known_vulnerability_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:known_vulnerability_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:known_vulnerability_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:known_vulnerability_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:known_vulnerability_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:known_vulnerability_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:max_cvss_score",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:max_cvss_score",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:max_cvss_score"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:max_cvss_score",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:max_cvss_score"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:max_cvss_score",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:max_cvss_score"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:max_cvss_score",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:max_cvss_score"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:max_cvss_score",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:max_cvss_score"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:hard_failure_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:hard_failure_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:hard_failure_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:hard_failure_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:hard_failure_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:hard_failure_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:hard_failure_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:hard_failure_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:hard_failure_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:hard_failure_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:hard_failure_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "missing:evidence_issue_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "null:evidence_issue_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:evidence_issue_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "string:evidence_issue_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:evidence_issue_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "nan:evidence_issue_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:evidence_issue_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "pos_inf:evidence_issue_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:evidence_issue_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "neg_inf:evidence_issue_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_numeric:evidence_issue_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "forbidden_extra_label",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "feature_schema_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "invalid_boolean",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "invalid_boolean:hash_mismatch"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "fractional_component_count",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "noninteger:component_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "cvss_range",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "cvss_out_of_range"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "negative_age",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "negative:evidence_age_days"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "contradictory_aggregate",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "contradictory_hard_failure_count"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "extreme_valid_range_ood",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "outside_training_envelope:package_size_mb"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "ood_combination",
+      "expected": "ABSTAIN",
+      "pass": true,
+      "result": {
+        "ml_score": null,
+        "reasons": [
+          "unseen_binary_combination"
+        ],
+        "review_route": "investigate",
+        "status": "ABSTAIN"
+      }
+    },
+    {
+      "case": "rejected_model_cannot_score_hash_mismatch",
+      "pass": true
+    },
+    {
+      "case": "rejected_model_cannot_score_signature_invalid",
+      "pass": true
+    },
+    {
+      "case": "rejected_model_cannot_score_trusted_root_invalid",
+      "pass": true
+    },
+    {
+      "case": "rejected_model_cannot_score_vendor_untrusted",
+      "pass": true
+    },
+    {
+      "case": "rejected_model_cannot_score_unauthorized_rollback",
+      "pass": true
+    }
+  ],
+  "not_used_for_fitting_or_selection": true,
+  "profile_fit_split": "train",
+  "seed": 20260903,
+  "version": "correction-suite-1"
+}

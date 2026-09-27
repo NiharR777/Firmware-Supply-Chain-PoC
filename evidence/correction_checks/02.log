@@ -1,0 +1,9 @@
+[PASS] 5,000 aligned records
+[PASS] Observed/reference/manifest/label separation
+[PASS] All records regenerate from their recorded seeds
+[PASS] All labels match deterministic risk policy
+[PASS] Normal records use trusted vendors
+[PASS] 500 lineage groups x 10 records; no cross-split groups
+[PASS] Dataset hashes verified
+Decision distribution: {'high_risk': 2000, 'investigate': 2000, 'normal': 1000}
+Dataset validation passed. This check does not approve any ML experiment; see correction review status.

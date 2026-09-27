@@ -4,7 +4,7 @@
   "sbom_format": "CycloneDX",
   "spec_version": "1.5",
   "sbom_path": "data/synthetic/supply_chain_poc/sbom/PKG-005_sbom.json",
-  "sbom_sha256": "852ac4d3691c0d253a7609b1f8c98196162fb46be3ff1add26bbdb10974e866a",
+  "sbom_sha256": "73b7cf661d8b3c6b0f6eb76ca493391dc84e7ef23f80275ccef7c746689150ec",
   "sbom_status": "complete",
   "component_count": 3,
   "components": [

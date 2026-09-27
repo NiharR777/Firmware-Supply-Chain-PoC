@@ -1,0 +1,63 @@
+{
+  "checked_at_utc": "2026-09-12T05:01:43.882391+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "results": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp",
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-08-26\\urai-firmware-nihar\\work\\ml_correction_checks\\correction-checks-exh0ydwh\\pytest-temp"
+      ],
+      "exit_code": 0,
+      "log": "01.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/validate_dataset.py"
+      ],
+      "exit_code": 0,
+      "log": "02.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/validate_grouped_split.py"
+      ],
+      "exit_code": 0,
+      "log": "03.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/validate_schemas.py"
+      ],
+      "exit_code": 0,
+      "log": "04.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/verify_evidence_bundle.py"
+      ],
+      "exit_code": 0,
+      "log": "05.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/validate_correction.py"
+      ],
+      "exit_code": 0,
+      "log": "06.log"
+    }
+  ],
+  "all_checks_pass": true,
+  "experiment_status": "REJECTED",
+  "training_performed": false
+}

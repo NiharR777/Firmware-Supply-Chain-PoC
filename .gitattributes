@@ -1,0 +1,4 @@
+# This is a sealed evidence snapshot with byte-level hashes. Preserve ALL bytes
+# across Git add/checkout, regardless of core.autocrlf. Do not renormalize v1.
+# A future development release can declare its own canonical text policy.
+* -text

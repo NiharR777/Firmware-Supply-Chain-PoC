@@ -105,7 +105,7 @@ def main() -> None:
     print("[PASS] 500 lineage groups x 10 records; no cross-split groups")
     print("[PASS] Dataset hashes verified")
     print("Decision distribution:", labels["ground_truth_label"].value_counts().to_dict())
-    print("Dataset validation passed; ML training and rule/ML fusion remain unimplemented.")
+    print("Dataset validation passed. This check does not approve any ML experiment; see correction review status.")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,33 @@
+{
+  "code_identity": "See package_manifest.json for complete file hashes; source ZIPs do not contain a verifiable Git commit.",
+  "original_git_commit": null,
+  "original_training_runtime": "Not supplied; original requirements are claims, not execution evidence",
+  "packages": {
+    "Pygments": "2.21.0",
+    "attrs": "26.1.0",
+    "colorama": "0.4.6",
+    "iniconfig": "2.3.0",
+    "joblib": "1.5.3",
+    "jsonschema": "4.26.0",
+    "jsonschema-specifications": "2025.9.1",
+    "narwhals": "2.26.0",
+    "numpy": "2.5.3",
+    "packaging": "26.3",
+    "pandas": "3.0.5",
+    "pip": "25.0.1",
+    "pluggy": "1.6.0",
+    "pytest": "9.1.1",
+    "python-dateutil": "2.9.0.post0",
+    "referencing": "0.37.0",
+    "rpds-py": "2026.6.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1",
+    "six": "1.17.0",
+    "threadpoolctl": "3.6.0",
+    "typing_extensions": "4.16.0",
+    "tzdata": "2026.3"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.14",
+  "scope": "Correction review runtime, NOT the original training runtime"
+}

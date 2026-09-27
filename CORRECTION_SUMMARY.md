@@ -10,6 +10,9 @@
 - Replaced print-only checks with assertion-based tests.
 - Rebuilt the synthetic dataset as 5,000 assessments across 500 package lineages, with ten records per lineage and reproducible per-record seeds.
 - Produced a leakage-safe 22-column numeric feature matrix from observed and reference data only.
+- Added a reproducible pre-ML framework benchmark using the official CycloneDX 1.5 schema plus explicit SLSA 1.2 and NIST coverage/gap mappings.
+- Corrected CycloneDX serial numbers to deterministic RFC 4122 UUIDs and separated canonical SBOMs from scenario-modified SBOM artifacts.
+- Added LF enforcement for byte-hashed generated CSV/JSON artifacts.
 - Removed the premature ten-fixture ML model, ML predictions, agreement output, and API code. The fixtures remain tests, not training data.
 
 ## Dataset contract
@@ -41,11 +44,12 @@ python scripts/generate_dataset.py
 python scripts/feature_engineering.py
 python scripts/validate_dataset.py
 python scripts/validate_grouped_split.py
+python scripts/framework_benchmark.py
 python -m pytest -q
 ```
 
-## Current gate and next step
+## Historical baseline gate (superseded by the 12 September correction)
 
-Corrections, dataset generation, dataset validation, grouped splitting, and feature engineering are complete and testable. The single next gate is to agree the ML training/evaluation specification, then train and evaluate candidate models using only the grouped split. Do not implement rule/ML fusion, API, or dashboard integration until model discrimination, calibration, subgroup behavior, and reproducibility are accepted.
+The preceding changes and generation commands describe the pre-ML baseline. Do not rerun generation against the frozen files. The current correction is documented in `docs/CORRECTION_HANDOVER.md`. Experiment v1 was completed with protocol deviations and remains REJECTED. Next: Nihar verifies the corrected archive and fresh Git checkout. Any new experiment requires a separately approved protocol and quarantined holdout.
 
 Later fusion must preserve deterministic hard-failure precedence. ML should remain advisory, and rule/ML disagreement should be recorded as an investigation/observability signal rather than silently overriding concrete evidence.
