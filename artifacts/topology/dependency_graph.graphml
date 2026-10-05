@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d7" for="edge" attr.name="dependency_type" attr.type="string" />
+  <key id="d6" for="node" attr.name="component_type" attr.type="string" />
+  <key id="d5" for="node" attr.name="supplier" attr.type="string" />
+  <key id="d4" for="node" attr.name="component_id" attr.type="string" />
+  <key id="d3" for="node" attr.name="version" attr.type="string" />
+  <key id="d2" for="node" attr.name="name" attr.type="string" />
+  <key id="d1" for="node" attr.name="package_id" attr.type="string" />
+  <key id="d0" for="node" attr.name="node_type" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="PACKAGE:PKG-001">
+      <data key="d0">package</data>
+      <data key="d1">PKG-001</data>
+      <data key="d2">Refinery PLC Firmware Update</data>
+      <data key="d3">2.4.1</data>
+    </node>
+    <node id="PACKAGE:PKG-002">
+      <data key="d0">package</data>
+      <data key="d1">PKG-002</data>
+      <data key="d2">Distillation DCS Controller Firmware</data>
+      <data key="d3">3.1.0</data>
+    </node>
+    <node id="PACKAGE:PKG-003">
+      <data key="d0">package</data>
+      <data key="d1">PKG-003</data>
+      <data key="d2">SIS Safety Controller Firmware</data>
+      <data key="d3">1.8.2</data>
+    </node>
+    <node id="PACKAGE:PKG-004">
+      <data key="d0">package</data>
+      <data key="d1">PKG-004</data>
+      <data key="d2">Industrial OPC Gateway Firmware</data>
+      <data key="d3">5.2.0</data>
+    </node>
+    <node id="PACKAGE:PKG-005">
+      <data key="d0">package</data>
+      <data key="d1">PKG-005</data>
+      <data key="d2">Tank Farm RTU Firmware</data>
+      <data key="d3">4.0.1</data>
+    </node>
+    <node id="COMPONENT:COMP-001">
+      <data key="d0">component</data>
+      <data key="d4">COMP-001</data>
+      <data key="d2">OpenSSL</data>
+      <data key="d3">3.0.12</data>
+      <data key="d5">OpenSource</data>
+      <data key="d6">library</data>
+    </node>
+    <node id="COMPONENT:COMP-002">
+      <data key="d0">component</data>
+      <data key="d4">COMP-002</data>
+      <data key="d2">cURL</data>
+      <data key="d3">8.4.0</data>
+      <data key="d5">OpenSource</data>
+      <data key="d6">library</data>
+    </node>
+    <node id="COMPONENT:COMP-003">
+      <data key="d0">component</data>
+      <data key="d4">COMP-003</data>
+      <data key="d2">zlib</data>
+      <data key="d3">1.3</data>
+      <data key="d5">OpenSource</data>
+      <data key="d6">library</data>
+    </node>
+    <node id="COMPONENT:COMP-004">
+      <data key="d0">component</data>
+      <data key="d4">COMP-004</data>
+      <data key="d2">Linux Embedded Kernel</data>
+      <data key="d3">6.1</data>
+      <data key="d5">OpenSource</data>
+      <data key="d6">operating_system</data>
+    </node>
+    <node id="COMPONENT:COMP-005">
+      <data key="d0">component</data>
+      <data key="d4">COMP-005</data>
+      <data key="d2">BusyBox</data>
+      <data key="d3">1.36.1</data>
+      <data key="d5">OpenSource</data>
+      <data key="d6">utility</data>
+    </node>
+    <node id="COMPONENT:COMP-006">
+      <data key="d0">component</data>
+      <data key="d4">COMP-006</data>
+      <data key="d2">PLC Device Driver Pack</data>
+      <data key="d3">2.2.0</data>
+      <data key="d5">PetroControl Automation</data>
+      <data key="d6">driver</data>
+    </node>
+    <node id="COMPONENT:COMP-007">
+      <data key="d0">component</data>
+      <data key="d4">COMP-007</data>
+      <data key="d2">Industrial Network Manager</data>
+      <data key="d3">4.1.0</data>
+      <data key="d5">Refinery Safety Systems</data>
+      <data key="d6">application</data>
+    </node>
+    <node id="COMPONENT:COMP-008">
+      <data key="d0">component</data>
+      <data key="d4">COMP-008</data>
+      <data key="d2">Controller Access Library</data>
+      <data key="d3">1.5.2</data>
+      <data key="d5">Refinery Safety Systems</data>
+      <data key="d6">library</data>
+    </node>
+    <edge source="PACKAGE:PKG-001" target="COMPONENT:COMP-001">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-001" target="COMPONENT:COMP-002">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-001" target="COMPONENT:COMP-003">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-001" target="COMPONENT:COMP-006">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-002" target="COMPONENT:COMP-001">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-002" target="COMPONENT:COMP-002">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-002" target="COMPONENT:COMP-005">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-002" target="COMPONENT:COMP-004">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-003" target="COMPONENT:COMP-002">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-003" target="COMPONENT:COMP-007">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-003" target="COMPONENT:COMP-003">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-004" target="COMPONENT:COMP-001">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-004" target="COMPONENT:COMP-004">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-004" target="COMPONENT:COMP-006">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-005" target="COMPONENT:COMP-008">
+      <data key="d7">runtime</data>
+    </edge>
+    <edge source="PACKAGE:PKG-005" target="COMPONENT:COMP-003">
+      <data key="d7">runtime</data>
+    </edge>
+  </graph>
+</graphml>

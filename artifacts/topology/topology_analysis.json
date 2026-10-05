@@ -1,0 +1,203 @@
+{
+  "analysis": {
+    "name": "Firmware Dependency Topology Analysis",
+    "data_provenance": "SYNTHETIC SCHEMA DATA",
+    "purpose": "Analyze firmware package and component dependency relationships before deployment."
+  },
+  "algorithm": {
+    "step_1": "Load package, component and dependency records.",
+    "step_2": "Represent packages and components as graph nodes.",
+    "step_3": "Represent package-to-component dependencies as directed edges.",
+    "step_4": "Calculate dependency counts and component reuse.",
+    "step_5": "Identify shared components across firmware packages.",
+    "step_6": "Apply Isolation Forest to structural component features.",
+    "step_7": "Flag topology anomalies for further investigation.",
+    "step_8": "Provide topology evidence to the broader security assessment without replacing deterministic controls."
+  },
+  "graph_metrics": {
+    "total_nodes": 13,
+    "total_edges": 16,
+    "package_nodes": 5,
+    "component_nodes": 8,
+    "density": 0.10256410256410256,
+    "component_degree_centrality": {
+      "COMPONENT:COMP-001": 0.25,
+      "COMPONENT:COMP-002": 0.25,
+      "COMPONENT:COMP-003": 0.25,
+      "COMPONENT:COMP-004": 0.16666666666666666,
+      "COMPONENT:COMP-005": 0.08333333333333333,
+      "COMPONENT:COMP-006": 0.16666666666666666,
+      "COMPONENT:COMP-007": 0.08333333333333333,
+      "COMPONENT:COMP-008": 0.08333333333333333
+    }
+  },
+  "shared_components": [
+    {
+      "component_id": "COMP-001",
+      "component_name": "OpenSSL",
+      "version": "3.0.12",
+      "supplier": "OpenSource",
+      "component_type": "library",
+      "package_count": 3
+    },
+    {
+      "component_id": "COMP-002",
+      "component_name": "cURL",
+      "version": "8.4.0",
+      "supplier": "OpenSource",
+      "component_type": "library",
+      "package_count": 3
+    },
+    {
+      "component_id": "COMP-003",
+      "component_name": "zlib",
+      "version": "1.3",
+      "supplier": "OpenSource",
+      "component_type": "library",
+      "package_count": 3
+    },
+    {
+      "component_id": "COMP-004",
+      "component_name": "Linux Embedded Kernel",
+      "version": "6.1",
+      "supplier": "OpenSource",
+      "component_type": "operating_system",
+      "package_count": 2
+    },
+    {
+      "component_id": "COMP-006",
+      "component_name": "PLC Device Driver Pack",
+      "version": "2.2.0",
+      "supplier": "PetroControl Automation",
+      "component_type": "driver",
+      "package_count": 2
+    }
+  ],
+  "topology_anomalies": [
+    {
+      "component_id": "COMP-001",
+      "component_name": "OpenSSL",
+      "version": "3.0.12",
+      "supplier": "OpenSource",
+      "component_type": "library",
+      "package_count": 3,
+      "dependency_count": 3,
+      "anomaly_score": -0.06531553425271908,
+      "interpretation": "Structurally unusual component requiring security investigation; not automatically malicious."
+    },
+    {
+      "component_id": "COMP-002",
+      "component_name": "cURL",
+      "version": "8.4.0",
+      "supplier": "OpenSource",
+      "component_type": "library",
+      "package_count": 3,
+      "dependency_count": 3,
+      "anomaly_score": -0.06531553425271908,
+      "interpretation": "Structurally unusual component requiring security investigation; not automatically malicious."
+    },
+    {
+      "component_id": "COMP-003",
+      "component_name": "zlib",
+      "version": "1.3",
+      "supplier": "OpenSource",
+      "component_type": "library",
+      "package_count": 3,
+      "dependency_count": 3,
+      "anomaly_score": -0.06531553425271908,
+      "interpretation": "Structurally unusual component requiring security investigation; not automatically malicious."
+    },
+    {
+      "component_id": "COMP-004",
+      "component_name": "Linux Embedded Kernel",
+      "version": "6.1",
+      "supplier": "OpenSource",
+      "component_type": "operating_system",
+      "package_count": 2,
+      "dependency_count": 2,
+      "anomaly_score": -0.03213909623826483,
+      "interpretation": "Structurally unusual component requiring security investigation; not automatically malicious."
+    },
+    {
+      "component_id": "COMP-005",
+      "component_name": "BusyBox",
+      "version": "1.36.1",
+      "supplier": "OpenSource",
+      "component_type": "utility",
+      "package_count": 1,
+      "dependency_count": 1,
+      "anomaly_score": -0.06650555005392889,
+      "interpretation": "Structurally unusual component requiring security investigation; not automatically malicious."
+    },
+    {
+      "component_id": "COMP-006",
+      "component_name": "PLC Device Driver Pack",
+      "version": "2.2.0",
+      "supplier": "PetroControl Automation",
+      "component_type": "driver",
+      "package_count": 2,
+      "dependency_count": 2,
+      "anomaly_score": -0.03213909623826483,
+      "interpretation": "Structurally unusual component requiring security investigation; not automatically malicious."
+    },
+    {
+      "component_id": "COMP-007",
+      "component_name": "Industrial Network Manager",
+      "version": "4.1.0",
+      "supplier": "Refinery Safety Systems",
+      "component_type": "application",
+      "package_count": 1,
+      "dependency_count": 1,
+      "anomaly_score": -0.06650555005392889,
+      "interpretation": "Structurally unusual component requiring security investigation; not automatically malicious."
+    },
+    {
+      "component_id": "COMP-008",
+      "component_name": "Controller Access Library",
+      "version": "1.5.2",
+      "supplier": "Refinery Safety Systems",
+      "component_type": "library",
+      "package_count": 1,
+      "dependency_count": 1,
+      "anomaly_score": -0.06650555005392889,
+      "interpretation": "Structurally unusual component requiring security investigation; not automatically malicious."
+    }
+  ],
+  "packages": [
+    {
+      "package_id": "PKG-001",
+      "package_name": "Refinery PLC Firmware Update",
+      "current_version": "2.4.1",
+      "dependency_count": 4,
+      "unique_component_count": 4
+    },
+    {
+      "package_id": "PKG-002",
+      "package_name": "Distillation DCS Controller Firmware",
+      "current_version": "3.1.0",
+      "dependency_count": 4,
+      "unique_component_count": 4
+    },
+    {
+      "package_id": "PKG-003",
+      "package_name": "SIS Safety Controller Firmware",
+      "current_version": "1.8.2",
+      "dependency_count": 3,
+      "unique_component_count": 3
+    },
+    {
+      "package_id": "PKG-004",
+      "package_name": "Industrial OPC Gateway Firmware",
+      "current_version": "5.2.0",
+      "dependency_count": 3,
+      "unique_component_count": 3
+    },
+    {
+      "package_id": "PKG-005",
+      "package_name": "Tank Farm RTU Firmware",
+      "current_version": "4.0.1",
+      "dependency_count": 2,
+      "unique_component_count": 2
+    }
+  ]
+}
