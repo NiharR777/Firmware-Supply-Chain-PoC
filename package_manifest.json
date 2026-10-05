@@ -265,7 +265,13 @@
     "src/supply_chain/test_decision_engine.py": "c93af9f888423075bf3773e5caafd2a648fc9870413825bf548187c4c2b6b48f",
     "src/supply_chain/test_framework_benchmark.py": "b05d190b8aaf752381b6c41e3c6dc53cfce7752500ec6d3364c12e423eb059c8",
     "src/supply_chain/test_ml_correction.py": "a7c5ca1b3a073ccdf58ec737777cd030a6eadc2d14bf2263429fdddc2839278e",
-    "src/supply_chain/test_risk_model.py": "f9ad49dca14b4baaa5855d0bf5f26a1fba8e1101910e2bd54e68b2c6345f3d78"
+    "src/supply_chain/test_risk_model.py": "f9ad49dca14b4baaa5855d0bf5f26a1fba8e1101910e2bd54e68b2c6345f3d78",
+    "artifacts/topology/component_topology_features.csv": "dc651453508594c3560ade65d47308a45d6949e1c0fc40381fe63269abde3a4e",
+    "artifacts/topology/dependency_graph.graphml": "205ca5030eb78422aad4d0b2ce7d0292ec0570373ce71e24669a0afecaef5309",
+    "artifacts/topology/package_topology_features.csv": "337ee896d7c2f6ab13705fa0da2c9b9ddae7466918ead00716eadb871338b5c2",
+    "artifacts/topology/topology_analysis.json": "4620136fe34470b64f64beaf26180afb09b1f49b6d95e2a8c799c925f7427ee6",
+    "notebooks/Firmware_Supply_Chain_Experiment_V2_Validation.ipynb": "422bbca5afe084f8c05b38e41259042aa447dd982eda6176f602506ee345831e",
+    "scripts/dependency_topology_analysis.py": "aedd82abbc5d034a6e5d20c4e19e25bbbabd5d3120a8a402d1b639935352ab92"
   },
   "scope": "Every distributed file except this self-referential manifest; ZIP SHA-256 is supplied separately.",
   "version": "correction-20260912-v1"
