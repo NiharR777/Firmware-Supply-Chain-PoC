@@ -10,3 +10,10 @@ __pycache__/
 data/generated/
 models/*.joblib
 models/*.pkl
+
+# Dashboard runtime data - keep local
+artifacts/dashboard/audit.jsonl
+artifacts/dashboard/workflow_state.json
+
+# Local backups
+backups/
