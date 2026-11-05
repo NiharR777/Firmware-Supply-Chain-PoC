@@ -466,6 +466,175 @@ def metrics():
     }
 
 
+def _performance_bundle_record(scenario_id: str) -> dict[str, Any]:
+    """Return observed fields from one predefined synthetic evidence bundle."""
+    directory = bundle(scenario_id)
+    package = read_json(directory / "package.json")
+    sbom = read_json(directory / "sbom.json")
+    signature = read_json(directory / "signature_evidence.json")
+    vendor = read_json(directory / "vendor_evidence.json")
+    asset = read_json(directory / "asset_mapping.json")
+
+    sbom_present = sbom.get("sbom_present") is True
+    sbom_complete = sbom_present and sbom.get("sbom_status") == "complete"
+    signature_valid = signature.get("signature_status") == "valid"
+    trusted_root = signature.get("trusted_root_status") == "trusted"
+    vendor_trusted = vendor.get("vendor_trust_status") == "trusted"
+    vex_status = str(sbom.get("vulnerability_status", "unknown")).lower()
+
+    return {
+        "scenario_id": scenario_id,
+        "package_id": package.get("package_id"),
+        "asset_name": asset.get("asset_name"),
+        "device_type": asset.get("device_type"),
+        "sbom_present": sbom_present,
+        "sbom_complete": sbom_complete,
+        "signature_valid": signature_valid,
+        "trusted_root": trusted_root,
+        "signature_compliant": signature_valid and trusted_root,
+        "vendor_trusted": vendor_trusted,
+        "vex_status": vex_status,
+        "vex_explicit": vex_status in ("affected", "not_affected"),
+        "component_count": sbom.get("component_count"),
+    }
+
+
+@app.get("/api/performance-dashboard")
+def performance_dashboard():
+    """
+    Aggregate only fields actually present in the ten synthetic bundles.
+    These are bundle-level demonstration indicators, not plant-wide OT KPIs.
+    """
+    records = []
+    unavailable = []
+    for scenario_id in SCENARIO_IDS:
+        try:
+            records.append(_performance_bundle_record(scenario_id))
+        except (HTTPException, FileNotFoundError, ValueError, json.JSONDecodeError):
+            unavailable.append(scenario_id)
+
+    total = len(records)
+
+    def percentage(numerator: int, denominator: int):
+        return round((numerator / denominator) * 100, 1) if denominator else None
+
+    sbom_complete = sum(1 for row in records if row["sbom_complete"])
+    signature_compliant = sum(1 for row in records if row["signature_compliant"])
+    vendor_trusted = sum(1 for row in records if row["vendor_trusted"])
+    vex_explicit = sum(1 for row in records if row["vex_explicit"])
+    vex_affected = sum(1 for row in records if row["vex_status"] == "affected")
+    vex_not_affected = sum(1 for row in records if row["vex_status"] == "not_affected")
+    vex_unknown = sum(1 for row in records if row["vex_status"] not in ("affected", "not_affected"))
+
+    # CVSS/EPSS severity records, asset inventory denominators, incident timestamps,
+    # CI/CD attestations and binary-analysis outputs are not present in this PoC API.
+    # Do not infer or fabricate those measurements.
+    return {
+        "data_basis": "Predefined synthetic evidence bundles; bundle-level indicators only",
+        "scope_note": (
+            "These percentages describe available scenario bundles, not deployed OT assets, "
+            "plant inventory, vendor populations, or production performance."
+        ),
+        "scenario_bundles_available": total,
+        "scenario_bundles_unavailable": unavailable,
+        "kpis": {
+            "sbom_coverage": {
+                "label": "Complete SBOM evidence",
+                "numerator": sbom_complete,
+                "denominator": total,
+                "value_percent": percentage(sbom_complete, total),
+                "target": "98% Tier-1 assets; 90% non-critical assets",
+                "basis": "Complete SBOM evidence bundles / available synthetic scenario bundles",
+                "status": "measured_on_synthetic_bundles",
+            },
+            "signature_compliance": {
+                "label": "Signature and trusted-root evidence",
+                "numerator": signature_compliant,
+                "denominator": total,
+                "value_percent": percentage(signature_compliant, total),
+                "target": "100%",
+                "basis": "Valid signature AND trusted root / available synthetic scenario bundles",
+                "status": "measured_on_synthetic_bundles",
+            },
+            "vendor_trust": {
+                "label": "Trusted vendor evidence",
+                "numerator": vendor_trusted,
+                "denominator": total,
+                "value_percent": percentage(vendor_trusted, total),
+                "target": "No numeric target specified in supplied metrics document",
+                "basis": "Bundles whose supplied vendor trust status is trusted / available bundles",
+                "status": "measured_on_synthetic_bundles",
+            },
+            "vex_coverage": {
+                "label": "Explicit VEX status coverage",
+                "numerator": vex_explicit,
+                "denominator": total,
+                "value_percent": percentage(vex_explicit, total),
+                "target": "85% of relevant alerts resolved through VEX",
+                "basis": "Bundles with affected or not_affected status / available bundles",
+                "status": "measured_on_synthetic_bundles",
+            },
+        },
+        "vex_status_counts": {
+            "affected": vex_affected,
+            "not_affected": vex_not_affected,
+            "unknown_or_missing": vex_unknown,
+        },
+        "scenario_evidence": records,
+        "not_measured": [
+            {
+                "metric": "Firmware Vulnerability Exposure Index (FVEI)",
+                "reason": "Structured CVE severity, CVSS and EPSS records are not exposed by the current dashboard evidence schema.",
+                "document_target": "Zero unmitigated Critical/High CVEs on safety-critical networks; zero-day remediation window to be defined.",
+            },
+            {
+                "metric": "Firmware MTTD / MTTR",
+                "reason": "Detection, incident, isolation and remediation timestamps are not collected.",
+                "document_target": "Operational target requires agreed incident timing definitions.",
+            },
+            {
+                "metric": "CI/CD artifact attestation",
+                "reason": "No SLSA/build provenance attestation evidence is present in the current bundles.",
+                "document_target": "100% for safety-instrumented and station-automation software.",
+            },
+            {
+                "metric": "Firmware binary parsing accuracy and coverage",
+                "reason": "The current PoC does not parse arbitrary firmware binaries or produce parser ground-truth comparisons.",
+                "document_target": "Parsing accuracy >=98%; coverage of target OEM firmware formats.",
+            },
+            {
+                "metric": "Reachability accuracy / MTTC",
+                "reason": "No binary call-graph, network/bus reachability, or CVE-to-function validation dataset is implemented.",
+                "document_target": "Reachability precision >=95%; MTTC target requires measurement.",
+            },
+            {
+                "metric": "Bootloader identification and tamper-detection accuracy",
+                "reason": "No raw image bootloader extraction or controlled tamper test dataset is implemented.",
+                "document_target": "Bootloader identification rate 99%; cryptographic provenance accuracy 100%.",
+            },
+            {
+                "metric": "SBOM-to-binary consistency and license precision",
+                "reason": "No binary-derived SBOM comparison or license scanner is implemented.",
+                "document_target": "SBOM consistency >=99%; license compliance precision 100%.",
+            },
+            {
+                "metric": "Safety-system exposure and patch-deferral risk",
+                "reason": "No deployed SIS inventory, maintenance-window, or patch-deferral records are connected.",
+                "document_target": "Operational safety and patch-deferral thresholds require plant-specific inventory.",
+            },
+            {
+                "metric": "Field provenance drift",
+                "reason": "No live device firmware-state telemetry or central deployed-asset inventory is connected.",
+                "document_target": "100% accuracy target in supplied metrics document.",
+            },
+        ],
+        "targets_note": (
+            "Targets are copied from the supplied requirements document. They are not claims "
+            "that the current PoC meets those targets."
+        ),
+    }
+
+
 @app.get("/api/workflow")
 def get_workflow():
     with LOCK:

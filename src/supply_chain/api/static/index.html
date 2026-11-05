@@ -1,9 +1,88 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Firmware Assurance Console</title><link rel="stylesheet" href="/static/styles.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Spectra | OT Firmware Supply Chain Assurance</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
 <body>
-<aside class="sidebar"><div class="brand"><span class="mark">S</span><div><b>SPECTRA</b><small>SUPPLY-CHAIN ASSURANCE</small></div></div><nav><a class="active" href="#overview">Overview</a><a href="#assessment">Package assessment</a><a href="#review">Human review</a><a href="#audit">Audit history</a></nav><div class="side-note">● LOCAL SYNTHETIC TESTBED</div><div class="side-footer">ICS / OT SECURITY PoC<br>Read-only assessment console</div></aside>
-<main class="main"><header class="topbar"><div><div class="eyebrow">INDUSTRIAL OT / ICS</div><h1>Firmware assurance console</h1></div><div class="top-status">● API <b id="apiStatus">Checking…</b></div></header>
-<section id="overview"><div class="section-heading"><div><div class="eyebrow">SYSTEM OVERVIEW</div><h2>Assessment overview</h2></div><button class="button secondary" id="refreshBtn">Refresh data</button></div><div class="metric-grid"><article class="metric"><span>Available scenarios</span><strong id="scenarioCount">—</strong><small>Synthetic evidence bundles</small></article><article class="metric"><span>Dashboard assessments</span><strong id="assessmentCount">—</strong><small>Recorded by this dashboard</small></article><article class="metric"><span>Median API assessment</span><strong id="medianLatency">—</strong><small>Measured in this API process</small></article><article class="metric"><span>Real actions executed</span><strong>0</strong><small>Hard safety boundary</small></article></div><div class="notice"><b>Safety boundary</b><span>Evidence assessment and workflow simulation only. No firmware is executed, installed, flashed, quarantined, or sent to a physical device.</span></div></section>
-<section id="assessment" class="panel"><div class="section-heading"><div><div class="eyebrow">EVIDENCE INTAKE</div><h2>Assess a package scenario</h2></div><span class="tag">DETERMINISTIC ENGINE</span></div><div class="form-row"><label>Scenario<select id="scenarioSelect"></select></label><label>Package ID<input id="packageId" readonly></label><button class="button primary" id="assessBtn">Run assessment</button></div><div id="assessmentError" class="error hidden"></div><div id="assessmentResult" class="hidden"><div class="result-head"><div><div class="eyebrow">ASSESSMENT RESULT</div><h3 id="resultTitle">—</h3><p id="resultSub">—</p></div><div class="score"><strong id="riskScore">—</strong><span>RISK SCORE / 100</span></div></div><div class="result-grid"><div><h4>Evidence checks</h4><div id="evidenceList" class="evidence-list"></div></div><div><h4>Reviewer explanation</h4><ul id="reasonList" class="reason-list"></ul><div class="recommendation"><span>RECOMMENDATION</span><strong id="recommendation">—</strong></div></div></div><div class="safety-strip"><b>HUMAN APPROVAL REQUIRED</b><span>Deployment allowed: NO</span><span>Real action executed: NO</span></div></div></section>
-<section id="review" class="panel"><div class="section-heading"><div><div class="eyebrow">HUMAN-IN-THE-LOOP</div><h2>Review and simulated gate</h2></div><span class="tag amber">NO PHYSICAL DEPLOYMENT</span></div><p class="muted">Record a reviewer disposition for the selected scenario. Approval does not authorize real installation.</p><div class="form-row"><label>Reviewer<input id="reviewer" maxlength="80" placeholder="Reviewer name / role"></label><label>Disposition<select id="disposition"><option value="approved_for_simulated_test">Approve for simulated test</option><option value="hold_for_review">Hold for review</option><option value="rejected">Reject</option></select></label></div><label class="full-label">Review note<textarea id="reviewNote" maxlength="500" placeholder="Reason for this review disposition"></textarea></label><div class="action-row"><button class="button primary" id="saveReviewBtn">Record human review</button><button class="button secondary" id="simulateBtn">Evaluate simulated gate</button></div><div id="workflowMessage" class="muted message"></div><div id="workflowState" class="workflow-state">No review recorded for this scenario yet.</div></section>
-<section id="audit" class="panel"><div class="section-heading"><div><div class="eyebrow">TRACEABILITY</div><h2>Audit history</h2></div><span class="tag">LATEST 200 EVENTS</span></div><div class="table-wrap"><table><thead><tr><th>Timestamp</th><th>Event</th><th>Scenario</th><th>Details</th></tr></thead><tbody id="auditRows"><tr><td colspan="4">No audit events recorded yet.</td></tr></tbody></table></div></section><footer>Firmware & Supply-Chain Assurance PoC · Synthetic evidence · Not a production security certification</footer></main><script src="/static/app.js"></script></body></html>
+<aside class="sidebar">
+  <div class="brand"><span class="mark">S</span><div><b>SPECTRA</b><small>SUPPLY-CHAIN ASSURANCE</small></div></div>
+  <nav>
+    <a class="active" href="#overview">Executive overview</a>
+    <a href="#kpis">Supply-chain KPIs</a>
+    <a href="#coverage">Evidence coverage</a>
+    <a href="#assessment">Package assessment</a>
+    <a href="#review">Human review</a>
+    <a href="#audit">Audit history</a>
+  </nav>
+  <div class="side-note">● LOCAL SYNTHETIC TESTBED</div>
+  <div class="side-footer">INDUSTRIAL OT / ICS<br>Read-only assurance PoC</div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <div><div class="eyebrow">INDUSTRIAL OT / ICS · ENERGY & PETROCHEMICAL</div><h1>Firmware supply-chain assurance</h1><p class="muted">Executive visibility · Evidence-based assessment · Controlled workflow simulation</p></div>
+  <div class="top-actions"><span class="top-status">● API <b id="apiStatus">Checking…</b></span><button class="button secondary" id="refreshBtn">↻ Refresh</button></div>
+</header>
+
+<section id="overview">
+  <div class="section-heading"><div><div class="eyebrow">EXECUTIVE OVERVIEW</div><h2>Security posture snapshot</h2><p class="muted">Live values are calculated from the predefined synthetic scenario bundles.</p></div><span class="tag">SYNTHETIC DATA · NOT PLANT TELEMETRY</span></div>
+  <div class="metric-grid">
+    <article class="metric"><span>Scenario bundles</span><strong id="scenarioCount">—</strong><small>Available synthetic evidence sets</small></article>
+    <article class="metric"><span>Assessments recorded</span><strong id="assessmentCount">—</strong><small>Dashboard API assessment requests</small></article>
+    <article class="metric"><span>Median assessment latency</span><strong id="medianLatency">—</strong><small>API-process timing · milliseconds</small></article>
+    <article class="metric"><span>Real actions executed</span><strong>0</strong><small>Hard safety boundary</small></article>
+  </div>
+  <div class="notice"><b>SAFETY BOUNDARY</b><span>Read-only evidence assessment and workflow simulation. No firmware is executed, installed, flashed, quarantined, or sent to a physical device.</span></div>
+</section>
+
+<section id="kpis" class="panel">
+  <div class="section-heading"><div><div class="eyebrow">SUPPLY-CHAIN SECURITY KPIs</div><h2>Executive performance indicators</h2><p class="muted">Current percentages use scenario bundles as the denominator—not deployed OT assets.</p></div><span class="tag">TARGETS ≠ ACHIEVED RESULTS</span></div>
+  <div class="kpi-grid">
+    <article class="kpi-card"><div class="kpi-head"><span>Complete SBOM evidence</span><b id="sbomValue">—</b></div><div class="bar"><i id="sbomBar"></i></div><p id="sbomMeta" class="muted">Loading evidence…</p><small>Reference target: 98% Tier-1 / 90% non-critical assets</small></article>
+    <article class="kpi-card"><div class="kpi-head"><span>Signature + trusted root</span><b id="signatureValue">—</b></div><div class="bar"><i id="signatureBar"></i></div><p id="signatureMeta" class="muted">Loading evidence…</p><small>Reference target: 100%</small></article>
+    <article class="kpi-card"><div class="kpi-head"><span>Explicit VEX status</span><b id="vexValue">—</b></div><div class="bar"><i id="vexBar"></i></div><p id="vexMeta" class="muted">Loading evidence…</p><small>Reference target: 85% of relevant alerts resolved through VEX</small></article>
+    <article class="kpi-card"><div class="kpi-head"><span>Trusted vendor evidence</span><b id="vendorValue">—</b></div><div class="bar"><i id="vendorBar"></i></div><p id="vendorMeta" class="muted">Loading evidence…</p><small>Bundle-level evidence indicator; no numeric target specified</small></article>
+  </div>
+  <div class="subgrid">
+    <div class="mini-panel"><h3>VEX status distribution</h3><div id="vexCounts" class="count-list">Loading…</div></div>
+    <div class="mini-panel"><h3>Measurement basis</h3><p id="dataBasis" class="muted">Loading…</p><p id="scopeNote" class="small-note"></p></div>
+  </div>
+</section>
+
+<section id="coverage" class="panel">
+  <div class="section-heading"><div><div class="eyebrow">METRIC READINESS</div><h2>Additional OT security metrics</h2><p class="muted">Items below require additional data sources or implementation before a valid KPI can be reported.</p></div><span class="tag amber">NOT YET MEASURED</span></div>
+  <div class="table-wrap"><table><thead><tr><th>Metric requested</th><th>Current status / data gap</th><th>Reference target from requirements</th></tr></thead><tbody id="notMeasuredRows"><tr><td colspan="3">Loading metric readiness…</td></tr></tbody></table></div>
+  <p class="footnote">Targets are requirement benchmarks from the supplied performance-metrics document. They are not current PoC results or compliance claims.</p>
+</section>
+
+<section id="assessment" class="panel">
+  <div class="section-heading"><div><div class="eyebrow">DETERMINISTIC EVIDENCE INTAKE</div><h2>Assess a firmware package</h2></div><span class="tag">10 PREDEFINED SCENARIOS</span></div>
+  <div class="form-row"><label>Scenario<select id="scenarioSelect"></select></label><label>Package ID<input id="packageId" readonly></label><button class="button primary" id="assessBtn">Run assessment</button></div>
+  <div id="assessmentError" class="error hidden"></div>
+  <div id="assessmentResult" class="hidden">
+    <div class="result-head"><div><div class="eyebrow">ASSESSMENT RESULT</div><h3 id="resultTitle">—</h3><p id="resultSub">—</p></div><div class="score"><strong id="riskScore">—</strong><span>RISK SCORE / 100</span></div></div>
+    <div class="result-grid"><div><h4>Evidence checks</h4><div id="evidenceList" class="evidence-list"></div></div><div><h4>Risk explanation</h4><ul id="reasonList" class="reason-list"></ul><div class="recommendation"><span>RECOMMENDATION</span><strong id="recommendation">—</strong></div></div></div>
+    <div class="safety-strip"><b>HUMAN APPROVAL REQUIRED</b><span>Deployment allowed: NO</span><span>Real action executed: NO</span></div>
+  </div>
+</section>
+
+<section id="review" class="panel">
+  <div class="section-heading"><div><div class="eyebrow">HUMAN-IN-THE-LOOP</div><h2>Review and simulated release gate</h2></div><span class="tag amber">NO PHYSICAL DEPLOYMENT</span></div>
+  <p class="muted">Approval is recorded for workflow demonstration only. A fresh deterministic normal-risk result is also required to pass the simulated gate.</p>
+  <div class="form-row"><label>Reviewer<input id="reviewer" maxlength="80" placeholder="Reviewer name / role"></label><label>Disposition<select id="disposition"><option value="approved_for_simulated_test">Approve for simulated test</option><option value="hold_for_review">Hold for review</option><option value="rejected">Reject</option></select></label></div>
+  <label class="full-label">Review note<textarea id="reviewNote" maxlength="500" placeholder="Reason for this review disposition"></textarea></label>
+  <div class="action-row"><button class="button primary" id="saveReviewBtn">Record human review</button><button class="button secondary" id="simulateBtn">Evaluate simulated gate</button></div>
+  <div id="workflowMessage" class="muted message"></div><div id="workflowState" class="workflow-state">No review recorded for this scenario yet.</div>
+</section>
+
+<section id="audit" class="panel">
+  <div class="section-heading"><div><div class="eyebrow">TRACEABILITY</div><h2>Audit history</h2></div><span class="tag">LATEST 200 EVENTS</span></div>
+  <div class="table-wrap"><table><thead><tr><th>Timestamp</th><th>Event</th><th>Scenario</th><th>Details</th></tr></thead><tbody id="auditRows"><tr><td colspan="4">No audit events recorded yet.</td></tr></tbody></table></div>
+</section>
+<footer>SPECTRA · Firmware Supply-Chain Assurance PoC · Synthetic evidence · Not a production scanner or security certification</footer>
+</main>
+<script src="/static/app.js"></script>
+</body></html>
