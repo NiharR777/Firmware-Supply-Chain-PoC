@@ -15,6 +15,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from src.supply_chain.decision_engine import EVIDENCE_DIR, evaluate_scenario
+from src.supply_chain.api.gemini_advisor import router as advisor_router
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -37,6 +38,8 @@ app = FastAPI(
 )
 
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+
+app.include_router(advisor_router)
 
 
 class AssessmentRequest(BaseModel):
