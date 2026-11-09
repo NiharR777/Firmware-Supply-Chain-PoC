@@ -16,6 +16,8 @@ from typing import Any, Literal
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
+from .nvd_client import search_components
+
 router = APIRouter(prefix="/api/customer-assessment", tags=["Customer SBOM Assessment"])
 _AUDIT_LOCK = threading.Lock()
 
@@ -190,6 +192,10 @@ def analyze_customer_sbom(request: CustomerAssessmentRequest):
                     "evidence_source": "Built-in synthetic demonstration catalog",
                 })
 
+    # Query live NVD for candidate CVEs. These are kept separate
+    # from synthetic findings and do not automatically affect risk.
+    nvd_result = search_components(complete_components, max_components=3)
+
     baseline_status = "not_provided"
     if request.approved_baseline_sha256:
         baseline_status = "match" if request.firmware_sha256.lower() == request.approved_baseline_sha256.lower() else "mismatch"
@@ -239,11 +245,13 @@ def analyze_customer_sbom(request: CustomerAssessmentRequest):
             "catalog_is_live": False,
             "findings_count": len(findings),
             "findings": findings,
+            "live_nvd": nvd_result,
         },
         "risk": {"score": risk_score, "level": risk_level},
         "recommendation": recommendation,
         "warnings": warnings + [
-            "Vulnerability matches use a small synthetic demonstration catalog, not live CVE/NVD data.",
+            "Synthetic demonstration findings are separate from live NVD candidate CVEs.",
+            "NVD keyword results require affected-product and version applicability review; they are not confirmed vulnerabilities.",
             "Firmware hash is customer-supplied metadata; the API does not receive or hash a firmware binary.",
             "No binary is executed, installed, modified, or deployed.",
             "Analyst review is required; this result is not a release authorization.",

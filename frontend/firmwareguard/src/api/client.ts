@@ -138,7 +138,51 @@ export interface CustomerAssessmentResult {
   completeness: string;
   product_mapping: { customer_product: string; sbom_root_component: string | null; mapped: boolean; note: string };
   baseline_comparison: { status: string; submitted_version: string; approved_version: string | null; approved_sha256: string | null; submitted_sha256: string };
-  vulnerability_matching: { catalog: string; catalog_is_live: boolean; findings_count: number; findings: Array<{demo_id:string;component:string;version:string;severity:string;description:string;recommendation:string}> };
+  vulnerability_matching: {
+    catalog: string;
+    catalog_is_live: boolean;
+    findings_count: number;
+    findings: Array<{
+      demo_id: string;
+      component: string;
+      version: string;
+      severity: string;
+      description: string;
+      recommendation: string;
+    }>;
+    live_nvd: {
+      provider: string;
+      is_live_source: boolean;
+      components_checked: number;
+      components_skipped: number;
+      findings_count: number;
+      findings: Array<{
+        cve_id: string;
+        component: string;
+        version: string;
+        severity: string;
+        cvss_score: number | null;
+        cvss_version: string | null;
+        description: string;
+        published: string | null;
+        last_modified: string | null;
+        references: string[];
+        cpe_criteria: string[];
+        match_status: string;
+        applicability_verified: boolean;
+        evidence_source: string;
+        recommendation: string;
+      }>;
+      component_results: Array<{
+        component: string;
+        version: string;
+        status: string;
+        candidate_count: number;
+      }>;
+      errors: string[];
+      applicability_note: string;
+    };
+  };
   risk: { score: number; level: string };
   recommendation: string;
   warnings: string[];

@@ -430,6 +430,111 @@ export const CustomerAssessmentView: React.FC = () => {
             )}
           </div>
 
+          {result.vulnerability_matching.live_nvd && (
+            <section className="rounded-xl border border-cyan-200 dark:border-cyan-900 bg-cyan-50/50 dark:bg-cyan-950/20 p-4 space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h4 className="font-bold text-sm text-slate-900 dark:text-white">
+                    Live NVD Vulnerability Intelligence
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-1">
+                    {result.vulnerability_matching.live_nvd.provider}
+                    {' '}? {result.vulnerability_matching.live_nvd.components_checked} components checked
+                    {' '}? {result.vulnerability_matching.live_nvd.findings_count} candidate CVEs
+                  </p>
+                </div>
+                <span className="rounded-full bg-cyan-100 dark:bg-cyan-900/50 px-3 py-1 text-xs font-semibold text-cyan-800 dark:text-cyan-200">
+                  {result.vulnerability_matching.live_nvd.is_live_source ? 'Live source' : 'Source unavailable'}
+                </span>
+              </div>
+
+              <div className="rounded-lg border border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/30 p-3">
+                <p className="text-xs font-bold text-amber-800 dark:text-amber-200">
+                  Candidate CVEs ? Applicability Not Verified
+                </p>
+                <p className="text-xs text-amber-700 dark:text-amber-300 mt-1">
+                  Keyword results do not confirm that this firmware or product is affected.
+                  Verify the exact product, affected version, configuration and vendor advisory.
+                </p>
+              </div>
+
+              {result.vulnerability_matching.live_nvd.findings.length > 0 ? (
+                <div className="space-y-3">
+                  {result.vulnerability_matching.live_nvd.findings.map((f) => (
+                    <article
+                      key={`${f.cve_id}-${f.component}`}
+                      className="rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-3 space-y-2"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                          <span className="font-bold text-sm text-cyan-700 dark:text-cyan-300">
+                            {f.cve_id}
+                          </span>
+                          <span className="text-xs text-slate-500 ml-2">
+                            {f.component} {f.version}
+                          </span>
+                        </div>
+                        <span className="rounded-md bg-slate-100 dark:bg-slate-800 px-2 py-1 text-xs font-bold uppercase text-slate-700 dark:text-slate-200">
+                          {f.severity}
+                          {f.cvss_score !== null ? ` ? ${f.cvss_score} CVSS` : ''}
+                        </span>
+                      </div>
+
+                      <p className="text-xs text-slate-600 dark:text-slate-300">
+                        {f.description}
+                      </p>
+
+                      <p className="text-xs text-amber-700 dark:text-amber-300">
+                        {f.recommendation}
+                      </p>
+
+                      <div className="flex flex-wrap gap-3 text-xs">
+                        {f.references.slice(0, 4).map((url, index) => (
+                          <a
+                            key={`${f.cve_id}-ref-${index}`}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-cyan-700 dark:text-cyan-300 hover:underline break-all"
+                          >
+                            NVD / advisory reference {index + 1}
+                          </a>
+                        ))}
+                      </div>
+
+                      <div className="text-xs text-slate-500">
+                        Status: {f.match_status.replaceAll('_', ' ')}
+                        {' '}? Applicability verified: No
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-slate-500">
+                  No NVD candidate CVEs were returned for the checked components.
+                  This does not prove that the components are vulnerability-free.
+                </p>
+              )}
+
+              {result.vulnerability_matching.live_nvd.errors.length > 0 && (
+                <div className="rounded-lg border border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-3">
+                  <p className="text-xs font-semibold text-rose-700 dark:text-rose-300">
+                    NVD lookup warnings
+                  </p>
+                  {result.vulnerability_matching.live_nvd.errors.map((error, index) => (
+                    <p key={index} className="text-xs text-rose-700 dark:text-rose-300 mt-1">
+                      {error}
+                    </p>
+                  ))}
+                </div>
+              )}
+
+              <p className="text-xs text-slate-500">
+                {result.vulnerability_matching.live_nvd.applicability_note}
+              </p>
+            </section>
+          )}
+
           <div className="rounded-lg bg-slate-50 dark:bg-slate-950 p-3">
             <h4 className="font-semibold text-sm mb-2">
               Analyst recommendation:{' '}

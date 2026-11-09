@@ -1,4 +1,4 @@
-﻿
+
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { dirname, resolve } from 'node:path';
@@ -23,7 +23,7 @@ export default defineConfig(() => ({
   strictPort: true,
   proxy: {
     "/api": {
-      target: "http://127.0.0.1:8001",
+      target: "http://127.0.0.1:8010",
       changeOrigin: true,
     },
   },
