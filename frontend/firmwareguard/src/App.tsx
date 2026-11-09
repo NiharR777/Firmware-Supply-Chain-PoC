@@ -24,6 +24,7 @@ import { SpectraAdvisorModal } from './components/SpectraAdvisorModal';
 import { AuditHistoryView, AuditEventItem } from './components/AuditHistoryView';
 import { VexExporterModal } from './components/VexExporterModal';
 import { AssetDetailModal } from './components/AssetDetailModal';
+import { CustomerAssessmentView } from './components/CustomerAssessmentView';
 
 type ReviewRecord = {
   reviewer: string;
@@ -360,6 +361,10 @@ export default function App() {
                 setActiveTab('reachability')
               }
             />
+          )}
+
+          {activeTab === 'customer-assessment' && (
+            <CustomerAssessmentView />
           )}
 
           {activeTab === 'assessment' && (

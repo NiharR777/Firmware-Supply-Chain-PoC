@@ -14,7 +14,8 @@ import {
   Flame,
   Zap,
   HeartPulse,
-  Car
+  Car,
+  UploadCloud
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -36,6 +37,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const menuItems = [
     { id: 'overview', label: 'Executive Overview', icon: <LayoutDashboard className="w-4 h-4" /> },
+    { id: 'customer-assessment', label: 'Customer SBOM Assessment', icon: <UploadCloud className="w-4 h-4" />, badge: 'New' },
     { id: 'assessment', label: 'Package Assessment', icon: <ShieldAlert className="w-4 h-4" />, badge: '10 bundles', badgeColor: 'bg-emerald-500/20 text-emerald-400' },
     { id: 'kpis', label: 'Supply-Chain KPIs', icon: <BarChart3 className="w-4 h-4" />, badge: '4 KPIs' },
     { id: 'readiness', label: 'Metric Readiness', icon: <Layers className="w-4 h-4" />, badge: '9 gaps', badgeColor: 'bg-amber-500/20 text-amber-400' },

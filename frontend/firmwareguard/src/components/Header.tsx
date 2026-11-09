@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { ShieldCheck, Sun, Moon, Download, Bot } from 'lucide-react';
+import { Sun, Moon, Download, Bot } from 'lucide-react';
 
 interface HeaderProps {
   activeTab: string;
@@ -20,6 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const navItems = [
     { id: 'overview', label: 'Executive Overview' },
+    { id: 'customer-assessment', label: 'Customer SBOM Assessment' },
     { id: 'assessment', label: 'Package Assessment' },
     { id: 'kpis', label: 'Supply-Chain KPIs' },
     { id: 'reachability', label: 'VEX & Reachability' },
@@ -30,12 +32,14 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
-      <div className="w-full px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
-        {/* Left Zone: Brand Mark & Breadcrumb */}
+      <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+
+        {/* Brand */}
         <div className="flex items-center gap-3 shrink-0">
           <div className="w-9 h-9 rounded-xl bg-linear-to-br from-emerald-600 to-teal-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
             S
           </div>
+
           <div>
             <div className="flex items-center gap-2">
               <span className="text-sm font-extrabold tracking-wider text-slate-900 dark:text-white uppercase">
@@ -45,18 +49,20 @@ export const Header: React.FC<HeaderProps> = ({
                 OT / ICS ASSURANCE
               </span>
             </div>
+
             <div className="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:block">
-              Energy · Oil &amp; Gas · Healthcare · Automotive
+              Energy · Oil & Gas · Healthcare · Automotive
             </div>
           </div>
         </div>
 
-        {/* Center Zone: Clean Single-line Navigation Links */}
-        <nav className="hidden xl:flex items-center gap-5 text-xs font-semibold">
+        {/* Horizontal Navigation */}
+        <nav className="hidden xl:flex flex-1 min-w-0 items-center justify-center gap-3 text-[11px] font-semibold overflow-x-auto">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
+              title={item.label}
               className={`whitespace-nowrap shrink-0 transition-colors py-1 cursor-pointer ${
                 activeTab === item.id
                   ? 'text-emerald-600 dark:text-emerald-400 font-bold border-b-2 border-emerald-600 dark:border-emerald-400'
@@ -68,15 +74,16 @@ export const Header: React.FC<HeaderProps> = ({
           ))}
         </nav>
 
-        {/* Right Zone: Controls & Actions */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          {/* API Status Badge */}
+        {/* Right Controls */}
+        <div className="flex items-center gap-2 shrink-0">
+
+          {/* API Status */}
           <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
             <span>API Online</span>
           </div>
 
-          {/* Theme Switcher Toggle (Light by default, Dark optional) */}
+          {/* Theme Toggle */}
           <button
             onClick={onToggleTheme}
             title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
@@ -89,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
 
-          {/* Advisor Button */}
+          {/* AI Advisor */}
           <button
             onClick={onOpenAdvisorModal}
             className="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
@@ -98,14 +105,15 @@ export const Header: React.FC<HeaderProps> = ({
             <span>SpectraIQ Advisor</span>
           </button>
 
-          {/* Primary Action Button */}
+          {/* Export */}
           <button
             onClick={onOpenExportModal}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-xs"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-xs"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export VEX</span>
           </button>
+
         </div>
       </div>
     </header>

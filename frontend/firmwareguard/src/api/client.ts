@@ -126,6 +126,40 @@ export interface GateResult {
   real_action_executed: false;
 }
 
+
+export interface CustomerAssessmentResult {
+  assessment_id: string;
+  industry: string;
+  customer_name: string;
+  product_name: string;
+  firmware_version: string;
+  sbom_format: string;
+  component_count: number;
+  completeness: string;
+  product_mapping: { customer_product: string; sbom_root_component: string | null; mapped: boolean; note: string };
+  baseline_comparison: { status: string; submitted_version: string; approved_version: string | null; approved_sha256: string | null; submitted_sha256: string };
+  vulnerability_matching: { catalog: string; catalog_is_live: boolean; findings_count: number; findings: Array<{demo_id:string;component:string;version:string;severity:string;description:string;recommendation:string}> };
+  risk: { score: number; level: string };
+  recommendation: string;
+  warnings: string[];
+  human_review_required: boolean;
+  deployment_allowed: false;
+  real_action_executed: false;
+}
+
+export interface CustomerAssessmentRequest {
+  industry: 'industrial' | 'telecom' | 'healthcare';
+  customer_name: string;
+  product_name: string;
+  firmware_version: string;
+  firmware_sha256: string;
+  approved_baseline_sha256?: string | null;
+  approved_baseline_version?: string | null;
+  sbom: Record<string, unknown>;
+  provenance_source?: string;
+  supplier_name?: string;
+}
+
 class ApiError extends Error {
   status: number;
 
@@ -168,6 +202,12 @@ async function apiRequest<T>(
 }
 
 export const firmwareApi = {
+  customerAnalyze: (payload: CustomerAssessmentRequest) =>
+    apiRequest<CustomerAssessmentResult>('/api/customer-assessment/analyze', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+
   health: () =>
     apiRequest<{
       status: string;
