@@ -17,6 +17,7 @@ from pydantic import BaseModel, Field
 from src.supply_chain.decision_engine import EVIDENCE_DIR, evaluate_scenario
 from src.supply_chain.api.gemini_advisor import router as advisor_router
 from src.supply_chain.api.customer_assessment import router as customer_assessment_router
+from src.supply_chain.api.ransomware_assessment import router as ransomware_assessment_router
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -42,6 +43,7 @@ app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 app.include_router(advisor_router)
 app.include_router(customer_assessment_router)
+app.include_router(ransomware_assessment_router)
 
 
 class AssessmentRequest(BaseModel):
