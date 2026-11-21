@@ -1,23 +1,25 @@
 
 import React from 'react';
-import { Sun, Moon, Download, Bot } from 'lucide-react';
+import { Sun, Moon, Download } from 'lucide-react';
+
+type ApiStatus = 'checking' | 'online' | 'offline';
 
 interface HeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   theme: 'light' | 'dark';
+  apiStatus: ApiStatus;
   onToggleTheme: () => void;
   onOpenExportModal: () => void;
-  onOpenAdvisorModal: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   activeTab,
   setActiveTab,
   theme,
+  apiStatus,
   onToggleTheme,
   onOpenExportModal,
-  onOpenAdvisorModal,
 }) => {
   const navItems = [
     { id: 'overview', label: 'Executive Overview' },
@@ -29,6 +31,26 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'readiness', label: 'Metric Readiness' },
     { id: 'audit', label: 'Audit History' },
   ];
+
+  const apiStatusConfig = {
+    checking: {
+      label: 'Checking API',
+      dot: 'bg-amber-500 animate-pulse',
+      text: 'text-amber-700 dark:text-amber-400',
+    },
+    online: {
+      label: 'API Online',
+      dot: 'bg-emerald-500',
+      text: 'text-emerald-700 dark:text-emerald-400',
+    },
+    offline: {
+      label: 'API Offline',
+      dot: 'bg-rose-500',
+      text: 'text-rose-700 dark:text-rose-400',
+    },
+  };
+
+  const currentApiStatus = apiStatusConfig[apiStatus];
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
@@ -45,24 +67,31 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="text-sm font-extrabold tracking-wider text-slate-900 dark:text-white uppercase">
                 SPECTRA
               </span>
+
               <span className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60">
                 OT / ICS ASSURANCE
               </span>
             </div>
 
             <div className="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:block">
-              Energy · Oil & Gas · Healthcare · Automotive
+              Healthcare · Telecom & Data Centers · Manufacturing
             </div>
           </div>
         </div>
 
         {/* Horizontal Navigation */}
-        <nav className="hidden xl:flex flex-1 min-w-0 items-center justify-center gap-3 text-[11px] font-semibold overflow-x-auto">
+        <nav
+          aria-label="Main navigation"
+          className="hidden xl:flex flex-1 min-w-0 items-center justify-center gap-3 text-[11px] font-semibold overflow-x-auto"
+        >
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
               title={item.label}
+              aria-current={
+                activeTab === item.id ? 'page' : undefined
+              }
               className={`whitespace-nowrap shrink-0 transition-colors py-1 cursor-pointer ${
                 activeTab === item.id
                   ? 'text-emerald-600 dark:text-emerald-400 font-bold border-b-2 border-emerald-600 dark:border-emerald-400'
@@ -77,16 +106,33 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Right Controls */}
         <div className="flex items-center gap-2 shrink-0">
 
-          {/* API Status */}
-          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span>API Online</span>
+          {/* Live API Status */}
+          <div
+            role="status"
+            aria-live="polite"
+            title="Backend health endpoint: /api/health"
+            className={`hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono border bg-slate-100 dark:bg-slate-900 border-slate-200 dark:border-slate-800 ${currentApiStatus.text}`}
+          >
+            <span
+              className={`w-2 h-2 rounded-full ${currentApiStatus.dot}`}
+            />
+            <span>{currentApiStatus.label}</span>
           </div>
 
           {/* Theme Toggle */}
           <button
+            type="button"
             onClick={onToggleTheme}
-            title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+            title={
+              theme === 'light'
+                ? 'Switch to Dark Mode'
+                : 'Switch to Light Mode'
+            }
+            aria-label={
+              theme === 'light'
+                ? 'Switch to Dark Mode'
+                : 'Switch to Light Mode'
+            }
             className="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
           >
             {theme === 'light' ? (
@@ -96,17 +142,10 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
 
-          {/* AI Advisor */}
-          <button
-            onClick={onOpenAdvisorModal}
-            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-          >
-            <Bot className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-            <span>SpectraIQ Advisor</span>
-          </button>
 
           {/* Export */}
           <button
+            type="button"
             onClick={onOpenExportModal}
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg transition-colors whitespace-nowrap cursor-pointer shadow-xs"
           >

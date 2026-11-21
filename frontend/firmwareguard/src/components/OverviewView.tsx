@@ -11,8 +11,8 @@ import {
   ReferenceLine,
   ReferenceDot
 } from 'recharts';
-import { ScenarioDefinition } from '../data/spectraScenarios';
-import { SECTOR_30_DAY_TREND, SectorTrendPoint } from '../data/riskTrendData';
+import type { ScenarioRecord } from '../api/client';
+import { SECTOR_30_DAY_TREND } from '../data/riskTrendData';
 import {
   ShieldAlert,
   ShieldCheck,
@@ -25,7 +25,6 @@ import {
   Zap,
   HeartPulse,
   Car,
-  Bot,
   Activity,
   Calendar,
   AlertTriangle,
@@ -34,9 +33,10 @@ import {
 } from 'lucide-react';
 
 interface OverviewViewProps {
-  scenarios: ScenarioDefinition[];
+  scenarios: ScenarioRecord[];
+  /** Sidebar sector filter. Optional until App.tsx passes the shared selection. */
+  selectedSector?: string;
   onSelectScenario: (scenarioId: string) => void;
-  onOpenAdvisorModal: () => void;
   onOpenReviewModal: () => void;
   onViewVexMatrix: () => void;
 }
@@ -89,21 +89,20 @@ const SECTOR_METAS: SectorMeta[] = [
 
 export const OverviewView: React.FC<OverviewViewProps> = ({
   scenarios,
+  selectedSector = 'all',
   onSelectScenario,
-  onOpenAdvisorModal,
   onOpenReviewModal,
   onViewVexMatrix,
 }) => {
-  // Aggregate KPIs calculated directly from scenarios
+  // Live KPIs calculated from backend scenario evidence.
   const totalScenarios = scenarios.length;
-  const sbomCompleteCount = scenarios.filter((s) => s.sbom_status === 'complete').length;
+  const sbomCompleteCount = scenarios.filter((scenario) => scenario.sbom_status === 'complete').length;
   const sbomCoveragePercent = totalScenarios > 0 ? ((sbomCompleteCount / totalScenarios) * 100).toFixed(1) : '0.0';
-
-  const signatureCompliantCount = scenarios.filter((s) => s.signature_status === 'valid' && s.trusted_root_status === 'trusted').length;
+  const signatureCompliantCount = scenarios.filter((scenario) => scenario.signature_status === 'valid' && scenario.trusted_root_status === 'trusted').length;
   const signatureCompliancePercent = totalScenarios > 0 ? ((signatureCompliantCount / totalScenarios) * 100).toFixed(1) : '0.0';
-
-  const highRiskCount = scenarios.filter((s) => s.risk_level === 'high_risk').length;
-  const investigateCount = scenarios.filter((s) => s.risk_level === 'investigate').length;
+  const highRiskCount = scenarios.filter((scenario) => scenario.risk_level === 'high_risk').length;
+  const investigateCount = scenarios.filter((scenario) => scenario.risk_level === 'investigate').length;
+  const realActionsExecuted = scenarios.filter((scenario) => scenario.real_action_executed === true).length;
 
   // Firmware Risk Trend state
   const [timeRange, setTimeRange] = useState<TimeRange>('30d');
@@ -129,12 +128,13 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
   const activeMilestones = useMemo(() => {
     return filteredTrendData
       .filter((pt) => pt.milestone !== undefined)
+      .filter((pt) => selectedSector === 'all' || pt.milestone?.sector === selectedSector)
       .map((pt) => ({
         date: pt.date,
         displayDate: pt.displayDate,
         ...pt.milestone!,
       }));
-  }, [filteredTrendData]);
+  }, [filteredTrendData, selectedSector]);
 
   const latestDataPoint = filteredTrendData[filteredTrendData.length - 1];
   const firstDataPoint = filteredTrendData[0];
@@ -250,13 +250,13 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Hero Banner Card - matching Crop2Cup / Spectra reference screenshot */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-slate-800 text-white p-6 sm:p-8 shadow-xl">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-slate-800 text-white p-6sm:p-8 shadow-xl">
         <div className="relative z-10 max-w-4xl space-y-4">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-mono font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase">
               Deterministic Decision Engine
             </span>
-            <span className="text-xs text-slate-400">·</span>
+            <span className="text-xs text-slate-400">Â·</span>
             <span className="text-xs text-slate-300">OT / ICS Firmware Assurance PoC</span>
           </div>
 
@@ -268,47 +268,27 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
             Evidence-driven evaluation of observed firmware bundles against cryptographic, signature, rollback, and SBOM policies. Designed for refinery, substation, medical device, and connected automotive platforms.
           </p>
 
-          {/* Quick Action Pills matching reference screenshot */}
+          {/* Quick Actions generated from live backend scenarios */}
           <div className="pt-2 flex flex-wrap items-center gap-2">
-            <button
-              onClick={() => onSelectScenario('SC-001')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-950/80 hover:bg-rose-900 text-rose-200 border border-rose-800/80 transition-colors cursor-pointer flex items-center gap-1.5"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-              <span>Assess SC-001 (Hash Mismatch)</span>
-            </button>
+            {scenarios.slice(0, 4).map((scenario) => {
+              const isHighRisk = scenario.risk_level === 'high_risk';
+              const reason = scenario.risk_factors?.[0]?.replace(/_/g, ' ') || scenario.reasons?.[0] || 'Evidence review required';
+              return (
+                <button
+                  key={scenario.scenario_id}
+                  onClick={() => onSelectScenario(scenario.scenario_id)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors cursor-pointer flex items-center gap-1.5 ${
+                    isHighRisk
+                      ? 'bg-rose-950/80 hover:bg-rose-900 text-rose-200 border-rose-800/80'
+                      : 'bg-amber-950/80 hover:bg-amber-900 text-amber-200 border-amber-800/80'
+                  }`}
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full ${isHighRisk ? 'bg-rose-400' : 'bg-amber-400'}`} />
+                  <span>Assess {scenario.scenario_id} ({reason})</span>
+                </button>
+              );
+            })}
 
-            <button
-              onClick={() => onSelectScenario('SC-004')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-950/80 hover:bg-amber-900 text-amber-200 border border-amber-800/80 transition-colors cursor-pointer flex items-center gap-1.5"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-              <span>Assess SC-004 (cURL CVE-2023-38545)</span>
-            </button>
-
-            <button
-              onClick={() => onSelectScenario('SC-005')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-950/80 hover:bg-rose-900 text-rose-200 border border-rose-800/80 transition-colors cursor-pointer flex items-center gap-1.5"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-              <span>Assess SC-005 (Rollback Attack)</span>
-            </button>
-
-            <button
-              onClick={() => onSelectScenario('SC-008')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-950/80 hover:bg-rose-900 text-rose-200 border border-rose-800/80 transition-colors cursor-pointer flex items-center gap-1.5"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-              <span>Assess SC-008 (Untrusted Vendor)</span>
-            </button>
-
-            <button
-              onClick={onOpenAdvisorModal}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
-            >
-              <Bot className="w-3.5 h-3.5" />
-              <span>SpectraIQ Advisor</span>
-            </button>
           </div>
         </div>
       </div>
@@ -328,7 +308,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
           </div>
           <div className="mt-2 text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between">
             <span>Available evidence sets</span>
-            <span className="font-mono font-semibold text-emerald-600 dark:text-emerald-400">100% evaluated</span>
+            <span className="font-mono font-semibold text-slate-500 dark:text-slate-400">Sample catalogue</span>
           </div>
         </div>
 
@@ -377,10 +357,10 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
             <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
           </div>
           <div className="font-mono text-3xl font-extrabold text-slate-900 dark:text-white tabular-nums">
-            0
+            {realActionsExecuted}
           </div>
           <div className="mt-2 text-xs text-emerald-700 dark:text-emerald-300 font-semibold flex items-center gap-1">
-            <span>● Hard safety invariant</span>
+            <span>Hard safety invariant</span>
           </div>
           <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
             Read-only evidence evaluation only
@@ -401,7 +381,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
           onClick={onOpenReviewModal}
           className="whitespace-nowrap font-semibold text-emerald-700 dark:text-emerald-300 hover:underline cursor-pointer text-xs shrink-0"
         >
-          Open Review Workflow →
+          Open Review Workflow â†’
         </button>
       </div>
 
@@ -421,11 +401,11 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
               <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <span>Firmware Risk Trend</span>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-normal">
-                  Aggregated by 4 Target Sectors
+                  Illustrative Sample Data
                 </span>
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Daily risk scores over the last 30 days across Energy, Oil &amp; Gas, Healthcare, and Automotive supply-chains.
+                Illustrative daily risk scores for demonstration only. These values are not live backend telemetry or measured production data.
               </p>
             </div>
           </div>
@@ -461,8 +441,10 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
 
         {/* Sector Interactive Legend & Status Badges */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
-          {SECTOR_METAS.map((sec) => {
-            const isVisible = activeSectors[sec.key];
+          {SECTOR_METAS
+            .filter((sec) => selectedSector === 'all' || sec.key === selectedSector)
+            .map((sec) => {
+            const isVisible = selectedSector === 'all' ? activeSectors[sec.key] : true;
             const latestVal = latestDataPoint ? (latestDataPoint as any)[sec.key] : 0;
             const firstVal = firstDataPoint ? (firstDataPoint as any)[sec.key] : 0;
             const delta = latestVal - firstVal;
@@ -471,8 +453,11 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
             return (
               <button
                 key={sec.key}
-                onClick={() => toggleSector(sec.key)}
-                className={`p-3 rounded-lg border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                onClick={() => {
+                  if (selectedSector === 'all') toggleSector(sec.key);
+                }}
+                aria-pressed={isVisible}
+                className={`p-3 rounded-lg border text-left transition-all ${selectedSector === 'all' ? 'cursor-pointer' : 'cursor-default'} flex flex-col justify-between ${
                   isVisible
                     ? 'bg-slate-50/80 dark:bg-slate-850 border-slate-300 dark:border-slate-700 shadow-2xs'
                     : 'bg-white dark:bg-slate-900/50 border-slate-200 dark:border-slate-800/60 opacity-40 hover:opacity-75'
@@ -615,7 +600,10 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
 
               {/* Individual Sector Lines */}
               {SECTOR_METAS.map((sec) => {
-                if (!activeSectors[sec.key]) return null;
+                const isVisible = selectedSector === 'all'
+                  ? activeSectors[sec.key]
+                  : sec.key === selectedSector;
+                if (!isVisible) return null;
                 return (
                   <Line
                     key={sec.key}
@@ -714,15 +702,17 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
         </div>
       </section>
 
-      {/* Predefined Scenarios Evaluation Table - Matching reference screenshot table */}
+      {/* Live Backend Scenario Evaluation Table */}
       <div className="space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h2 className="text-base font-bold text-slate-900 dark:text-white">
-              Deterministic Scenario Evaluation Matrix (SC-001 through SC-010)
+              Live Backend Scenario Evaluation
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Evaluated against hash integrity, digital signatures, trusted root, vendor identity, rollback, SBOM, and freshness.
+              Scenario records, risk decisions and evidence findings returned by the backend service.
+              Sector filtering applies to the illustrative trend chart; backend scenarios are shown
+              together because the current evidence records do not include sector tags.
             </p>
           </div>
           <div className="text-xs text-slate-500 font-mono">
@@ -737,7 +727,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
                 <tr>
                   <th className="py-3 px-4">Scenario ID</th>
                   <th className="py-3 px-4">Device &amp; Unit</th>
-                  <th className="py-3 px-4">Threat Description &amp; MITRE</th>
+                  <th className="py-3 px-4">Evidence Finding</th>
                   <th className="py-3 px-4 text-center">Risk Score</th>
                   <th className="py-3 px-4 text-center">Decision</th>
                   <th className="py-3 px-4 text-center">Safety Gate</th>
@@ -745,89 +735,96 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80">
-                {scenarios.map((sc) => {
-                  return (
-                    <tr
-                      key={sc.scenario_id}
-                      onClick={() => onSelectScenario(sc.scenario_id)}
-                      className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors cursor-pointer group"
-                    >
-                      <td className="py-3 px-4">
-                        <span className="font-mono font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                          {sc.scenario_id}
-                        </span>
-                        <div className="text-[11px] text-slate-500 font-mono">
-                          {sc.package_id}
-                        </div>
-                      </td>
+                {scenarios.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-10 px-4 text-center text-sm text-slate-500 dark:text-slate-400">
+                      No backend scenario records are currently available. Check the API connection.
+                    </td>
+                  </tr>
+                ) : (
+                  scenarios.map((scenario) => {
+                    const riskLevel = scenario.risk_level || 'unknown';
+                    const riskScore = scenario.risk_score;
+                    const finding = scenario.reasons?.[0] || scenario.risk_factors?.[0]?.replace(/_/g, ' ') || 'No risk explanation provided by backend.';
+                    const safetyUnavailable = scenario.human_approval_required === undefined || scenario.deployment_allowed === undefined || scenario.real_action_executed === undefined;
+                    const unsafeFlag = scenario.deployment_allowed === true || scenario.real_action_executed === true;
 
-                      <td className="py-3 px-4">
-                        <div className="font-semibold text-slate-800 dark:text-slate-200">
-                          {sc.asset_name}
-                        </div>
-                        <div className="text-[11px] text-slate-500 truncate max-w-[220px]">
-                          {sc.process_unit}
-                        </div>
-                      </td>
-
-                      <td className="py-3 px-4 max-w-sm">
-                        <div className="text-slate-700 dark:text-slate-300 font-medium line-clamp-1">
-                          {sc.attack_description}
-                        </div>
-                        <div className="text-[10px] font-mono text-slate-500 mt-0.5 truncate">
-                          MITRE: {sc.mitre_technique}
-                        </div>
-                      </td>
-
-                      <td className="py-3 px-4 text-center font-mono font-bold text-sm tabular-nums">
-                        <span
-                          className={
-                            sc.risk_score >= 40
-                              ? 'text-rose-600 dark:text-rose-400'
-                              : sc.risk_score > 0
-                              ? 'text-amber-600 dark:text-amber-400'
-                              : 'text-emerald-600 dark:text-emerald-400'
-                          }
-                        >
-                          {sc.risk_score}
-                        </span>
-                        <span className="text-[10px] text-slate-400 block font-normal">/ 100</span>
-                      </td>
-
-                      <td className="py-3 px-4 text-center whitespace-nowrap">
-                        <span
-                          className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border uppercase ${
-                            sc.risk_level === 'high_risk'
+                    return (
+                      <tr
+                        key={scenario.scenario_id}
+                        onClick={() => onSelectScenario(scenario.scenario_id)}
+                        className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors cursor-pointer group"
+                      >
+                        <td className="py-3 px-4">
+                          <span className="font-mono font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                            {scenario.scenario_id}
+                          </span>
+                          <div className="text-[11px] text-slate-500 font-mono">{scenario.package_id || 'Package unavailable'}</div>
+                        </td>
+                        <td className="py-3 px-4">
+                          <div className="font-semibold text-slate-800 dark:text-slate-200">
+                            {scenario.asset_name || scenario.device_type || 'Device not specified'}
+                          </div>
+                          <div className="text-[11px] text-slate-500 truncate max-w-[220px]">
+                            {scenario.process_unit || scenario.location || 'Unit not specified'}
+                          </div>
+                        </td>
+                        <td className="py-3 px-4 max-w-sm">
+                          <div className="text-slate-700 dark:text-slate-300 font-medium line-clamp-2">{finding}</div>
+                          <div className="text-[10px] font-mono text-slate-500 mt-0.5 truncate">
+                            {scenario.risk_factors?.join(', ') || 'No risk factors reported'}
+                          </div>
+                        </td>
+                        <td className="py-3 px-4 text-center font-mono font-bold text-sm tabular-nums">
+                          <span className={riskScore === undefined ? 'text-slate-500' : riskScore >= 40 ? 'text-rose-600 dark:text-rose-400' : riskScore > 0 ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400'}>
+                            {riskScore ?? 'N/A'}
+                          </span>
+                          <span className="text-[10px] text-slate-400 block font-normal">{riskScore === undefined ? 'score unavailable' : '/ 100'}</span>
+                        </td>
+                        <td className="py-3 px-4 text-center whitespace-nowrap">
+                          <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border uppercase ${
+                            riskLevel === 'high_risk'
                               ? 'text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 border-rose-200 dark:border-rose-800'
-                              : sc.risk_level === 'investigate'
+                              : riskLevel === 'investigate'
                               ? 'text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 border-amber-200 dark:border-amber-800'
-                              : 'text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800'
-                          }`}
-                        >
-                          {sc.risk_level.replace('_', ' ')}
-                        </span>
-                      </td>
-
-                      <td className="py-3 px-4 text-center whitespace-nowrap">
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
-                          BLOCKED
-                        </span>
-                      </td>
-
-                      <td className="py-3 px-4 text-right">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onSelectScenario(sc.scenario_id);
-                          }}
-                          className="px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 rounded border border-emerald-200 dark:border-emerald-800 transition-colors"
-                        >
-                          Inspect
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
+                              : riskLevel === 'normal'
+                              ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800'
+                              : 'text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700'
+                          }`}>
+                            {riskLevel.replace(/_/g, ' ')}
+                          </span>
+                        </td>
+                        <td className="py-3 px-4 text-center whitespace-nowrap">
+                          <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border ${
+                            unsafeFlag
+                              ? 'text-rose-700 bg-rose-50 border-rose-200 dark:text-rose-400 dark:bg-rose-950/60 dark:border-rose-800'
+                              : safetyUnavailable
+                              ? 'text-slate-600 bg-slate-100 border-slate-200 dark:text-slate-400 dark:bg-slate-800 dark:border-slate-700'
+                              : scenario.human_approval_required === true
+                              ? 'text-amber-700 bg-amber-50 border-amber-200 dark:text-amber-400 dark:bg-amber-950/60 dark:border-amber-800'
+                              : 'text-emerald-700 bg-emerald-50 border-emerald-200 dark:text-emerald-400 dark:bg-emerald-950/60 dark:border-emerald-800'
+                          }`}>
+                            {unsafeFlag ? 'SAFETY REVIEW' : safetyUnavailable ? 'NOT PROVIDED' : scenario.human_approval_required ? 'HUMAN REVIEW' : 'REVIEW NOT REQUIRED'}
+                          </span>
+                          <div className="text-[10px] text-slate-400 mt-1">
+                            {scenario.deployment_allowed === false ? 'No deployment' : scenario.deployment_allowed === true ? 'Deployment flag true' : 'Deployment unknown'}
+                          </div>
+                        </td>
+                        <td className="py-3 px-4 text-right">
+                          <button
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              onSelectScenario(scenario.scenario_id);
+                            }}
+                            className="px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 rounded border border-emerald-200 dark:border-emerald-800 transition-colors"
+                          >
+                            Inspect
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
               </tbody>
             </table>
           </div>

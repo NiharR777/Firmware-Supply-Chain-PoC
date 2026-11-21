@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { FirmwareAsset } from '../types/firmware';
 import {
@@ -12,8 +13,14 @@ interface ComplianceAuditViewProps {
   assets: FirmwareAsset[];
 }
 
+type CopyStatus = 'idle' | 'success' | 'error';
+
 export const ComplianceAuditView: React.FC<ComplianceAuditViewProps> = ({ assets }) => {
-  const [selectedStandard, setSelectedStandard] = useState<'FDA 524B' | 'NERC CIP-013-1' | 'UNECE R155/R156' | 'TSA Pipeline Directives'>('FDA 524B');
+  const [selectedStandard, setSelectedStandard] = useState<
+    'FDA 524B' | 'NERC CIP-013-1' | 'UNECE R155/R156' | 'TSA Pipeline Directives'
+  >('FDA 524B');
+
+  const [copyStatus, setCopyStatus] = useState<CopyStatus>('idle');
 
   const standardsInfo = {
     'FDA 524B': {
@@ -44,6 +51,7 @@ export const ComplianceAuditView: React.FC<ComplianceAuditViewProps> = ({ assets
         }
       ]
     },
+
     'NERC CIP-013-1': {
       title: 'NERC CIP-013-1 - Bulk Electric System Supply Chain',
       sector: 'Energy & Electric Grid',
@@ -72,6 +80,7 @@ export const ComplianceAuditView: React.FC<ComplianceAuditViewProps> = ({ assets
         }
       ]
     },
+
     'UNECE R155/R156': {
       title: 'UNECE WP.29 R155 / R156 - Vehicle Cybersecurity & Updates',
       sector: 'Automotive & Connected Fleets',
@@ -100,6 +109,7 @@ export const ComplianceAuditView: React.FC<ComplianceAuditViewProps> = ({ assets
         }
       ]
     },
+
     'TSA Pipeline Directives': {
       title: 'TSA Security Directive Pipeline-2021-02C',
       sector: 'Oil & Gas Critical Infrastructure',
@@ -125,18 +135,109 @@ export const ComplianceAuditView: React.FC<ComplianceAuditViewProps> = ({ assets
 
   const currentStandardInfo = standardsInfo[selectedStandard];
 
+  // Generate the complete dossier for the selected framework.
+  const generateAuditDossier = (): string => {
+    const generatedAt = new Date().toISOString();
+
+    return [
+      'REGULATORY AUDIT DOSSIER',
+      '========================================',
+      `Framework: ${currentStandardInfo.title}`,
+      `Domain: ${currentStandardInfo.sector}`,
+      `Generated (UTC): ${generatedAt}`,
+      '',
+      'FRAMEWORK DESCRIPTION',
+      currentStandardInfo.description,
+      '',
+      'STATUTORY CLAUSE EVALUATION',
+      '========================================',
+      ...currentStandardInfo.articles.flatMap((article, index) => [
+        `${index + 1}. ${article.id} - ${article.name}`,
+        `Status: ${article.status}`,
+        `Requirement: ${article.requirement}`,
+        `Observed Fleet Evidence: ${article.fleetStatus}`,
+        ''
+      ]),
+      'END OF DOSSIER',
+      '',
+      'Note: This dossier contains the compliance observations currently displayed in the application. It is not an independently validated regulatory certification.'
+    ].join('\n');
+  };
+
+  // Clipboard fallback for browsers where the modern API is unavailable.
+  const copyUsingFallback = (text: string): boolean => {
+    const textArea = document.createElement('textarea');
+
+    textArea.value = text;
+    textArea.setAttribute('readonly', '');
+
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-9999px';
+    textArea.style.top = '0';
+    textArea.style.opacity = '0';
+
+    document.body.appendChild(textArea);
+
+    try {
+      textArea.focus();
+      textArea.select();
+      textArea.setSelectionRange(0, textArea.value.length);
+
+      return document.execCommand('copy');
+    } finally {
+      document.body.removeChild(textArea);
+    }
+  };
+
+  // Copy dossier using modern API first, then fallback.
+  const handleCopyDossier = async () => {
+    const dossier = generateAuditDossier();
+
+    setCopyStatus('idle');
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        try {
+          await navigator.clipboard.writeText(dossier);
+          setCopyStatus('success');
+          return;
+        } catch (clipboardError) {
+          console.warn(
+            'Modern clipboard API failed. Trying fallback.',
+            clipboardError
+          );
+        }
+      }
+
+      const copied = copyUsingFallback(dossier);
+
+      if (!copied) {
+        throw new Error('Both clipboard methods failed.');
+      }
+
+      setCopyStatus('success');
+    } catch (error) {
+      console.error('Failed to copy audit dossier:', error);
+      setCopyStatus('error');
+    }
+  };
+
   return (
     <div className="space-y-6">
+
       {/* Header */}
       <div className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+
         <div>
           <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
             REGULATORY ASSURANCE
           </div>
+
           <h2 className="text-base font-bold text-slate-900 dark:text-white mt-0.5 flex items-center gap-2">
             <FileCheck2 className="w-5 h-5 text-emerald-600 dark:text-cyan-400" />
             <span>Sector Regulatory Compliance &amp; Audit Readiness Center</span>
           </h2>
+
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Automated alignment with FDA Section 524B, NERC CIP-013-1, UNECE WP.29 R155/R156, and TSA Pipeline Directives.
           </p>
@@ -147,7 +248,11 @@ export const ComplianceAuditView: React.FC<ComplianceAuditViewProps> = ({ assets
           {(Object.keys(standardsInfo) as (keyof typeof standardsInfo)[]).map((std) => (
             <button
               key={std}
-              onClick={() => setSelectedStandard(std)}
+              type="button"
+              onClick={() => {
+                setSelectedStandard(std);
+                setCopyStatus('idle');
+              }}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap cursor-pointer transition-colors border ${
                 selectedStandard === std
                   ? 'bg-emerald-50 text-emerald-800 border-emerald-400 dark:bg-slate-800 dark:text-emerald-400 dark:border-emerald-500/50 shadow-xs'
@@ -162,30 +267,67 @@ export const ComplianceAuditView: React.FC<ComplianceAuditViewProps> = ({ assets
 
       {/* Standard Overview Banner */}
       <div className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
+
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+
           <div>
             <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-bold block">
               Regulatory Framework
             </span>
+
             <h3 className="text-base font-bold text-slate-900 dark:text-white mt-0.5">
               {currentStandardInfo.title}
             </h3>
+
             <span className="text-xs text-slate-500 font-medium">
               Target Domain: {currentStandardInfo.sector}
             </span>
           </div>
 
-          <button
-            onClick={() => {
-              const text = `REGULATORY AUDIT REPORT - ${currentStandardInfo.title}\nDomain: ${currentStandardInfo.sector}\nGenerated: ${new Date().toISOString()}\n\nArticles:\n${currentStandardInfo.articles.map(a => `[${a.status}] ${a.id}: ${a.name}\n${a.fleetStatus}`).join('\n\n')}`;
-              navigator.clipboard.writeText(text);
-              alert('Audit summary copied to clipboard!');
-            }}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors cursor-pointer shrink-0"
-          >
-            <Printer className="w-3.5 h-3.5" />
-            <span>Copy Audit Dossier</span>
-          </button>
+          {/* Copy Audit Dossier */}
+          <div className="flex flex-col items-start sm:items-end gap-2">
+
+            <button
+              type="button"
+              onClick={handleCopyDossier}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors cursor-pointer shrink-0 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            >
+              {copyStatus === 'success' ? (
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              ) : copyStatus === 'error' ? (
+                <AlertCircle className="w-3.5 h-3.5 text-rose-600" />
+              ) : (
+                <Printer className="w-3.5 h-3.5" />
+              )}
+
+              <span>
+                {copyStatus === 'success'
+                  ? 'Copied Successfully'
+                  : copyStatus === 'error'
+                  ? 'Copy Failed - Retry'
+                  : 'Copy Audit Dossier'}
+              </span>
+            </button>
+
+            {copyStatus === 'success' && (
+              <span
+                role="status"
+                className="text-[11px] text-emerald-600 dark:text-emerald-400"
+              >
+                Audit dossier copied to clipboard.
+              </span>
+            )}
+
+            {copyStatus === 'error' && (
+              <span
+                role="alert"
+                className="text-[11px] text-rose-600 dark:text-rose-400"
+              >
+                Clipboard access failed. Check browser permissions or try HTTPS/localhost.
+              </span>
+            )}
+
+          </div>
         </div>
 
         <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed max-w-4xl">
@@ -195,58 +337,84 @@ export const ComplianceAuditView: React.FC<ComplianceAuditViewProps> = ({ assets
 
       {/* Articles & Fleet Audit Checklist */}
       <div className="space-y-4">
+
         <div className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
           Statutory Clause Evaluation &amp; Monitored Fleet Status
         </div>
 
         <div className="space-y-3">
           {currentStandardInfo.articles.map((art) => (
+
             <div
               key={art.id}
               className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3"
             >
+
               <div className="flex items-start justify-between gap-3">
+
                 <div>
                   <div className="flex items-center gap-2">
+
                     <span className="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">
                       {art.id}
                     </span>
-                    <span className="text-slate-300 dark:text-slate-600">·</span>
+
+                    <span className="text-slate-300 dark:text-slate-600">
+                      ·
+                    </span>
+
                     <h4 className="text-sm font-bold text-slate-900 dark:text-slate-200">
                       {art.name}
                     </h4>
+
                   </div>
+
                   <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
                     {art.requirement}
                   </p>
                 </div>
 
                 <div className="shrink-0">
+
                   {art.status === 'Compliant' ? (
+
                     <span className="flex items-center gap-1 text-[11px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 px-2 py-0.5 rounded font-bold">
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       COMPLIANT
                     </span>
+
                   ) : art.status === 'Action Required' ? (
+
                     <span className="flex items-center gap-1 text-[11px] font-mono text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 px-2 py-0.5 rounded font-bold">
                       <AlertCircle className="w-3.5 h-3.5" />
                       ACTION REQUIRED
                     </span>
+
                   ) : (
+
                     <span className="flex items-center gap-1 text-[11px] font-mono text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 px-2 py-0.5 rounded font-bold">
                       <XCircle className="w-3.5 h-3.5" />
                       NON-COMPLIANT
                     </span>
+
                   )}
+
                 </div>
               </div>
 
               {/* Monitored Fleet Observation */}
               <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300">
-                <span className="font-bold text-slate-500">Observed Fleet Evidence: </span>
+
+                <span className="font-bold text-slate-500">
+                  Observed Fleet Evidence:{' '}
+                </span>
+
                 <span>{art.fleetStatus}</span>
+
               </div>
+
             </div>
+
           ))}
         </div>
       </div>

@@ -15,7 +15,6 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from src.supply_chain.decision_engine import EVIDENCE_DIR, evaluate_scenario
-from src.supply_chain.api.gemini_advisor import router as advisor_router
 from src.supply_chain.api.customer_assessment import router as customer_assessment_router
 from src.supply_chain.api.ransomware_assessment import router as ransomware_assessment_router
 
@@ -41,7 +40,6 @@ app = FastAPI(
 
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
-app.include_router(advisor_router)
 app.include_router(customer_assessment_router)
 app.include_router(ransomware_assessment_router)
 
@@ -393,26 +391,125 @@ def health():
     }
 
 
+
 @app.get("/api/scenarios")
 def scenarios():
     rows = []
 
     for scenario_id in SCENARIO_IDS:
         try:
-            package = read_json(
-                bundle(scenario_id) / "package.json"
-            )
+            directory = bundle(scenario_id)
 
-            asset = read_json(
-                bundle(scenario_id) / "asset_mapping.json"
+            package = read_json(directory / "package.json")
+            asset = read_json(directory / "asset_mapping.json")
+            decision = read_json(directory / "decision.json")
+
+            reference = read_json(
+                directory / "reference_evidence.json"
+            )
+            hash_evidence = read_json(
+                directory / "hash_evidence.json"
+            )
+            signature = read_json(
+                directory / "signature_evidence.json"
+            )
+            vendor = read_json(
+                directory / "vendor_evidence.json"
+            )
+            rollback = read_json(
+                directory / "rollback_evidence.json"
+            )
+            sbom = read_json(directory / "sbom.json")
+            freshness = read_json(
+                directory / "freshness_evidence.json"
             )
 
             rows.append({
+                # Existing fields: preserved for compatibility.
                 "scenario_id": scenario_id,
                 "package_id": package.get("package_id"),
-                "firmware_version": package.get("firmware_version"),
+                "firmware_version": package.get(
+                    "firmware_version"
+                ),
                 "asset_name": asset.get("asset_name"),
                 "device_type": asset.get("device_type"),
+
+                # Asset and product mapping.
+                "asset_id": asset.get("asset_id"),
+                "product_id": asset.get("product_id"),
+                "vendor_id": asset.get("vendor_id"),
+                "process_unit": asset.get("process_unit"),
+                "location": asset.get("location"),
+
+                # Actual decision evidence.
+                "risk_score": decision.get("risk_score"),
+                "risk_level": decision.get("risk_level"),
+                "risk_factors": decision.get("risk_factors", []),
+                "risk_breakdown": decision.get("risk_breakdown", []),
+                "reasons": decision.get("reasons", []),
+                "recommendation": decision.get("recommendation"),
+
+                # SHA-256 integrity.
+                "hash_match": hash_evidence.get("hash_match"),
+                "observed_hash": hash_evidence.get("observed_hash"),
+                "trusted_sha256": reference.get("trusted_sha256"),
+
+                # Signature and trusted root.
+                "signature_status": signature.get(
+                    "signature_status"
+                ),
+                "trusted_root_status": signature.get(
+                    "trusted_root_status"
+                ),
+
+                # Vendor verification.
+                "vendor_trust": vendor.get("vendor_trust_status"),
+                "observed_vendor_id": vendor.get(
+                    "observed_vendor_id"
+                ),
+                "approved_vendor_id": reference.get(
+                    "approved_vendor_id"
+                ),
+
+                # Rollback protection.
+                "expected_version": reference.get("approved_version"),
+                "observed_version": rollback.get("observed_version"),
+                "rollback_authorized": rollback.get(
+                    "rollback_authorized"
+                ),
+
+                # SBOM and vulnerability evidence.
+                "sbom_present": sbom.get("sbom_present"),
+                "sbom_status": sbom.get("sbom_status"),
+                "component_count": sbom.get("component_count"),
+                "vulnerability_status": sbom.get(
+                    "vulnerability_status", "unknown"
+                ),
+                "vulnerabilities": sbom.get("vulnerabilities", []),
+                "unexpected_component_observed": sbom.get(
+                    "unexpected_component_observed"
+                ),
+
+                # Evidence freshness.
+                "evidence_age_days": freshness.get(
+                    "evidence_age_days"
+                ),
+                "freshness_threshold_days": freshness.get(
+                    "freshness_threshold_days"
+                ),
+
+                # Reuse existing evidence-check logic.
+                "evidence_layers": evidence_checks(scenario_id),
+
+                # Safety and provenance.
+                "human_approval_required": True,
+                "deployment_allowed": False,
+                "real_action_executed": False,
+                "data_provenance": decision.get(
+                    "data_provenance",
+                    "SYNTHETIC OBSERVED EVIDENCE"
+                ),
+                "available": True,
             })
 
         except (
@@ -430,6 +527,7 @@ def scenarios():
         "count": len(rows),
         "scenarios": rows,
     }
+
 
 
 @app.post("/api/supply-chain/assess")

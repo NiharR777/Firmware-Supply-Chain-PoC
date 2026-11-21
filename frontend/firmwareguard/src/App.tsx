@@ -1,13 +1,14 @@
+import React, { useState, useEffect } from 'react';
 
-import React, { useState, useEffect, useMemo } from 'react';
 import { SPECTRA_SCENARIOS } from './data/spectraScenarios';
 import { INITIAL_FIRMWARE_ASSETS } from './data/firmwareData';
 import { FirmwareAsset } from './types/firmware';
-
 import { firmwareApi, ApiError } from './api/client';
+
 import type {
   WorkflowRecord,
   AuditEvent,
+  ScenarioRecord,
 } from './api/client';
 
 import { Header } from './components/Header';
@@ -20,8 +21,10 @@ import { BinaryHardeningView } from './components/BinaryHardeningView';
 import { PedigreeGraph } from './components/PedigreeGraph';
 import { ComplianceAuditView } from './components/ComplianceAuditView';
 import { HumanReviewModal } from './components/HumanReviewModal';
-import { SpectraAdvisorModal } from './components/SpectraAdvisorModal';
-import { AuditHistoryView, AuditEventItem } from './components/AuditHistoryView';
+import {
+  AuditHistoryView,
+  AuditEventItem,
+} from './components/AuditHistoryView';
 import { VexExporterModal } from './components/VexExporterModal';
 import { AssetDetailModal } from './components/AssetDetailModal';
 import { CustomerAssessmentView } from './components/CustomerAssessmentView';
@@ -33,6 +36,8 @@ type ReviewRecord = {
   recorded_at: string;
   workflow_status?: string;
 };
+
+type ApiStatus = 'checking' | 'online' | 'offline';
 
 function mapWorkflowRecord(
   record: WorkflowRecord
@@ -71,7 +76,7 @@ function mapAuditEvent(
             : '',
         ]
           .filter(Boolean)
-          .join(' · ') || 'Backend audit event';
+          .join(' Â· ') || 'Backend audit event';
 
   return {
     id: `backend-audit-${timestamp}-${index}`,
@@ -109,7 +114,6 @@ export default function App() {
     useState<string>('SC-001');
 
   // Modals
-  const [isAdvisorModalOpen, setIsAdvisorModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [selectedAssetForModal, setSelectedAssetForModal] =
@@ -120,8 +124,12 @@ export default function App() {
     Record<string, ReviewRecord>
   >({});
   const [auditEvents, setAuditEvents] = useState<AuditEventItem[]>([]);
+  const [backendScenarios, setBackendScenarios] = useState<ScenarioRecord[]>([]);
   const [workflowLoading, setWorkflowLoading] = useState(true);
   const [workflowError, setWorkflowError] = useState('');
+
+  // Actual backend API health state
+  const [apiStatus, setApiStatus] = useState<ApiStatus>('checking');
 
   // Refresh workflow records from backend
   const refreshWorkflow = async () => {
@@ -147,18 +155,42 @@ export default function App() {
     );
   };
 
-  // Load persistent backend state when app opens
+  // Refresh live scenario evidence from backend
+  const refreshScenarios = async () => {
+    const response = await firmwareApi.scenarios();
+    setBackendScenarios(response.scenarios || []);
+  };
+
+  // Load backend state and check API health when app opens
   useEffect(() => {
     let cancelled = false;
+
+    const checkApiHealth = async () => {
+      try {
+        const health = await firmwareApi.health();
+
+        if (cancelled) return;
+
+        setApiStatus(
+          health.status === 'ok' ? 'online' : 'offline'
+        );
+      } catch {
+        if (!cancelled) {
+          setApiStatus('offline');
+        }
+      }
+    };
 
     const loadBackendState = async () => {
       setWorkflowLoading(true);
       setWorkflowError('');
 
       try {
-        const [workflowResponse, auditResponse] = await Promise.all([
+        const [workflowResponse, auditResponse, scenarioResponse] =
+        await Promise.all([
           firmwareApi.workflow(),
           firmwareApi.audit(),
+          firmwareApi.scenarios(),
         ]);
 
         if (cancelled) return;
@@ -172,9 +204,11 @@ export default function App() {
         );
 
         setReviews(mapped);
+
         setAuditEvents(
           (auditResponse.events || []).map(mapAuditEvent)
         );
+        setBackendScenarios(scenarioResponse.scenarios || []);
       } catch (error) {
         if (!cancelled) {
           setWorkflowError(
@@ -190,36 +224,35 @@ export default function App() {
       }
     };
 
-    loadBackendState();
+    // Initial backend health check and state loading
+    void checkApiHealth();
+    void loadBackendState();
+
+    // Recheck API availability every 30 seconds
+    const healthInterval = window.setInterval(() => {
+      void checkApiHealth();
+    }, 30000);
 
     return () => {
       cancelled = true;
+      window.clearInterval(healthInterval);
     };
   }, []);
 
-  // Filter scenarios
-  const filteredScenarios = useMemo(() => {
-    if (selectedSector === 'all') return SPECTRA_SCENARIOS;
+  const highRiskCount = backendScenarios.filter(
+  (scenario) => scenario.risk_level === 'high_risk'
+).length;
 
-    return SPECTRA_SCENARIOS.filter(
-      (scenario) => scenario.sector === selectedSector
-    );
-  }, [selectedSector]);
-
-  const highRiskCount = SPECTRA_SCENARIOS.filter(
-    (scenario) => scenario.risk_level === 'high_risk'
-  ).length;
-
-  const investigateCount = SPECTRA_SCENARIOS.filter(
-    (scenario) => scenario.risk_level === 'investigate'
-  ).length;
+const investigateCount = backendScenarios.filter(
+  (scenario) => scenario.risk_level === 'investigate'
+).length;
 
   const currentScenario =
     SPECTRA_SCENARIOS.find(
       (scenario) => scenario.scenario_id === selectedScenarioId
     ) || SPECTRA_SCENARIOS[0];
 
-  // Record review using the real backend API
+  // Record review using the backend API
   const handleRecordReview = async (
     scenarioId: string,
     reviewer: string,
@@ -245,14 +278,40 @@ export default function App() {
       [scenarioId]: mapWorkflowRecord(savedRecord),
     }));
 
+    await refreshWorkflow();
     await refreshAudit();
 
+    if (savedRecord.duplicate_submission) {
+      const recordedTime = savedRecord.recorded_at
+        ? new Date(savedRecord.recorded_at).toLocaleString()
+        : 'Unknown';
+
+      alert(
+        `Duplicate review detected for ${scenarioId}.\n\n` +
+        `This exact review already exists.\n` +
+        `Original record: ${recordedTime}\n\n` +
+        `No new review or audit event was created.\n` +
+        `No physical device deployment is authorized.`
+      );
+
+      return;
+    }
+
+    const recordedTime = savedRecord.recorded_at
+      ? new Date(savedRecord.recorded_at).toLocaleString()
+      : 'Unknown';
+
     alert(
-      `Backend confirmation: Human review recorded for ${scenarioId}. No physical device deployment is authorized.`
+      `New human review successfully recorded for ${scenarioId}.\n\n` +
+      `Reviewer: ${savedRecord.reviewer}\n` +
+      `Disposition: ${savedRecord.disposition}\n` +
+      `Recorded at: ${recordedTime}\n\n` +
+      `No physical device deployment is authorized.`
     );
   };
 
-  // Evaluate the simulated gate using the real backend API
+
+  // Evaluate the simulated gate using the backend API
   const handleSimulateGate = async (scenarioId: string) => {
     try {
       const result = await firmwareApi.simulateRelease(scenarioId);
@@ -296,9 +355,9 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         theme={theme}
+        apiStatus={apiStatus}
         onToggleTheme={toggleTheme}
         onOpenExportModal={() => setIsExportModalOpen(true)}
-        onOpenAdvisorModal={() => setIsAdvisorModalOpen(true)}
       />
 
       {/* Workspace */}
@@ -327,9 +386,11 @@ export default function App() {
               Backend workflow loading failed: {workflowError}
               <button
                 onClick={() => {
-                  refreshWorkflow()
-                    .then(refreshAudit)
-                    .catch((error) =>
+                  Promise.all([
+                    refreshWorkflow(),
+                    refreshAudit(),
+                    refreshScenarios(),
+                  ]).catch((error) =>
                       setWorkflowError(
                         error instanceof Error
                           ? error.message
@@ -346,14 +407,13 @@ export default function App() {
 
           {activeTab === 'overview' && (
             <OverviewView
-              scenarios={filteredScenarios}
+              scenarios={backendScenarios}
+              selectedSector={selectedSector}
               onSelectScenario={(id) => {
                 setSelectedScenarioId(id);
                 setActiveTab('assessment');
               }}
-              onOpenAdvisorModal={() =>
-                setIsAdvisorModalOpen(true)
-              }
+
               onOpenReviewModal={() =>
                 setIsReviewModalOpen(true)
               }
@@ -440,7 +500,7 @@ export default function App() {
                       );
                       setIsReviewModalOpen(true);
                     }}
-                    className="p-3 rounded-lg border border-slate-200 dark:border-slate-800 hover:border-emerald-500 bg-slate-50 dark:bg-slate-950 text-left transition-colors cursor-pointer"
+                    className="p-3 rounded-lg border border-slate-200 dark:border-slate-800 hover:border-emerald-500 bg-slate-50 dark:bg-slate-950 text-lefttransition-colors cursor-pointer"
                   >
                     <div className="font-mono font-bold text-xs">
                       {scenario.scenario_id}
@@ -451,7 +511,7 @@ export default function App() {
                     </div>
 
                     <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mt-1">
-                      Review Gate →
+                      Review Gate â†’
                     </div>
 
                     {reviews[scenario.scenario_id] && (
@@ -468,6 +528,7 @@ export default function App() {
           {activeTab === 'audit' && (
             <AuditHistoryView auditEvents={auditEvents} />
           )}
+
         </main>
       </div>
 
@@ -475,11 +536,11 @@ export default function App() {
       <footer className="border-t border-slate-200 dark:border-slate-900 bg-white/80 dark:bg-slate-950/80 py-4 px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <div>
-            SPECTRA · OT Firmware Supply-Chain Assurance &amp; Safety Gate PoC
+            SPECTRA Â· OT Firmware Supply-Chain Assurance &amp; Safety Gate PoC
           </div>
 
           <div className="text-slate-400 font-mono text-[11px]">
-            Synthetic Observed Evidence · Zero Physical Flashing
+            Synthetic Observed Evidence Â· Zero Physical Flashing
           </div>
         </div>
       </footer>
@@ -495,10 +556,6 @@ export default function App() {
       />
 
       {/* Other Modals */}
-      <SpectraAdvisorModal
-        isOpen={isAdvisorModalOpen}
-        onClose={() => setIsAdvisorModalOpen(false)}
-      />
 
       <VexExporterModal
         isOpen={isExportModalOpen}
@@ -514,6 +571,7 @@ export default function App() {
           setIsExportModalOpen(true);
         }}
       />
+
     </div>
   );
 }

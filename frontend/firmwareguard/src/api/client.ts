@@ -1,9 +1,57 @@
+
 export interface ScenarioRecord {
   scenario_id: string;
   package_id?: string;
   firmware_version?: string;
   asset_name?: string;
   device_type?: string;
+  asset_id?: string;
+  product_id?: string;
+  vendor_id?: string;
+  process_unit?: string;
+  location?: string;
+
+  risk_score?: number;
+  risk_level?: 'normal' | 'investigate' | 'high_risk' | string;
+  risk_factors?: string[];
+  risk_breakdown?: unknown[];
+  reasons?: string[];
+  recommendation?: string;
+
+  hash_match?: boolean;
+  observed_hash?: string;
+  trusted_sha256?: string;
+
+  signature_status?: string;
+  trusted_root_status?: string;
+
+  vendor_trust?: string;
+  observed_vendor_id?: string;
+  approved_vendor_id?: string;
+
+  expected_version?: string;
+  observed_version?: string;
+  rollback_authorized?: boolean;
+
+  sbom_present?: boolean;
+  sbom_status?: string;
+  component_count?: number;
+
+  vulnerability_status?: string;
+  vulnerabilities?: unknown[];
+
+  unexpected_component_observed?: boolean;
+
+  evidence_age_days?: number;
+  freshness_threshold_days?: number;
+
+  evidence_layers?: EvidenceLayer[];
+
+  human_approval_required?: boolean;
+  deployment_allowed?: boolean;
+  real_action_executed?: boolean;
+  data_provenance?: string;
+
   available?: boolean;
 }
 
@@ -126,7 +174,6 @@ export interface GateResult {
   real_action_executed: false;
 }
 
-
 export interface CustomerAssessmentResult {
   assessment_id: string;
   industry: string;
@@ -136,8 +183,19 @@ export interface CustomerAssessmentResult {
   sbom_format: string;
   component_count: number;
   completeness: string;
-  product_mapping: { customer_product: string; sbom_root_component: string | null; mapped: boolean; note: string };
-  baseline_comparison: { status: string; submitted_version: string; approved_version: string | null; approved_sha256: string | null; submitted_sha256: string };
+  product_mapping: {
+    customer_product: string;
+    sbom_root_component: string | null;
+    mapped: boolean;
+    note: string;
+  };
+  baseline_comparison: {
+    status: string;
+    submitted_version: string;
+    approved_version: string | null;
+    approved_sha256: string | null;
+    submitted_sha256: string;
+  };
   vulnerability_matching: {
     catalog: string;
     catalog_is_live: boolean;
@@ -183,7 +241,10 @@ export interface CustomerAssessmentResult {
       applicability_note: string;
     };
   };
-  risk: { score: number; level: string };
+  risk: {
+    score: number;
+    level: string;
+  };
   recommendation: string;
   warnings: string[];
   human_review_required: boolean;

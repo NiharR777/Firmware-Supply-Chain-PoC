@@ -9,6 +9,10 @@ import {
   CheckCircle2,
   XCircle,
   Loader2,
+  AlertTriangle,
+  ClipboardCheck,
+  UserCheck,
+  FileText,
 } from 'lucide-react';
 
 interface GateResult {
@@ -36,6 +40,63 @@ interface HumanReviewModalProps {
   };
 }
 
+const getRecommendedDisposition = (decision?: string): string => {
+  if (decision === 'high_risk') return 'rejected';
+  if (decision === 'investigate') return 'hold_for_review';
+  if (decision === 'normal') return 'approved_for_simulated_test';
+
+  return 'hold_for_review';
+};
+
+const getRecommendedAction = (decision?: string): string => {
+  if (decision === 'high_risk') return 'QUARANTINE';
+  if (decision === 'investigate') return 'INVESTIGATE';
+  if (decision === 'normal') return 'ALLOW — SIMULATED TEST ONLY';
+
+  return 'HOLD FOR REVIEW';
+};
+
+const generateReviewNote = (
+  scenarioId: string,
+  assessment: AssessmentResult
+): string => {
+  const decision = assessment.decision || 'unknown';
+  const score =
+    typeof assessment.risk_score === 'number'
+      ? `${assessment.risk_score}/100`
+      : 'Not available';
+
+  const reasons = Array.isArray(assessment.explanations)
+    ? assessment.explanations.filter(
+        (item): item is string => typeof item === 'string'
+      )
+    : [];
+
+  const riskFactors = Array.isArray(assessment.risk_factors)
+    ? assessment.risk_factors.filter(
+        (item): item is string => typeof item === 'string'
+      )
+    : [];
+
+  const evidenceSummary =
+    reasons.length > 0
+      ? reasons.slice(0, 3).join(' ')
+      : riskFactors.length > 0
+      ? `Risk factors detected: ${riskFactors.join(', ')}.`
+      : 'Review the backend assessment evidence before making a decision.';
+
+  return [
+    `Automated review summary — ${scenarioId}`,
+    `Package: ${assessment.package_id || 'Not available'}`,
+    `Risk classification: ${decision.toUpperCase()}`,
+    `Risk score: ${score}`,
+    `System recommendation: ${getRecommendedAction(decision)}`,
+    `Assessment findings: ${evidenceSummary}`,
+    'Human reviewer must verify the evidence and confirm the disposition.',
+    'Simulation only. No deployment or physical device action is authorized.',
+  ].join('\n');
+};
+
 export const HumanReviewModal: React.FC<HumanReviewModalProps> = ({
   isOpen,
   onClose,
@@ -45,11 +106,9 @@ export const HumanReviewModal: React.FC<HumanReviewModalProps> = ({
   existingReview,
 }) => {
   const [reviewer, setReviewer] = useState(
-    'Lead ICS Security Engineer'
+    'Demo Reviewer (authentication pending)'
   );
-  const [disposition, setDisposition] = useState(
-    'hold_for_review'
-  );
+  const [disposition, setDisposition] = useState('hold_for_review');
   const [note, setNote] = useState('');
   const [gateResult, setGateResult] = useState<GateResult | null>(null);
   const [assessment, setAssessment] = useState<AssessmentResult | null>(null);
@@ -59,22 +118,25 @@ export const HumanReviewModal: React.FC<HumanReviewModalProps> = ({
   const [isEvaluating, setIsEvaluating] = useState(false);
   const [error, setError] = useState('');
 
-  // Reset review form when the modal or selected scenario changes.
+  // Reset the review state when the selected scenario changes.
   useEffect(() => {
-    if (isOpen) {
-      setReviewer(
-        existingReview?.reviewer || 'Lead ICS Security Engineer'
-      );
-      setDisposition(
-        existingReview?.disposition || 'hold_for_review'
-      );
-      setNote(existingReview?.note || '');
-      setGateResult(null);
-      setError('');
-    }
+    if (!isOpen) return;
+
+    setReviewer(
+      existingReview?.reviewer ||
+        'Demo Reviewer (authentication pending)'
+    );
+
+    setDisposition(
+      existingReview?.disposition || 'hold_for_review'
+    );
+
+    setNote(existingReview?.note || '');
+    setGateResult(null);
+    setError('');
   }, [isOpen, scenario?.scenario_id, existingReview]);
 
-  // Retrieve the actual package ID and deterministic assessment from backend.
+  // Retrieve the current deterministic assessment from the backend.
   useEffect(() => {
     if (!isOpen || !scenario) {
       setAssessment(null);
@@ -93,20 +155,20 @@ export const HumanReviewModal: React.FC<HumanReviewModalProps> = ({
       try {
         const scenariosResponse = await firmwareApi.scenarios();
 
-const backendScenario = scenariosResponse.scenarios.find(
-  (item) => item.scenario_id === scenario.scenario_id
-);
+        const backendScenario = scenariosResponse.scenarios.find(
+          (item) => item.scenario_id === scenario.scenario_id
+        );
 
-if (!backendScenario || !backendScenario.package_id) {
-  throw new Error(
-    `Backend scenario or package ID for ${scenario.scenario_id} was not found.`
-  );
-}
+        if (!backendScenario || !backendScenario.package_id) {
+          throw new Error(
+            `Backend scenario or package ID for ${scenario.scenario_id} was not found.`
+          );
+        }
 
-const result = await firmwareApi.assess(
-  backendScenario.scenario_id,
-  backendScenario.package_id
-);
+        const result = await firmwareApi.assess(
+          backendScenario.scenario_id,
+          backendScenario.package_id
+        );
 
         if (
           result.deployment_allowed !== false ||
@@ -142,11 +204,24 @@ const result = await firmwareApi.assess(
     };
   }, [isOpen, scenario?.scenario_id]);
 
+  // Generate the review explanation and safe default disposition.
+  useEffect(() => {
+    if (!assessment || existingReview) return;
+
+    setNote(generateReviewNote(scenario?.scenario_id || 'UNKNOWN', assessment));
+    setDisposition(getRecommendedDisposition(assessment.decision));
+  }, [assessment, existingReview, scenario?.scenario_id]);
+
   if (!isOpen || !scenario) return null;
 
   const handleSaveReview = async () => {
+    if (!assessment) {
+      setError('A valid backend assessment is required before recording review.');
+      return;
+    }
+
     if (!reviewer.trim()) {
-      setError('Please enter reviewer name or role.');
+      setError('Reviewer identity is unavailable.');
       return;
     }
 
@@ -202,7 +277,6 @@ const result = await firmwareApi.assess(
   };
 
   const isBusy = isSaving || isEvaluating;
-
   const riskLevel = assessment?.decision || '';
   const riskScore = assessment?.risk_score;
 
@@ -214,6 +288,11 @@ const result = await firmwareApi.assess(
       : riskLevel === 'normal'
       ? 'text-emerald-600 dark:text-emerald-400'
       : 'text-slate-500';
+
+  const recommendedAction = getRecommendedAction(riskLevel);
+
+  const existingDispositionLabel =
+    existingReview?.disposition?.replace(/_/g, ' ') || '';
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
@@ -229,7 +308,7 @@ const result = await firmwareApi.assess(
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                  Human-in-the-Loop Gate
+                  Automated Human Review
                 </span>
                 <span className="text-slate-400">·</span>
                 <span className="font-mono text-xs text-slate-500">
@@ -238,7 +317,7 @@ const result = await firmwareApi.assess(
               </div>
 
               <h3 className="text-base font-bold text-slate-900 dark:text-white mt-0.5">
-                Review &amp; Simulated Release Gate Evaluation
+                Assessment Review &amp; Safety Gate
               </h3>
             </div>
           </div>
@@ -246,6 +325,7 @@ const result = await firmwareApi.assess(
           <button
             onClick={onClose}
             disabled={isBusy}
+            aria-label="Close review modal"
             className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer disabled:opacity-50"
           >
             <X className="w-5 h-5" />
@@ -255,8 +335,8 @@ const result = await firmwareApi.assess(
         {/* Modal Body */}
         <div className="p-5 space-y-4 max-h-[75vh] overflow-y-auto">
 
-          {/* Target Package and Live Risk */}
-          <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+          {/* Package and risk summary */}
+          <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
             <div>
               <span className="text-slate-500 text-[11px] block">
                 Backend Package ID
@@ -274,7 +354,7 @@ const result = await firmwareApi.assess(
               {isLoadingAssessment ? (
                 <span className="font-mono text-slate-500 flex items-center gap-1">
                   <Loader2 className="w-3 h-3 animate-spin" />
-                  Loading assessment...
+                  Loading...
                 </span>
               ) : assessment ? (
                 <span className={`font-mono font-bold uppercase ${riskColor}`}>
@@ -297,42 +377,65 @@ const result = await firmwareApi.assess(
             </div>
           </div>
 
-          {/* Assessment Error */}
           {assessmentError && (
             <div className="p-3 rounded-lg border border-rose-300 dark:border-rose-800 bg-rose-50 dark:bg-rose-950/30 text-xs text-rose-700 dark:text-rose-300">
-              Live assessment unavailable: {assessmentError}
+              Backend assessment unavailable: {assessmentError}
             </div>
           )}
 
-          {/* Live Assessment Provenance */}
+          {/* Automated recommendation */}
+          {assessment && (
+            <div className="p-4 rounded-xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/30">
+              <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+                <ClipboardCheck className="w-4 h-4" />
+                <span className="text-xs font-bold uppercase tracking-wide">
+                  System-generated recommendation
+                </span>
+              </div>
+
+              <div className={`text-lg font-extrabold mt-2 ${riskColor}`}>
+                {recommendedAction}
+              </div>
+
+              <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
+                This recommendation is generated from the current deterministic backend assessment. The authorized reviewer remains responsible for the final human disposition.
+              </p>
+            </div>
+          )}
+
+          {/* Assessment provenance */}
           {assessment && (
             <div className="p-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs">
-              <div className="font-semibold text-slate-700 dark:text-slate-300">
-                Live backend assessment
+              <div className="font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
+                <FileText className="w-3.5 h-3.5" />
+                Backend assessment evidence
               </div>
+
               <div className="mt-1 text-slate-500">
-                Risk factors: {assessment.risk_factors?.join(', ') || 'None'}
+                Risk factors: {assessment.risk_factors?.join(', ') || 'None reported'}
               </div>
+
               <div className="text-slate-500">
                 Evidence source: {assessment.data_provenance}
               </div>
+
               <div className="text-slate-500">
                 Assessed at: {assessment.assessed_at}
               </div>
             </div>
           )}
 
-          {/* Existing Review Status */}
+          {/* Existing backend review */}
           {existingReview && (
-            <div className="p-3 rounded-lg border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/30 text-xs">
-              <div className="font-semibold text-emerald-700 dark:text-emerald-400">
+            <div className="p-3 rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30 text-xs">
+              <div className="font-semibold text-blue-700 dark:text-blue-400">
                 Existing backend review record
               </div>
               <div className="mt-1 text-slate-600 dark:text-slate-300">
                 Reviewer: {existingReview.reviewer}
               </div>
               <div className="text-slate-600 dark:text-slate-300">
-                Disposition: {existingReview.disposition}
+                Disposition: {existingDispositionLabel}
               </div>
               <div className="text-slate-500 mt-1">
                 Status: {existingReview.workflow_status || 'Recorded'}
@@ -340,68 +443,82 @@ const result = await firmwareApi.assess(
             </div>
           )}
 
-          {/* Form Rows */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                Reviewer Name / Role
-              </label>
-
-              <input
-                type="text"
-                value={reviewer}
-                disabled={isBusy}
-                onChange={(e) => setReviewer(e.target.value)}
-                placeholder="e.g., Lead ICS Security Engineer"
-                className="w-full bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors disabled:opacity-50"
-              />
+          {/* Reviewer identity */}
+          <div className="p-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
+              <UserCheck className="w-4 h-4" />
+              Reviewer identity
             </div>
 
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                Human Review Disposition
-              </label>
-
-              <select
-                value={disposition}
-                disabled={isBusy}
-                onChange={(e) => setDisposition(e.target.value)}
-                className="w-full bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors disabled:opacity-50"
-              >
-                <option value="approved_for_simulated_test">
-                  Approve for simulated test
-                </option>
-                <option value="hold_for_review">
-                  Hold for review
-                </option>
-                <option value="rejected">Reject</option>
-              </select>
+            <div className="mt-1 text-xs font-mono text-slate-600 dark:text-slate-300">
+              {reviewer}
             </div>
+
+            <p className="mt-1 text-[10px] text-amber-700 dark:text-amber-400">
+              Prototype identity only. Authentication is not yet connected; production reviewer identity must come from a verified login.
+            </p>
           </div>
 
+          {/* Human decision */}
           <div>
             <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-              Reviewer Note / Justification
+              Confirm Human Review Disposition
             </label>
 
-            <textarea
-              rows={3}
-              value={note}
-              disabled={isBusy}
-              onChange={(e) => setNote(e.target.value)}
-              placeholder="Reason for this disposition..."
-              className="w-full bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg p-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors disabled:opacity-50"
-            />
+            <select
+              value={disposition}
+              disabled={isBusy || !assessment}
+              onChange={(e) => setDisposition(e.target.value)}
+              className="w-full bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2.5 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors disabled:opacity-50"
+            >
+              <option value="approved_for_simulated_test">
+                Approve for simulated test
+              </option>
+              <option value="hold_for_review">
+                Hold for review
+              </option>
+              <option value="rejected">
+                Reject / Quarantine
+              </option>
+            </select>
+
+            <p className="text-[10px] text-slate-500 mt-1">
+              The system preselects a recommendation. An authorized reviewer must confirm or change it.
+            </p>
           </div>
 
-          {/* API Error */}
+          {/* Automatically generated justification */}
+          <div>
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                System-generated Review Summary
+              </label>
+              <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400">
+                AUTO-GENERATED
+              </span>
+            </div>
+
+            <textarea
+              rows={6}
+              value={note}
+              readOnly
+              placeholder="The system will generate the review summary after the backend assessment loads."
+              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg p-3 text-xs font-mono leading-relaxed text-slate-700 dark:text-slate-300 focus:outline-none resize-y"
+            />
+
+            <p className="text-[10px] text-slate-500 mt-1">
+              Generated from backend assessment fields. No manual technical justification is required.
+            </p>
+          </div>
+
+          {/* API errors */}
           {error && (
             <div className="p-3 rounded-lg border border-rose-300 dark:border-rose-800 bg-rose-50 dark:bg-rose-950/30 text-xs text-rose-700 dark:text-rose-300">
               {error}
             </div>
           )}
 
-          {/* Gate Evaluation Result */}
+          {/* Gate evaluation result */}
           {gateResult && (
             <div
               className={`p-3.5 rounded-xl border text-xs leading-relaxed ${
@@ -428,16 +545,17 @@ const result = await firmwareApi.assess(
             </div>
           )}
 
-          {/* Safety Strip */}
+          {/* Safety invariant */}
           <div className="p-3 rounded-lg bg-slate-100 dark:bg-slate-850 text-[11px] text-slate-600 dark:text-slate-400">
-            <strong>Safety Invariant:</strong> The backend requires both
-            manual human approval and deterministic normal-risk status
-            before the simulated test gate can pass. Deployment is never
-            authorized and no real device action is executed.
+            <strong className="flex items-center gap-1.5 mb-1">
+              <AlertTriangle className="w-3.5 h-3.5" />
+              Safety Invariant
+            </strong>
+            The backend requires both manual human approval and deterministic normal-risk status before the simulated test gate can pass. Deployment is never authorized and no real device action is executed.
           </div>
         </div>
 
-        {/* Modal Footer */}
+        {/* Footer */}
         <div className="p-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
           <button
             onClick={onClose}
@@ -450,7 +568,7 @@ const result = await firmwareApi.assess(
           <div className="flex items-center gap-2">
             <button
               onClick={handleSaveReview}
-              disabled={isBusy}
+              disabled={isBusy || !assessment || !!assessmentError}
               className="px-3.5 py-1.5 text-xs font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-850 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg transition-colors cursor-pointer disabled:opacity-50 flex items-center gap-2"
             >
               {isSaving && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
@@ -459,7 +577,7 @@ const result = await firmwareApi.assess(
 
             <button
               onClick={handleSimulate}
-              disabled={isBusy}
+              disabled={isBusy || !assessment || !!assessmentError}
               className="px-4 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg transition-colors cursor-pointer shadow-xs disabled:opacity-50 flex items-center gap-2"
             >
               {isEvaluating && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
